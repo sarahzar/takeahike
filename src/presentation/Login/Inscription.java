@@ -22,7 +22,7 @@ public class Inscription extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Inscription_1.fxml"));
-        
+        //test
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

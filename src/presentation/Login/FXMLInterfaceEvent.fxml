@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLInterfaceEventController">
+   <children>
+      <TitledPane animated="false" layoutX="7.0" layoutY="6.0" prefHeight="609.0" prefWidth="640.0" text="Ajouter un Evennement">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <JFXTextField fx:id="lpa" layoutX="36.0" layoutY="378.0" promptText="longititudepointArrivee" />
+                  <JFXTextField fx:id="diff" layoutX="433.0" layoutY="65.0" promptText="Difficultee" />
+                  <DatePicker fx:id="datefin" layoutX="331.0" layoutY="168.0" promptText="date_fin" />
+                  <DatePicker fx:id="datedebut" layoutX="88.0" layoutY="168.0" promptText="date_debut" />
+                  <JFXComboBox fx:id="endroit" layoutX="228.0" layoutY="65.0" prefHeight="25.0" prefWidth="135.0" promptText="Endroit" />
+                  <JFXTextField fx:id="nbrplace" layoutX="20.0" layoutY="268.0" promptText=" nombre de place" />
+                  <JFXTextField id="nom" fx:id="nom" layoutX="20.0" layoutY="65.0" promptText="Nom" />
+                  <JFXTextField layoutX="418.0" layoutY="644.0" />
+                  <JFXTextField fx:id="lpd" layoutX="438.0" layoutY="268.0" promptText="longititudepointDepart" />
+                  <JFXTextField fx:id="apd" layoutX="231.0" layoutY="378.0" promptText="lattitudepointDepart" />
+                  <JFXButton fx:id="jbtok" layoutX="189.0" layoutY="473.0" onAction="#ajoutEvent" prefHeight="25.0" prefWidth="191.0" text="Enregistrer" />
+                  <JFXTextArea fx:id="desc" layoutX="171.0" layoutY="231.0" prefHeight="100.0" prefWidth="249.0" promptText="Description" />
+                  <JFXTextField fx:id="apa" layoutX="426.0" layoutY="379.0" promptText="lattitudepointArrivee" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLAfficherEventController">
+   <children>
+      <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" layoutX="136.0" layoutY="21.0" prefHeight="236.0" prefWidth="581.0" style="-fx-background-color: white;" text="Randonnée A Venir">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <SplitPane dividerPositions="0.4274193548387097" layoutX="14.0" layoutY="26.0" prefHeight="150.0" prefWidth="267.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imgindrahem" fitHeight="150.0" fitWidth="109.0" layoutX="-3.0" layoutY="-2.0">
+                                 <image>
+                                    <Image url="@../../../../../../Desktop/ain%20drahem.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="134.0">
+                           <children>
+                              <Label fx:id="labnome1" contentDisplay="CENTER" layoutX="9.0" layoutY="6.0" text="Label" />
+                              <Label fx:id="labend1" layoutX="23.0" layoutY="31.0" text="Label" />
+                              <Label fx:id="labdateDebut" layoutX="23.0" layoutY="57.0" text="Label" />
+                              <Label fx:id="labDatefin" layoutX="23.0" layoutY="80.0" text="Label" />
+                              <JFXButton fx:id="det1" layoutX="57.0" layoutY="114.0" onAction="#ouvrirDetails" text="Détails" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.36981132075471695" layoutX="298.0" layoutY="26.0" prefHeight="151.0" prefWidth="267.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="149.0" prefWidth="99.0">
+                           <children>
+                              <ImageView fx:id="imgtabledujugharta" fitHeight="156.0" fitWidth="100.0" layoutX="-4.0" layoutY="-7.0">
+                                 <image>
+                                    <Image url="@../../../../../../Desktop/table%20du%20jugortha.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="149.0" prefWidth="136.0">
+                           <children>
+                              <Label fx:id="labnome2" contentDisplay="CENTER" layoutX="5.0" layoutY="14.0" text="Label" textAlignment="CENTER" />
+                              <Label fx:id="labendroit2" layoutX="29.0" layoutY="33.0" text="Label" />
+                              <Label fx:id="labdatedebut2" layoutX="29.0" layoutY="58.0" text="Label" />
+                              <Label fx:id="labdatefin2" layoutX="29.0" layoutY="75.0" text="Label" />
+                              <JFXButton fx:id="det2" layoutX="50.0" layoutY="115.0" onAction="#DetailTableduJugortha" text="Détails" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="136.0" layoutY="293.0" prefHeight="236.0" prefWidth="581.0" style="-fx-background-color: white;" text="Randonnées Organisées">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <SplitPane dividerPositions="0.35877862595419846" layoutX="14.0" layoutY="25.0" prefHeight="160.0" prefWidth="264.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imgrasangela" fitHeight="149.0" fitWidth="99.0" layoutX="-4.0" layoutY="5.0">
+                                 <image>
+                                    <Image url="@../../../../../../Desktop/ras%20angela.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="168.0">
+                           <children>
+                              <JFXButton fx:id="det3" layoutX="50.0" layoutY="119.0" onAction="#DetailBniMtir" text="Détails" />
+                              <Label fx:id="labnome3" contentDisplay="CENTER" layoutX="3.0" layoutY="15.0" text="Label" />
+                              <Label fx:id="labendroit3" layoutX="23.0" layoutY="45.0" text="Label" />
+                              <Label fx:id="datedebut3" layoutX="23.0" layoutY="71.0" text="Label" />
+                              <Label fx:id="datefin3" layoutX="23.0" layoutY="91.0" text="Label" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.43983402489626555" layoutX="296.0" layoutY="25.0" prefHeight="160.0" prefWidth="271.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imgkesra" fitHeight="173.0" fitWidth="120.0" layoutX="-4.0" layoutY="-7.0">
+                                 <image>
+                                    <Image url="@../../../../../../Desktop/kesra.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="142.0">
+                           <children>
+                              <Label fx:id="labnom4" contentDisplay="CENTER" layoutX="2.0" layoutY="9.0" text="Label" />
+                              <Label fx:id="labendroit4" layoutX="12.0" layoutY="34.0" text="Label" />
+                              <Label fx:id="labdatedebut4" layoutX="12.0" layoutY="62.0" text="Label" />
+                              <Label fx:id="labdatefin4" layoutX="12.0" layoutY="88.0" text="Label" />
+                              <JFXButton fx:id="det4" layoutX="33.0" layoutY="120.0" onAction="#Detailkesra" text="Détails" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

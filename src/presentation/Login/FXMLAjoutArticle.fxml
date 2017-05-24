@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLAjoutArticleController">
+   <children>
+      <Pane layoutX="-6.0" layoutY="-19.0" prefHeight="476.0" prefWidth="461.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="-19.0">
+         <children>
+            <JFXTextField fx:id="titre" focusColor="BLACK" layoutX="45.0" layoutY="95.0" prefHeight="25.0" prefWidth="203.0" promptText="Titre">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="AjoutArticle" layoutX="153.0" layoutY="429.0" onAction="#AjoutArticle" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #d25616;" text="Ajouter" textFill="WHITE" />
+            <Label layoutX="39.0" layoutY="39.0" prefHeight="17.0" prefWidth="274.0" text="Ajouter un Article" textFill="#d25616">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Separator layoutX="10.0" layoutY="59.0" prefHeight="2.0" prefWidth="343.0" />
+            <JFXTextArea fx:id="description" layoutX="39.0" layoutY="158.0" prefHeight="133.0" prefWidth="336.0" promptText="description" />
+            <RequiredFieldValidator layoutX="218.0" layoutY="99.0" />
+            <JFXDrawer fx:id="image" layoutX="14.0" layoutY="296.0" prefHeight="108.0" prefWidth="336.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

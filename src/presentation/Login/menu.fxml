@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="193.0" style="-fx-background-color: #009f90;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="152.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../logoTakeAHikeMenu.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="rando" buttonType="RAISED" prefHeight="42.0" prefWidth="192.0" text="Randonnées" textFill="WHITE" />
+      <JFXButton fx:id="materiel" buttonType="RAISED" prefHeight="42.0" prefWidth="192.0" text="Matériel" textFill="WHITE" />
+      <JFXButton fx:id="article" buttonType="RAISED" prefHeight="42.0" prefWidth="192.0" text="Articles" textFill="WHITE" />
+      <JFXButton fx:id="profil" buttonType="RAISED" prefHeight="42.0" prefWidth="192.0" text="Mon profil" textFill="WHITE" />
+      <JFXButton fx:id="web" buttonType="RAISED" prefHeight="42.0" prefWidth="192.0" text="Site web" textFill="WHITE" />
+      <JFXButton fx:id="propos" buttonType="RAISED" prefHeight="42.0" prefWidth="192.0" text="A propos" textFill="WHITE" />
+      <JFXButton fx:id="quitter" buttonType="RAISED" prefHeight="53.0" prefWidth="192.0" text="Quitter" textFill="WHITE" />
+   </children>
+</VBox>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="presentation.Login.DesactivationController">
+   <children>
+      <Pane layoutX="184.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="114.0" layoutY="223.0" prefHeight="26.0" prefWidth="405.0" text="Voulez-vous vraiment désactiver votre compte?" textFill="#004e3e">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnOui" layoutX="180.0" layoutY="270.0" mnemonicParsing="false" onAction="#desactiverCompte" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #009f90;" text="Oui" textFill="WHITE" />
+            <Button fx:id="btnNon" layoutX="293.0" layoutY="270.0" mnemonicParsing="false" onAction="#fermerFenetre" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #009f90;" text="Non" textFill="WHITE" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="218.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../116456-200.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

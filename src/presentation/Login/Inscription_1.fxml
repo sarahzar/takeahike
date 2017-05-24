@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="601.0" prefWidth="908.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.InscriptionController">
+    <stylesheets>
+        <URL value="@inscription.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="784.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblmessageErreur" layoutX="490.0" layoutY="470.0" prefHeight="25.0" prefWidth="380.0" textAlignment="CENTER" textFill="#b50a0a" />
+            <JFXTextField fx:id="txtnomUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="38.0" layoutY="209.0" prefHeight="25.0" prefWidth="170.0" promptText="Nom" />
+            <Label fx:id="lblNom" layoutX="38.0" layoutY="251.0" prefHeight="17.0" prefWidth="170.0" textFill="#cc0505" />
+            <JFXTextField fx:id="txtprenomUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="246.0" layoutY="209.0" prefHeight="25.0" prefWidth="170.0" promptText="Prénom" />
+            <Label fx:id="lblPrenom" layoutX="246.0" layoutY="251.0" prefHeight="17.0" prefWidth="170.0" textFill="#cc0505" />
+            <JFXTextField fx:id="txtcinUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="36.0" layoutY="279.0" prefHeight="25.0" prefWidth="380.0" promptText="CIN" />
+            <Label fx:id="lblCin" layoutX="36.0" layoutY="321.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <DatePicker fx:id="dateNaissanceUtilisateur" layoutX="36.0" layoutY="503.0" prefHeight="25.0" prefWidth="380.0" promptText="Date de naissance" />
+            <Label fx:id="lblDateNaissance" layoutX="36.0" layoutY="545.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <JFXTextField fx:id="txtloginUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="490.0" layoutY="209.0" prefHeight="25.0" prefWidth="380.0" promptText="Login" />
+            <Label fx:id="lblLogin" layoutX="490.0" layoutY="251.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <JFXPasswordField fx:id="pswpasswordUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="490.0" layoutY="279.0" prefHeight="25.0" prefWidth="380.0" promptText="Mot de passe" />
+            <Label fx:id="lblPassword" layoutX="490.0" layoutY="321.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <JFXPasswordField fx:id="pswconfirmPasswordUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="490.0" layoutY="351.0" prefHeight="25.0" prefWidth="380.0" promptText="Confirmer votre mot de passe" />
+            <Label fx:id="lblPasswordConfirm" layoutX="490.0" layoutY="393.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <JFXTextField fx:id="txtemailUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="36.0" layoutY="423.0" prefHeight="25.0" prefWidth="380.0" promptText="Email" />
+            <Label fx:id="lblEmail" layoutX="36.0" layoutY="465.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <JFXTextField fx:id="txttelephoneUtilisateur" alignment="CENTER" focusColor="#1b4e41" labelFloat="true" layoutX="36.0" layoutY="351.0" prefHeight="25.0" prefWidth="380.0" promptText="Téléphone" />
+            <Label fx:id="lblTelephone" layoutX="33.0" layoutY="393.0" prefHeight="17.0" prefWidth="380.0" textFill="#cc0505" />
+            <JFXComboBox fx:id="cmbsexeUtilisateur" focusColor="#1b4e41" layoutX="490.0" layoutY="423.0" prefHeight="25.0" prefWidth="380.0" promptText="Sexe" />
+            <JFXButton fx:id="jfbtnInscription" buttonType="RAISED" layoutX="586.0" layoutY="503.0" onAction="#inscrireUtilisateur" prefHeight="25.0" prefWidth="131.0" ripplerFill="WHITE" style="-fx-background-color: #1abc9c;" text="S'inscrire" textAlignment="CENTER" textFill="WHITE" />
+            <Label fx:id="lblTitle" layoutX="347.0" layoutY="149.0" prefHeight="31.0" prefWidth="215.0" textAlignment="CENTER" textFill="#d25616">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="454.0" layoutY="290.0" rotate="90.0" startX="-100.0" stroke="#1abc9c" strokeLineCap="ROUND" strokeLineJoin="ROUND" />
+            <Line endX="100.0" layoutX="454.0" layoutY="463.0" rotate="90.0" startX="-100.0" stroke="#1abc9c" strokeLineCap="ROUND" strokeLineJoin="ROUND" />
+            <JFXButton fx:id="jfbtnAnnuler" buttonType="RAISED" layoutX="739.0" layoutY="503.0" prefHeight="25.0" prefWidth="131.0" ripplerFill="WHITE" style="-fx-border-color: #1abc9c;" text="Annuler" textAlignment="CENTER" textFill="#1abc9c">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></JFXButton>
+            <ImageView fx:id="logo1" fitHeight="165.0" fitWidth="183.0" layoutX="362.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../logoTakeAHike_Blanc.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

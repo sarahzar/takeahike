@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="614.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.FXMLmodifeventController">
+   <children>
+      <JFXTextField fx:id="id" layoutX="30.0" layoutY="29.0" text="idevent" />
+      <JFXTextField fx:id="nom" layoutX="30.0" layoutY="69.0" text="nom" />
+      <JFXComboBox fx:id="idend" layoutX="30.0" layoutY="112.0" prefHeight="25.0" prefWidth="135.0" promptText="idend" />
+      <DatePicker fx:id="datedeb" layoutX="22.0" layoutY="162.0" promptText="date deb" />
+      <DatePicker fx:id="datefin" layoutX="22.0" layoutY="198.0" promptText="datefin" />
+      <JFXTextField fx:id="nbrplace" layoutX="30.0" layoutY="241.0" promptText="diff" />
+      <JFXTextField fx:id="description" layoutX="30.0" layoutY="282.0" promptText="nbrplace" />
+      <JFXTextField fx:id="lngd" layoutX="30.0" layoutY="328.0" text="longd" />
+      <JFXTextField fx:id="latd" layoutX="30.0" layoutY="376.0" text="longd" />
+      <JFXTextField fx:id="lnga" layoutX="30.0" layoutY="415.0" text="lattd" />
+      <JFXTextField fx:id="lata" layoutX="30.0" layoutY="464.0" text="latta" />
+      <JFXButton fx:id="modifev" layoutX="235.0" layoutY="549.0" onAction="#modifierevent" text="MOdifier" />
+      <JFXTextArea fx:id="desc" layoutX="244.0" layoutY="76.0" prefHeight="172.0" prefWidth="342.0" promptText="descrip" />
+   </children>
+</AnchorPane>

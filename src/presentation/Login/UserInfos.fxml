@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="189.0" prefWidth="351.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.UserInfosController">
+   <children>
+      <ImageView fx:id="imagev" fitHeight="116.0" fitWidth="116.0" layoutX="23.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="logo11" fitHeight="25.0" fitWidth="25.0" layoutX="235.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../notification.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logo1" fitHeight="25.0" fitWidth="26.0" layoutX="193.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../message.png" />
+         </image>
+      </ImageView>
+      <JFXComboBox fx:id="cmbprofilUser" focusColor="#d25616" layoutX="148.0" layoutY="96.0" onAction="#verifierInscription" prefHeight="25.0" prefWidth="116.0" promptText="Mon Profil" unFocusColor="WHITE" visibleRowCount="2" />
+      <JFXComboBox fx:id="cmbrandosUser" focusColor="#d25616" layoutX="148.0" layoutY="67.0" prefHeight="25.0" prefWidth="116.0" promptText="Mes Randonnées" unFocusColor="WHITE" visibleRowCount="2">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXComboBox>
+      <Label fx:id="nomPrenomUser" layoutX="149.0" layoutY="35.0" prefHeight="25.0" prefWidth="151.0" />
+   </children>
+</AnchorPane>

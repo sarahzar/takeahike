@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="presentation.Login.AccueilController">
+   <children>
+      <ScrollPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="439.0" prefWidth="617.0">
+               <children>
+                  <AnchorPane id="AnchorPane" layoutX="257.0" prefHeight="207.0" prefWidth="360.0" style="-fx-background-color: #ffffff; -fx-border-color: #d25616;" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="imagev" fitHeight="116.0" fitWidth="116.0" layoutX="73.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="logo11" fitHeight="25.0" fitWidth="25.0" layoutX="285.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../notification.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="logo1" fitHeight="25.0" fitWidth="26.0" layoutX="243.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../message.png" />
+                           </image>
+                        </ImageView>
+                        <JFXComboBox fx:id="cmbprofilUser" focusColor="#d25616" layoutX="198.0" layoutY="77.0" prefHeight="25.0" prefWidth="116.0" promptText="Mon Profil" unFocusColor="WHITE" visibleRowCount="2" />
+                        <JFXComboBox fx:id="cmbrandosUser" focusColor="#d25616" layoutX="198.0" layoutY="48.0" prefHeight="25.0" prefWidth="116.0" promptText="Mes Randonnées" unFocusColor="WHITE" visibleRowCount="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </JFXComboBox>
+                        <Label fx:id="nomPrenomUser" layoutX="193.0" layoutY="16.0" prefHeight="25.0" prefWidth="151.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

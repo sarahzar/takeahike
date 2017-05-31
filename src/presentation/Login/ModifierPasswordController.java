@@ -6,6 +6,7 @@
 package presentation.Login;
 
 import com.jfoenix.controls.JFXPasswordField;
+import entities.Session;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +30,7 @@ import services.UtilisateurServices;
  */
 public class ModifierPasswordController implements Initializable {
 
-    Utilisateur user= Utilisateur.getInstance();
+    Utilisateur user= Session.getUser();
     @FXML
     private JFXPasswordField newPasswordConfirm;
 

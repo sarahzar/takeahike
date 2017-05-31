@@ -69,7 +69,7 @@ public class FXMLmodifeventController implements Initializable {
     private JFXTextField difficulte;
     @FXML
     private JFXTextField lnga;
-    Utilisateur u = Utilisateur.getInstance();
+    //Utilisateur u = Session.getUser();
 
      @FXML
     void modifierevent(ActionEvent event) {

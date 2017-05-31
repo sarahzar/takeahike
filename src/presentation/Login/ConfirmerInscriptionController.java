@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import services.UtilisateurServices;
 import entities.Utilisateur;
+import entities.Session;
 
 /**
  * FXML Controller class
@@ -54,15 +55,20 @@ public class ConfirmerInscriptionController implements Initializable {
     void confirmerInscription(ActionEvent event) {
         UtilisateurServices us= new UtilisateurServices();
         Utilisateur u;
-        if (Utilisateur.getInstance().getCin()==null)
+        Utilisateur user=Session.getUser();
+        if (user==null)
         {
+            System.out.println("\nChercherconfirmerInscription      ---");
+            System.out.println(cinC);
              u=us.chercherCinUtilisateur(cinC);
-             //System.out.println("singleton=null");
+             Session.setUser(u);
+             System.out.println("-----Apres recherche dans confirmer---"+u);
+             System.out.println("singleton=null");
         }
         else
         {
-             u=Utilisateur.getInstance();
-              //System.out.println("singleton!=null");
+             u=user;
+              System.out.println("singleton!=null");
         }
         
             //System.out.println("u: "+u);

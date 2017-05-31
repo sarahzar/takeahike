@@ -5,7 +5,9 @@
  */
 package services;
 
+import Models.UtilisateursDetails;
 import dataConnexion.MyConnexion;
+import entities.Session;
 import entities.Utilisateur;
 import interfaces.interfaceUtilisateur;
 import java.sql.Date;
@@ -115,9 +117,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
             ResultSet result = stm.executeQuery("select * from utilisateur");
 
             while (result.next()) {
-                Utilisateur u = Utilisateur.getInstance();
-                
-
+                Utilisateur u = new Utilisateur();
                 u.setCin(result.getString(1));
                 u.setType(result.getInt(2));
                 u.setNom(result.getString(3));
@@ -146,6 +146,50 @@ public class UtilisateurServices implements interfaceUtilisateur {
     }
 
     @Override
+    public ObservableList<UtilisateursDetails> listeUtilisateurs() {
+        ObservableList<UtilisateursDetails> liste= FXCollections.observableArrayList();
+        try {
+
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur");
+
+            while (result.next()) {
+                String dateDesactivation="";
+                String type="";
+                String etat="";
+                String compte="";
+                String cin=result.getString(1);
+                String login=result.getString(10);
+                String nom=result.getString(3);
+                String prenom=result.getString(4);
+                String email=result.getString(8);
+                String telephone=result.getString(7);
+                int etatBase=result.getInt(11);
+                if(etatBase==0) etat="Non Confirmé";
+                else etat="Confirmé";
+                int compteBase=result.getInt(12);
+                if(compteBase==0) compte="Désactivé";
+                else compte="Activé";
+                int typeBase=result.getInt(2);
+                if(typeBase==0) type="Administrateur";
+                else type="Randonneur";
+                
+                
+                UtilisateursDetails u=new UtilisateursDetails(cin, login, nom, prenom, email, telephone, etat, compte,type);
+                System.out.println("UserDetails"+u);
+                liste.add(u);
+                
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return liste;
+    }
+
+    
+    @Override
     public void confirmerUtilisateur(Utilisateur u) {
         try {
             PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE utilisateur SET confirme=1 where cin = ?");
@@ -166,6 +210,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
             PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE utilisateur SET etat=0, dateDesactivation=? where cin = ?");
             prep.setDate(1, (Date) sqlDate1);
             prep.setString(2, u.getCin());
+            System.out.println("MethodeDesactiver:   "+u);
             prep.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
@@ -175,13 +220,15 @@ public class UtilisateurServices implements interfaceUtilisateur {
     @Override
     public Utilisateur chercherCinUtilisateur(String cin) {
 
-        Utilisateur u = Utilisateur.getInstance();
+        Utilisateur u = new Utilisateur();
+        System.out.println("user Methode chercher"+u);
+        System.out.println("getUserSession: ----"+Session.getUser());
         try {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where cin = \"" + cin + "\"");
 
             while (result.next()) {
-
+                System.out.println("Cin Result:    "+result.getString(1));
                 u.setCin(result.getString(1));
                 u.setType(result.getInt(2));
                 u.setNom(result.getString(3));
@@ -198,6 +245,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
                 u.setDateDeactivation(result.getDate(14));
                 u.setSexe(result.getInt(15));
                 u.setCodeConfirmation(result.getString(16));
+                System.out.println("Apres recherche: -------"+u);
 
             }
 
@@ -214,7 +262,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
             while (result.next()) {
-                Utilisateur u = Utilisateur.getInstance();
+                Utilisateur u = Session.getUser();
 
                 u.setCin(result.getString(1));
                 u.setType(result.getInt(2));
@@ -243,7 +291,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
 
     @Override
     public Utilisateur chercherLoginUtilisateur(String login) {
-         Utilisateur u = Utilisateur.getInstance();
+         Utilisateur u = new Utilisateur();
         try {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where login = \"" + login + "\"");

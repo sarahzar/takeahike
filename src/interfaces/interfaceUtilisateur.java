@@ -5,8 +5,10 @@
  */
 package interfaces;
 
+import Models.UtilisateursDetails;
 import entities.Utilisateur;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -19,7 +21,8 @@ public interface interfaceUtilisateur {
     public void supprimerUtilisateur(Utilisateur u);
     public void modifierUtilisateur(Utilisateur u, String nom, String prenom, String adresse, String telephone, String mail);
     public void modifierPasswordUtilisateur (Utilisateur u, String password);
-    public List<Utilisateur> afficherUtilisateur();
+    public ObservableList<Utilisateur> afficherUtilisateur();
+    public ObservableList<UtilisateursDetails> listeUtilisateurs();
     public void confirmerUtilisateur (Utilisateur u);
     public void desactiverCompteUtilisateur (Utilisateur u);
     public Utilisateur chercherCinUtilisateur (String cin);

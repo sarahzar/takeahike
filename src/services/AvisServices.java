@@ -86,7 +86,7 @@ public class AvisServices implements interfaces.interfaceAvis {
             rs=st.executeQuery(req);
             while (rs.next()) {
                 Avis a= new Avis();
-                Utilisateur us=Utilisateur.getInstance();
+                Utilisateur us=new Utilisateur();
                 Article ar=new Article();
                 a.setIdAvis(rs.getInt(1));
                 a.setCommentaire(rs.getString(2));
@@ -109,7 +109,7 @@ public class AvisServices implements interfaces.interfaceAvis {
             rs=st.executeQuery(req);
             while (rs.next()) {
                 Avis a= new Avis();
-                Utilisateur us=Utilisateur.getInstance();
+                Utilisateur us=new Utilisateur();
                 a.setIdAvis(rs.getInt(1));
                 a.setCommentaire(rs.getString(2));
                 a.setDatePublicationAvis(rs.getTimestamp(3));

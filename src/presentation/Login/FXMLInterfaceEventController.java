@@ -63,7 +63,7 @@ public class FXMLInterfaceEventController implements Initializable {
     
      
      ArrayList<Endroit> endro=new ArrayList<>();
-     Utilisateur u = Utilisateur.getInstance();
+     //Utilisateur u = Session.getUser();
     @FXML
     void ajoutEvent(ActionEvent event) {
         EvennementServices es= new EvennementServices();

@@ -3,6 +3,7 @@ package services;
 
 import dataConnexion.MyConnexion;
 import entities.Materiel;
+import entities.Session;
 import entities.Utilisateur;
 import interfaces.interfaceMateriel;
 import java.sql.Connection;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public class MaterielServices implements interfaceMateriel  {
 
         //Connection connect = myConnexion.getInstance().getConnect();
-   Utilisateur u=Utilisateur.getInstance();
+   Utilisateur u=Session.getUser();
     @Override
     public void ajouterMateriel(Materiel m) {
      

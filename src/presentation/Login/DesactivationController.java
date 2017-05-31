@@ -5,6 +5,7 @@
  */
 package presentation.Login;
 
+import entities.Session;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import services.UtilisateurServices;
 
@@ -27,7 +29,7 @@ import services.UtilisateurServices;
  */
 public class DesactivationController implements Initializable {
 
-    Utilisateur user=Utilisateur.getInstance();
+    
     @FXML
     private Button btnNon;
 
@@ -35,11 +37,21 @@ public class DesactivationController implements Initializable {
     private Button btnOui;
 
     @FXML
-    void desactiverCompte(ActionEvent event) {
+    void desactiverCompte(ActionEvent event) throws IOException {
         
         UtilisateurServices us=new UtilisateurServices();
-        us.desactiverCompteUtilisateur(user);        
+        Utilisateur user=Session.getUser();
+        System.out.println("Desactiver:   "+user);
+        us.desactiverCompteUtilisateur(user); 
+        System.out.println("Desactiver:   "+user);
+        LoginController lc =new LoginController();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        TestMenuController tsm=new TestMenuController();
+        
+        
         Platform.exit();
+        
+        
         
 
     }

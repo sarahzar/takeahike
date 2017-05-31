@@ -6,6 +6,7 @@
 package presentation.Login;
 
 import com.jfoenix.controls.JFXComboBox;
+import entities.Session;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +30,7 @@ import services.UtilisateurServices;
  */
 public class UserInfosController implements Initializable {
 
-     Utilisateur user=Utilisateur.getInstance();
+     Utilisateur user=Session.getUser();
 
 //    public static Utilisateur getUser() {
 //        return user;

@@ -8,6 +8,7 @@ package presentation.Login;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import entities.Session;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -65,7 +66,7 @@ public class LoginController implements Initializable {
     @FXML
     void connexionUtilisateur(ActionEvent event) throws IOException {
          
-              Utilisateur u = Utilisateur.getInstance();
+              Utilisateur u = new Utilisateur();
               String login = Login.getText();
               String password = Password.getText();
               UtilisateurServices us = new UtilisateurServices();
@@ -78,11 +79,14 @@ public class LoginController implements Initializable {
               
               if ((login.equals(u.getLogin())) && (password.equals(u.getPassword())))
               {
+                  Session.setUser(u);
                   System.out.println("Bienvenue!");
                   invalid.setText("Bienvenue!");
                   invalid.setTextFill(Color.web("#5e2b0e"));
                   if ((u.getEtat()==1)&&(u.getConfirmer()==1))
                   {
+                      
+                    
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("testMenu.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 1090, 600);

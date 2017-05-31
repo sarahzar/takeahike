@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXDrawer;
  
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import entities.Session;
 import entities.Utilisateur;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class TestMenuController implements Initializable {
     private JFXButton quitter;
     
     
-    Utilisateur user =Utilisateur.getInstance();
+    Utilisateur user =Session.getUser();
      @FXML
     private Label userLabel;
      

@@ -5,6 +5,7 @@
  */
 package presentation.Login;
 
+import entities.Session;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class ProfilController implements Initializable {
     
-    Utilisateur user=Utilisateur.getInstance();
+    Utilisateur user=Session.getUser();
    String login;
     
     @FXML

@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import entities.Article;
+import entities.Session;
 import entities.Utilisateur;
 import java.net.URL;
 import java.text.DateFormat;
@@ -46,7 +47,7 @@ public class FXMLAjoutArticleController implements Initializable {
 
     @FXML
     void AjoutArticle(ActionEvent event) {
-        Utilisateur u=Utilisateur.getInstance();
+        Utilisateur u=Session.getUser();
   //Utilisateur u = new Utilisateur("98688574", 0, "balti1", "oumaima1", "Tunis1", "71457848", "balti@gmail.com", "password", "login1", 0, 1);      UtilisateurServices us = new UtilisateurServices();
       //us.ajouterUtilisateur(u);
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

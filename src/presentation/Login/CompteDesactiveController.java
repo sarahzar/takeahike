@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javax.mail.*;
+import entities.Session;
 
 /**
  * FXML Controller class
@@ -25,7 +26,7 @@ import javax.mail.*;
  */
 public class CompteDesactiveController implements Initializable {
 
-    Utilisateur user =Utilisateur.getInstance();
+    Utilisateur user =Session.getUser();
      @FXML
     private JFXButton envoiMail;
 

@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import entities.Session;
 import entities.Utilisateur;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -305,7 +306,7 @@ public class InscriptionController implements Initializable {
          boolean telephoneverif =verifierEntiers(txttelephoneUtilisateur, lblTelephone, "Invalide!");
          if (nomverif && prenomverif && telephoneverif)
          {
-             us.modifierUtilisateur(Utilisateur.getInstance(), txtnomUtilisateur.getText(), txtprenomUtilisateur.getText(), "Tunis", txttelephoneUtilisateur.getText(), txtemailUtilisateur.getText());
+             us.modifierUtilisateur(Session.getUser(), txtnomUtilisateur.getText(), txtprenomUtilisateur.getText(), "Tunis", txttelephoneUtilisateur.getText(), txtemailUtilisateur.getText());
              System.out.println("Modification done");
          }
              
@@ -316,11 +317,8 @@ public class InscriptionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Utilisateur user= Utilisateur.getInstance();
-         
-         
-             
-             cmbsexeUtilisateur.getItems().addAll("Homme","Femme");
+        Utilisateur user= Session.getUser();
+        cmbsexeUtilisateur.getItems().addAll("Homme","Femme");
              
             
          

@@ -7,6 +7,8 @@ package entities;
 
 import java.time.LocalDate;
 import java.util.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -30,17 +32,30 @@ public class Utilisateur {
     private Date dateDeactivation;
     private int sexe;
     private String codeConfirmation;
-    private static Utilisateur instance=null;
+//    private static Utilisateur instance=null;
 
-    private Utilisateur() {
+    public Utilisateur() {
     }
     
-    public static Utilisateur getInstance (){
-        if (instance == null)
-            instance =new Utilisateur ();
-        return instance;
-    }
+//    public static  Utilisateur getInstance (){
+//        
+//        
+//        if (instance == null)
+//            instance =new Utilisateur ();
+//        return instance;
+//    }
 
+//    public static void setInstance (Utilisateur user)
+//    {
+//        System.out.println("\n-------------------setInstance-------------------\n");
+//        System.out.println(instance);
+//        if (instance.getCin()==null)
+//        {
+//            System.out.println("Oui");
+//            instance=user;
+//            
+//        }
+//    }
     public Utilisateur(String cin, int type, String nom, String prenom,LocalDate dateNaissance, String adresse, String telephone, String mail, String password, String login, int confirmer, int etat, int sexe, String codeConfirmation) {
         this.cin = cin;
         this.type = type;
@@ -187,6 +202,9 @@ public class Utilisateur {
     public void setSexe(int sexe) {
         this.sexe = sexe;
     }
+    
+    
+    
 
     @Override
     public String toString() {

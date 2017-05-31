@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import dataConnexion.MyConnexion;
+import entities.Session;
 import entities.Utilisateur;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -53,7 +54,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void connexionUtilisateur(ActionEvent event) {
          
-              Utilisateur u = Utilisateur.getInstance();
+              Utilisateur u = Session.getUser();
               String login = Login.getText();
               String password = Password.getText();
               UtilisateurServices us = new UtilisateurServices();

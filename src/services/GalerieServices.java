@@ -8,6 +8,7 @@ package services;
 import dataConnexion.MyConnexion;
 import entities.Evennement;
 import entities.Galerie;
+import entities.Session;
 import entities.Utilisateur;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,7 +104,7 @@ public class GalerieServices implements interfaces.interfaceGalerie{
             
             Galerie g=new Galerie();
            
-            Utilisateur user=Utilisateur.getInstance();
+            Utilisateur user=new Utilisateur();
             Evennement ev=new Evennement();
         
             g.setImage(result.getString(2));

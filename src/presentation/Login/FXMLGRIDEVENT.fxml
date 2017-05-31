@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuBar?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" fx:id="pnn" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #006f60;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLGRIDEVENTController">
-    
+<AnchorPane id="AnchorPane" fx:id="acceuilpan" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLGRIDEVENTController">
+   
     <children>
-       
-      <ScrollPane fx:id="sx" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #162337;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-      <Pane fx:id="panepane" disable="true" prefHeight="592.0" prefWidth="900.0">
+      <Pane fx:id="ajoutpane" layoutX="697.0" layoutY="14.0" prefHeight="34.0" prefWidth="183.0">
          <children>
-            <MenuBar fx:id="Menu" layoutX="650.0" layoutY="14.0" />
-         </children></Pane>
+            <JFXButton fx:id="Ajouter" layoutY="5.0" onAction="#AjoutEvennement" prefHeight="25.0" prefWidth="183.0" style="-fx-background-color: white;" text="Ajouter un Evennement" />
+         </children>
+      </Pane>
+      <JFXTabPane fx:id="tabpane" layoutX="3.0" layoutY="61.0" prefHeight="532.0" prefWidth="890.0" style="-fx-background-color: red;">
+         <tabs>
+            <Tab text="Evennement A Venir">
+               <content>
+                  <ScrollPane fx:id="scrollEvent" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                    </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="Evennement Organise">
+               <content>
+                  <ScrollPane fx:id="scrollEvent1" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                    </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
    </children>
 </AnchorPane>

@@ -18,7 +18,9 @@ public interface interfaceEvennement {
      public void ajouterEvennement(Evennement e);
     public void supprimerEvennement(Evennement e);
     public void modifierEvennement(Evennement e);
-    public ArrayList<Evennement> afficherEvennement();
+     public ArrayList<Evennement> afficherEvennementAvenir();
+
+    public ArrayList<Evennement> afficherEvennementorganise();
     public Evennement ChercherEventById(int id);
     
     

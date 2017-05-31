@@ -6,28 +6,26 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLAjoutArticleController">
    <children>
-      <Pane layoutX="-6.0" layoutY="-19.0" prefHeight="476.0" prefWidth="461.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="-19.0">
+      <Pane layoutX="-6.0" layoutY="-19.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="-19.0">
          <children>
-            <JFXTextField fx:id="titre" focusColor="BLACK" layoutX="45.0" layoutY="95.0" prefHeight="25.0" prefWidth="203.0" promptText="Titre">
+            <JFXTextField fx:id="titre" focusColor="#004e3e" labelFloat="true" layoutX="36.0" layoutY="148.0" prefHeight="27.0" prefWidth="336.0" promptText="Titre" unFocusColor="#004e3e">
                <font>
                   <Font size="13.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="AjoutArticle" layoutX="153.0" layoutY="429.0" onAction="#AjoutArticle" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #d25616;" text="Ajouter" textFill="WHITE" />
-            <Label layoutX="39.0" layoutY="39.0" prefHeight="17.0" prefWidth="274.0" text="Ajouter un Article" textFill="#d25616">
+            <JFXButton fx:id="AjoutArticle" layoutX="401.0" layoutY="410.0" onAction="#AjoutArticle" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #009f90;" text="Ajouter" textFill="WHITE" />
+            <Label layoutX="39.0" layoutY="85.0" prefHeight="17.0" prefWidth="274.0" text="Ajouter un Article" textFill="#004e3e">
                <font>
-                  <Font size="22.0" />
+                  <Font size="31.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="59.0" prefHeight="2.0" prefWidth="343.0" />
-            <JFXTextArea fx:id="description" layoutX="39.0" layoutY="158.0" prefHeight="133.0" prefWidth="336.0" promptText="description" />
+            <JFXTextArea fx:id="description" focusColor="#004e3e" labelFloat="true" layoutX="36.0" layoutY="217.0" prefHeight="133.0" prefWidth="836.0" promptText="Description" unFocusColor="#004e3e" />
             <RequiredFieldValidator layoutX="218.0" layoutY="99.0" />
             <JFXDrawer fx:id="image" layoutX="14.0" layoutY="296.0" prefHeight="108.0" prefWidth="336.0" />
          </children>

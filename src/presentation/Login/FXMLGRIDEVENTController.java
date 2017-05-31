@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import entities.Evennement;
 import entities.Galerie;
+import entities.Session;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -82,7 +83,7 @@ public class FXMLGRIDEVENTController implements Initializable {
     private Pane ajoutpane;
 
     public void Event() {
-        Utilisateur user = Utilisateur.getInstance();
+        Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
 
     
@@ -306,7 +307,7 @@ public class FXMLGRIDEVENTController implements Initializable {
 
     public void Event2() {
 
-        Utilisateur user = Utilisateur.getInstance();
+        Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
 
         JFXButton btaff = new JFXButton("Retour");

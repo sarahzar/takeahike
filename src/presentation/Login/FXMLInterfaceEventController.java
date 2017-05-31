@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import entities.Endroit;
+import entities.Session;
 import entities.Utilisateur;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class FXMLInterfaceEventController implements Initializable {
     void ajoutEvent(ActionEvent event) {
         EvennementServices es= new EvennementServices();
         UtilisateurServices us = new UtilisateurServices();
-        Utilisateur user = Utilisateur.getInstance();
+        Utilisateur user = Session.getUser();
         Evennement ev = new Evennement();
         Endroit e = new Endroit();
         EndroitServices ee = new EndroitServices();
@@ -97,7 +98,7 @@ public class FXMLInterfaceEventController implements Initializable {
         ev.setLongitudePOintArrivee(lpaa);
         ev.setLattitudePOintDepart(apde);
         ev.setLattitudePOintArrivee(apaa);
-        ev.setIdResponsable(u);        
+        ev.setIdResponsable(user);        
         
         es.ajouterEvennement(ev);
               

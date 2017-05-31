@@ -21,6 +21,7 @@ private Connection con;
     private String url="jdbc:mysql://localhost:3306/takeahike_2";
     private String pwd="";
     private String login="root";
+    //Commentaire
    
     private MyConnexion() {
         try {

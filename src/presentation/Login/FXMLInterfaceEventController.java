@@ -68,10 +68,11 @@ public class FXMLInterfaceEventController implements Initializable {
     void ajoutEvent(ActionEvent event) {
         EvennementServices es= new EvennementServices();
         UtilisateurServices us = new UtilisateurServices();
-        
+        Utilisateur user = Utilisateur.getInstance();
         Evennement ev = new Evennement();
         Endroit e = new Endroit();
         EndroitServices ee = new EndroitServices();
+        
         String Nom = nom.getText();
         int endr = endroit.getSelectionModel().getSelectedIndex();
         int x = endro.get(endr).getId();
@@ -96,8 +97,7 @@ public class FXMLInterfaceEventController implements Initializable {
         ev.setLongitudePOintArrivee(lpaa);
         ev.setLattitudePOintDepart(apde);
         ev.setLattitudePOintArrivee(apaa);
-        ev.setIdResponsable(us.chercherCinUtilisateur("02143628"));
-        
+        ev.setIdResponsable(u);        
         
         es.ajouterEvennement(ev);
               

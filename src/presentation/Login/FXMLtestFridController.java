@@ -23,10 +23,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 
@@ -76,6 +79,7 @@ public class FXMLtestFridController implements Initializable {
                     
                     GridPane gridee = new GridPane();
                     Pane panepane = new Pane();
+                    panepane.setStyle("-fx-background-color:  #009f90;");
                     panepane.translateYProperty().set(150);
                     gridee.prefHeight(900);
                     gridee.prefWidth(600);
@@ -238,6 +242,14 @@ public class FXMLtestFridController implements Initializable {
                                 lab3.translateYProperty().set(120);
                                 lab3.translateXProperty().set(200);
                                 lab3.textFillProperty().set(Color.LIME);
+                                
+                                Image image =new Image(ms.afficherMateriel().get(nb).getImage());
+                                    Circle c =new Circle();
+                                    c.setRadius(30);
+                                    c.translateXProperty().set(40);
+                                    c.translateYProperty().set(40);
+                                    c.setFill(new ImagePattern(image));
+                                
 
                                 Button btnplus = new JFXButton();
                                 btnplus.setText("Voir Plus");
@@ -246,10 +258,10 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 Pane pane = new Pane();
                                 
-                                pane.getChildren().addAll(lab,lab2,lab3,btnplus);
+                                pane.getChildren().addAll(c,lab,lab2,lab3,btnplus);
                                 pane.setPrefSize(400,200);
                                 pane.translateXProperty().set(25);
-                                pane.translateYProperty().set(5);
+                                //pane.translateYProperty().set(5);
                                 pane.setStyle("-fx-background-color:white; -fx-border-color: #CADAE3");
                                 
                                 

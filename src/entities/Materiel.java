@@ -23,6 +23,13 @@ public class Materiel {
     public Materiel() {
     }
 
+    public Materiel(int idMateriel) {
+        this.idMateriel = idMateriel;
+    }
+    
+    
+    
+
     public Materiel(int idMateriel, String nomMateriel, String description, Utilisateur User, int Type, float prix, String image) {
         this.idMateriel = idMateriel;
         this.nomMateriel = nomMateriel;

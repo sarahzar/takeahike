@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuBar?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="pnn" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #009f90;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLtestFridController">
+<AnchorPane id="AnchorPane" fx:id="pnn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #009f90;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLtestFridController">
    <children>
       <ScrollPane fx:id="sx" cache="true" fitToWidth="true" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #009f90;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-      <MenuBar fx:id="menubar" layoutX="430.0" layoutY="14.0" />
+      <JFXButton fx:id="btajout" layoutX="691.0" layoutY="14.0" text="Ajouter un nouveau materiel" />
    </children>
 </AnchorPane>

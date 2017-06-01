@@ -62,7 +62,7 @@ public class FXMLtestFridController implements Initializable {
                     int x = ms.afficherMateriel().size();
                     int i=0,j=0,nb=0;
                     
-                    Menu btacc= new Menu("Acceuil");
+                 //   Menu btacc= new Menu("Acceuil");
                     Menu btaff = new Menu("Afficher");
                     Menu btmat = new Menu("Materiels");
                     Menu btevent = new Menu("Evennements");

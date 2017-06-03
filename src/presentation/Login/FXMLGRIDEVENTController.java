@@ -310,7 +310,7 @@ public class FXMLGRIDEVENTController implements Initializable {
         Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
 
-        JFXButton btaff = new JFXButton("Retour");
+        JFXButton btaff = new JFXButton("<<");
         btaff.translateXProperty().set(830);
         btaff.translateYProperty().set(50);
 

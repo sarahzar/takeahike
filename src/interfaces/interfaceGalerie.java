@@ -6,6 +6,7 @@
 package interfaces;
 import entities.Galerie;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -16,5 +17,5 @@ public interface interfaceGalerie {
     public void supprimerGalerie(Galerie g);
     public void modifierGalerie(Galerie g);
     public List<Galerie> afficherGalerie();
-    
+    public ObservableList<Galerie> afficherGalerie(int id);
 }

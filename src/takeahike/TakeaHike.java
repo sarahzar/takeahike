@@ -5,13 +5,17 @@
  */
 package takeahike;
 
+import entities.Galerie;
 import entities.Utilisateur;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import presentation.Login.Gallerie2Controller;
+import services.GalerieServices;
 import services.UtilisateurServices;
 
 /**
@@ -40,6 +44,20 @@ public class TakeaHike {
 //        System.out.println("Résultat de la recherche: " + us.chercherCinUtilisateur("11111"));
 //        System.out.println("Liste des randonneurs:" + us.chercherRandonneurs());
 //        System.out.println(us.chercherLoginUtilisateur("oumaima"));
+        
+       //Utilisateur user = new Utilisateur("12345678", 1, null, null, LocalDate.MIN, null, null, null, null, null, 1, 1, 1, null);
+        //Galerie gg = new Galerie(5, "kkkk", user);
+        
+        Utilisateur user = new Utilisateur();
+        user.setCin("12345602");
+        
+        Galerie g=new Galerie();
+        g.setIdUser(user.getCin());
+        g.setIdEvt(5);
+        GalerieServices gs = new GalerieServices();
+        
+                //gs.ajouterGalerie(g.getIdEvt(),"test",g.getIdUser().getCin());
+        
     }
 
 }

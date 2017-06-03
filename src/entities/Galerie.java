@@ -13,19 +13,26 @@ public class Galerie {
     
     
     private int idGallerie;
-    private Evennement idEvt;
+    private int idEvt;
     private String image;
-    private Utilisateur idUser;
+    private String idUser;
 
     public Galerie() {
     }
 
-    public Galerie(int idArticle, Evennement idEvt, String image, Utilisateur idUser) {
-        this.idGallerie = idArticle;
+    public Galerie(int idGallerie, int idEvt, String image, String idUser) {
+        this.idGallerie = idGallerie;
         this.idEvt = idEvt;
         this.image = image;
         this.idUser = idUser;
     }
+
+    public Galerie(int idEvt, String image, String idUser) {
+        this.idEvt = idEvt;
+        this.image = image;
+        this.idUser = idUser;
+    }
+    
 
     public int getIdGallerie() {
         return idGallerie;
@@ -37,11 +44,11 @@ public class Galerie {
 
     
 
-    public Evennement getIdEvt() {
+    public int getIdEvt() {
         return idEvt;
     }
 
-    public void setIdEvt(Evennement idEvt) {
+    public void setIdEvt(int idEvt) {
         this.idEvt = idEvt;
     }
 
@@ -53,17 +60,17 @@ public class Galerie {
         this.image = image;
     }
 
-    public Utilisateur getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Utilisateur idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
     @Override
     public String toString() {
-        return "Galerie{" + "idArticle=" + idGallerie + ", idEvt=" + idEvt + ", image=" + image + ", idUser=" + idUser + '}';
+        return "Galerie{" + "idGallerie=" + idGallerie + ", idEvt=" + idEvt + ", image=" + image + ", idUser=" + idUser + '}';
     }
     
     

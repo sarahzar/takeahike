@@ -5,8 +5,6 @@
  */
 package presentation.Login;
 
-import services.EvennementServices;
-import services.GalerieServices;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -82,6 +80,7 @@ public class FXMLGRIDEVENTController implements Initializable {
     @FXML
     private Pane ajoutpane;
 
+    static int idevent;
     public void Event() {
         Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
@@ -126,7 +125,7 @@ public class FXMLGRIDEVENTController implements Initializable {
         for (int z = 0; z < evtlist.size(); z++) {
 
             for (int h = 0; h < galeries.size(); h++) {
-                if (evtlist.get(z).getId() == galeries.get(h).getIdEvt().getId()) {
+                if (evtlist.get(z).getId() == galeries.get(h).getIdEvt()) {
                     listevt.get(z).getGllist().add(galeries.get(h));
 
                 }
@@ -192,7 +191,7 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     //Affichage du details evennement
                     
-                    int idevent = es.afficherEvennementAvenir().get(nb).getId();
+                    idevent = es.afficherEvennementAvenir().get(nb).getId();
                     
                     
                    
@@ -282,7 +281,21 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     
                     Pane padetails = new Pane();
-                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif);
+                    JFXButton photos = new JFXButton("photo");
+                    photos.setOnAction((event) -> {
+                        try {
+                            Stage stage= new  Stage();
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("UploadApp.fxml"));
+                            Scene scene = new Scene(fxmlLoader.load(), 419, 495);
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(FXMLGRIDEVENTController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    });
+                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
@@ -345,7 +358,7 @@ public class FXMLGRIDEVENTController implements Initializable {
         for (int z = 0; z < evtlist.size(); z++) {
 
             for (int h = 0; h < galeries.size(); h++) {
-                if (evtlist.get(z).getId() == galeries.get(h).getIdEvt().getId()) {
+                if (evtlist.get(z).getId() == galeries.get(h).getIdEvt()) {
                     listevt.get(z).getGllist().add(galeries.get(h));
 
                 }

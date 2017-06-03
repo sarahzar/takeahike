@@ -47,11 +47,11 @@ public class FXMLtestFridController implements Initializable {
      @FXML
     private JFXButton btajout;
     
-  
+  String defimg="/img/tabarka.jpg";
     
     public void grid()
     {
-        
+                    
                     Utilisateur user=Session.getUser();
                     Stage newStage = new Stage();
         
@@ -79,13 +79,14 @@ public class FXMLtestFridController implements Initializable {
                     
                     GridPane gridee = new GridPane();
                     Pane panepane = new Pane();
-                    panepane.setStyle("-fx-background-color:  #009f90;");
+                    panepane.setStyle("-fx-background-color:  white;");
                     panepane.translateYProperty().set(150);
                     gridee.prefHeight(900);
                     gridee.prefWidth(600);
                     gridee.setHgap(30);
                     gridee.setVgap(10);
                     gridee.setStyle("-fx-background-color:  #009f90;");
+                    sx.translateYProperty().set(19);
                     sx.setContent(gridee);
                     
                     MaterielServices ms = new MaterielServices();
@@ -202,7 +203,7 @@ public class FXMLtestFridController implements Initializable {
                          int typeadd; typeadd=ftypematajout.getSelectionModel().getSelectedIndex();
                          float priadd; priadd=parseFloat(flabpriajout.getText());
                     
-                         Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd, "");
+                         Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd,defimg);
                          ms.ajouterMateriel(m);
                          newStage.close();
                          grid();
@@ -245,6 +246,8 @@ public class FXMLtestFridController implements Initializable {
                                 lab3.textFillProperty().set(Color.LIME);
                                 
                                     Image image =new Image(ms.afficherMateriel().get(nb).getImage());
+                                    
+                            // Image image =new Image(defimg);       
                                     Circle c =new Circle();
                                     c.setRadius(30);
                                     c.translateXProperty().set(40);

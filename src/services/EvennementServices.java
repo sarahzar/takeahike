@@ -173,7 +173,7 @@ public class EvennementServices implements interfaces.interfaceEvennement {
     @Override
     public Evennement ChercherEventById(int id) {
 
-        Evennement e = new Evennement();
+        Evennement evt = new Evennement();
         UtilisateurServices us = new UtilisateurServices();
         EndroitServices endroit = new EndroitServices();
         try {
@@ -183,19 +183,20 @@ public class EvennementServices implements interfaces.interfaceEvennement {
 
             while (result.next()) {
 
-                e.setId(result.getInt(1));
-                e.setNom(result.getString(2));
-                e.setDateDebut(result.getDate(3).toLocalDate());
-                e.setDateFin(result.getDate(4).toLocalDate());
-                e.setDifficulte(result.getInt(5));
-                e.setNbrPlaces(result.getInt(6));
-                e.setIdResponsable(us.chercherCinUtilisateur(result.getString(7)));
-                e.setIdEndroit(endroit.rechercheById(result.getInt(8)));
-                e.setDescription(result.getString(9));
-                e.setLongitudePOintDepart(result.getDouble(10));
-                e.setLattitudePOintDepart(result.getDouble(11));
-                e.setLongitudePOintArrivee(result.getDouble(12));
-                e.setLattitudePOintArrivee(result.getDouble(13));
+                evt.setId(result.getInt(1));
+                evt.setNom(result.getString(2));
+                evt.setIdEndroit(endroit.rechercheById(result.getInt(3)));
+
+                evt.setDateDebut(result.getDate(4).toLocalDate());
+                evt.setDateFin(result.getDate(5).toLocalDate());
+                evt.setDifficulte(result.getInt(6));
+                evt.setNbrPlaces(result.getInt(7));
+                evt.setIdResponsable(us.chercherCinUtilisateur(result.getString(8)));
+                evt.setDescription(result.getString(9));
+                evt.setLongitudePOintDepart(result.getDouble(10));
+                evt.setLattitudePOintDepart(result.getDouble(11));
+                evt.setLongitudePOintArrivee(result.getDouble(12));
+                evt.setLattitudePOintArrivee(result.getDouble(13));
 
             }
 
@@ -203,7 +204,7 @@ public class EvennementServices implements interfaces.interfaceEvennement {
             Logger.getLogger(EvennementServices.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return e;
+        return evt;
     }
 }
 

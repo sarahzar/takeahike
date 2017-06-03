@@ -187,6 +187,8 @@ public class EvennementServices implements interfaces.interfaceEvennement {
                 evt.setNom(result.getString(2));
                 evt.setIdEndroit(endroit.rechercheById(result.getInt(3)));
 
+
+
                 evt.setDateDebut(result.getDate(4).toLocalDate());
                 evt.setDateFin(result.getDate(5).toLocalDate());
                 evt.setDifficulte(result.getInt(6));
@@ -198,6 +200,17 @@ public class EvennementServices implements interfaces.interfaceEvennement {
                 evt.setLongitudePOintArrivee(result.getDouble(12));
                 evt.setLattitudePOintArrivee(result.getDouble(13));
 
+
+                evt.setDateDebut(result.getDate(4).toLocalDate());
+                evt.setDateFin(result.getDate(5).toLocalDate());
+                evt.setDifficulte(result.getInt(6));
+                evt.setNbrPlaces(result.getInt(7));
+                evt.setIdResponsable(us.chercherCinUtilisateur(result.getString(8)));
+                evt.setDescription(result.getString(9));
+                evt.setLongitudePOintDepart(result.getDouble(10));
+                evt.setLattitudePOintDepart(result.getDouble(11));
+                evt.setLongitudePOintArrivee(result.getDouble(12));
+                evt.setLattitudePOintArrivee(result.getDouble(13));
             }
 
         } catch (SQLException ex) {

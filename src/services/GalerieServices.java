@@ -6,20 +6,17 @@
 package services;
 
 import dataConnexion.MyConnexion;
-import entities.Evennement;
 import entities.Galerie;
-import entities.Session;
 import entities.Utilisateur;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -27,76 +24,79 @@ import java.util.logging.Logger;
  */
 public class GalerieServices implements interfaces.interfaceGalerie{
 
-    @Override
-    public void ajouterGalerie(Galerie g) {
+    public static GalerieServices instance;
+    private Statement st;
+    private ResultSet rs;
+
+
+ public GalerieServices() {
+        MyConnexion cs=MyConnexion.getInstance();
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            java.util.Date date1 = new java.util.Date();
-            System.out.println(dateFormat.format(date1));
-            java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
-            PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("insert into galerie values (?,?,?,?,?,?);");
-            prep.setInt(1, g.getIdGallerie());
-             prep.setString(2,g.getImage());
-            prep.setInt(3,g.getIdEvt().getId() );
-           
-            prep.setString(4, g.getIdUser().getCin());
-         //prep.setString(5,g.get );
-//            prep.setString(6, );
-            prep.executeUpdate();
+            st=cs.getConexion().createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     
+    @Override
+    public void ajouterGalerie(Galerie g) {
+        String req="INSERT INTO `galerie`(`image`, `idEvennement`, `idUser`) values ('"+g.getImage()+"',"+g.getIdEvt()+",'"+g.getIdUser()+"')";
+        System.out.println(req);
+        try {
+            st.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override
     public void supprimerGalerie(Galerie g) {
+        String req="delete from galerie where id="+g.getIdGallerie();
         try {
-            PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("delete from galerie where id = ?;");
-            prep.setInt(1, g.getIdGallerie());
-            prep.executeUpdate();
+            st.executeUpdate(req);
         } catch (SQLException ex) {
             Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     @Override
     public void modifierGalerie(Galerie g) {
-        //PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE galerie SET titre=?, description=? where id = ?");
-        
+        String req="update galerie set image='"+g.getImage()+"' where id="+g.getIdGallerie();
+        try {
+            st.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-//    @Override
-//    public List<Galerie> afficherGalerie() {
-//        ArrayList<Galerie> Galeries = new ArrayList<>();
-//       
-//        try {
-//            
-//            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
-//            ResultSet result = stm.executeQuery("select * from galerie");
-//
-//            while (result.next()) {
-//                Galerie g = new Galerie();
-//                UtilisateurServices us = new UtilisateurServices();
-//                EvennementServices es = new EvennementServices();
-//                g.setIdGallerie(result.getInt(1));
-//                g.setIdEvt(es.ChercherEventById(result.getInt(3)));
-//                g.setIdUser(us.chercherCinUtilisateur(result.getString(4)) );
-//                g.setImage(result.getString(5));
-//                Galeries.add(g);
-//            }
-//            
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    return Galeries ;}
-//    
-//}
-    
-@Override
+    @Override
+    public ObservableList<Galerie> afficherGalerie(int id) {
+        
+        
+        UtilisateurServices us = new UtilisateurServices();
+        String req="select * from galerie where idEvennement="+id;
+            List l = new ArrayList<>();
+        try {
+            rs=st.executeQuery(req);
+            while (rs.next()) {
+                Galerie g= new Galerie();
+                g.setIdGallerie(rs.getInt(1));
+                g.setImage(rs.getString(2));
+                g.setIdEvt(rs.getInt(3));
+                g.setIdUser(rs.getString(4));
+                l.add(g);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ObservableList<Galerie> observableList = FXCollections.observableArrayList(l);
+        return observableList;
+    }
+
+    @Override
     public List<Galerie> afficherGalerie() {
-     ArrayList<Galerie> galeries=new ArrayList<>();
+        ArrayList<Galerie> galeries=new ArrayList<>();
         try {
             Statement rm=MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result=rm.executeQuery("select * from galerie");
@@ -105,10 +105,10 @@ public class GalerieServices implements interfaces.interfaceGalerie{
             Galerie g=new Galerie();
            
             Utilisateur user=new Utilisateur();
-            Evennement ev=new Evennement();
+           // Evennement ev=new Evennement();
         
             g.setImage(result.getString(2));
-            ev.setId(result.getInt(3));
+           g.setIdEvt(result.getInt(3));
 
 
 
@@ -116,8 +116,8 @@ public class GalerieServices implements interfaces.interfaceGalerie{
               
               
               
-               g.setIdEvt(ev);
-               g.setIdUser(user);
+               //g.setIdEvt(idevent);
+               //g.setIdUser(user);
             galeries.add(g);
             }
             
@@ -128,5 +128,5 @@ public class GalerieServices implements interfaces.interfaceGalerie{
          
      return galeries;
     }
-}
     
+}

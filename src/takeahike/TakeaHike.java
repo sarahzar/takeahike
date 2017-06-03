@@ -48,13 +48,13 @@ public class TakeaHike {
        //Utilisateur user = new Utilisateur("12345678", 1, null, null, LocalDate.MIN, null, null, null, null, null, 1, 1, 1, null);
         //Galerie gg = new Galerie(5, "kkkk", user);
         
-        Utilisateur user = new Utilisateur();
-        user.setCin("12345602");
-        
-        Galerie g=new Galerie();
-        g.setIdUser(user.getCin());
-        g.setIdEvt(5);
-        GalerieServices gs = new GalerieServices();
+//        Utilisateur user = new Utilisateur();
+//        user.setCin("12345602");
+//        
+//        Galerie g=new Galerie();
+//        g.setIdUser(user.getCin());
+//        g.setIdEvt(5);
+//        GalerieServices gs = new GalerieServices();
         
                 //gs.ajouterGalerie(g.getIdEvt(),"test",g.getIdUser().getCin());
         

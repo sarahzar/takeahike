@@ -8,25 +8,25 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLInterfaceEventController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLInterfaceEventController">
    <children>
-      <TitledPane animated="false" layoutX="7.0" prefHeight="615.0" prefWidth="893.0" text="Ajouter un Evennement">
+      <TitledPane animated="false" layoutX="7.0" prefHeight="615.0" prefWidth="893.0" text="Ajouter un Evenement">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <JFXTextField fx:id="lpa" layoutX="95.0" layoutY="390.0" promptText="longititudepointArrivee" />
-                  <JFXTextField fx:id="diff" layoutX="95.0" layoutY="264.0" promptText="Difficultee" />
-                  <DatePicker fx:id="datefin" layoutX="92.0" layoutY="172.0" promptText="date_fin" />
-                  <DatePicker fx:id="datedebut" layoutX="92.0" layoutY="118.0" promptText="date_debut" />
-                  <JFXComboBox fx:id="endroit" layoutX="96.0" layoutY="61.0" prefHeight="25.0" prefWidth="135.0" promptText="Endroit" />
-                  <JFXTextField fx:id="nbrplace" layoutX="96.0" layoutY="223.0" promptText=" nombre de place" />
-                  <JFXTextField id="nom" fx:id="nom" layoutX="95.0" layoutY="14.0" promptText="Nom" />
+                  <JFXTextField fx:id="lpa" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="537.0" prefWidth="180.0" promptText="Longititude du point d'arrivée" />
+                  <JFXTextField fx:id="diff" focusColor="#004e3e" labelFloat="true" layoutX="373.0" layoutY="137.0" prefWidth="200.0" promptText="Difficulté" />
+                  <DatePicker fx:id="datefin" layoutX="373.0" layoutY="89.0" prefWidth="200.0" promptText="Date de fin" />
+                  <DatePicker fx:id="datedebut" layoutX="92.0" layoutY="89.0" prefWidth="200.0" promptText="Date de début" />
+                  <JFXComboBox fx:id="endroit" focusColor="#004e3e" labelFloat="true" layoutX="373.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Endroit" />
+                  <JFXTextField fx:id="nbrplace" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="137.0" prefWidth="200.0" promptText="Nombre de places" />
+                  <JFXTextField id="nom" fx:id="nom" focusColor="#004e3e" labelFloat="true" layoutX="95.0" layoutY="28.0" prefWidth="200.0" promptText="Nom" />
                   <JFXTextField layoutX="418.0" layoutY="644.0" />
-                  <JFXTextField fx:id="lpd" layoutX="95.0" layoutY="310.0" promptText="longititudepointDepart" />
-                  <JFXTextField fx:id="apd" layoutX="95.0" layoutY="350.0" promptText="lattitudepointDepart" />
-                  <JFXButton fx:id="jbtok" layoutX="299.0" layoutY="524.0" onAction="#ajoutEvent" prefHeight="25.0" prefWidth="191.0" text="Enregistrer" />
-                  <JFXTextArea fx:id="desc" layoutX="429.0" layoutY="131.0" prefHeight="252.0" prefWidth="249.0" promptText="Description" />
-                  <JFXTextField fx:id="apa" layoutX="95.0" layoutY="430.0" promptText="lattitudepointArrivee" />
+                  <JFXTextField fx:id="lpd" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="485.0" prefWidth="180.0" promptText="Longititude du point de départ" />
+                  <JFXTextField fx:id="apd" focusColor="#004e3e" labelFloat="true" layoutX="309.0" layoutY="485.0" prefWidth="180.0" promptText="Lattitude du point de départ" />
+                  <JFXButton fx:id="jbtok" layoutX="675.0" layoutY="525.0" onAction="#ajoutEvent" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #009f90;" text="Enregistrer" textFill="WHITE" />
+                  <JFXTextArea fx:id="desc" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="205.0" prefHeight="252.0" prefWidth="748.0" promptText="Description" AnchorPane.topAnchor="205.0" />
+                  <JFXTextField fx:id="apa" focusColor="#004e3e" labelFloat="true" layoutX="309.0" layoutY="537.0" prefWidth="180.0" promptText="Lattitude du point d'arrivée" />
                </children>
             </AnchorPane>
         </content>

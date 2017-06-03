@@ -492,10 +492,15 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     typdiff.setText("Très Difficile");
                                     dif.setValue("Très Difficile");
                                 }
-
-                    
+                                
+                      //Image image=  new Image("img/kesra.jpg")  ;      
+                    ImageView img=new ImageView("img/kesra.jpg") ;
+                    img.translateXProperty().setValue(75);
+                    img.translateYProperty().setValue(15);
+//                     img.setFitWidth(170);
+//                    img.setFitHeight(170);
                     Pane padetails = new Pane();
-                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif);
+                    padetails.getChildren().addAll(img,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
@@ -506,7 +511,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                         tabpane.setVisible(false);
                         detailspan.setDisable(false);
                         detailspan.getChildren().addAll(padetails);
-
+                            
                         acceuilpan.getChildren().addAll(btaff, detailspan);
 
                     });

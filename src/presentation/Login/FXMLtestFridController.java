@@ -103,6 +103,7 @@ public class FXMLtestFridController implements Initializable {
                     modifmat.setVisible(false);
                     suppmat.setVisible(false);
                     okupdate.setVisible(false);
+                    cancelupdate.setVisible(false);
                     grid();
                     });  
                     

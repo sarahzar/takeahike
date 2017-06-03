@@ -244,7 +244,7 @@ public class FXMLtestFridController implements Initializable {
                                 lab3.translateXProperty().set(200);
                                 lab3.textFillProperty().set(Color.LIME);
                                 
-                                Image image =new Image(ms.afficherMateriel().get(nb).getImage());
+                                    Image image =new Image(ms.afficherMateriel().get(nb).getImage());
                                     Circle c =new Circle();
                                     c.setRadius(30);
                                     c.translateXProperty().set(40);
@@ -326,6 +326,9 @@ public class FXMLtestFridController implements Initializable {
                                 typemat.translateXProperty().set(170);
                                 typemat.translateYProperty().set(100);
                                 
+                                String imgmat=ms.afficherMateriel().get(nb).getImage();
+                                
+                                
                                 if(ms.afficherMateriel().get(nb).getType()==0)
                                 {
                                     typemat.setText("Materiel pour location");
@@ -402,7 +405,7 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 
                                 okupdate.setOnAction((emodif)->{
-                                Materiel m = new Materiel(idmat, fnommat.getText(), detmat.getText(), user, 0, parseFloat(fprimat.getText()), "");
+                                Materiel m = new Materiel(idmat, fnommat.getText(), detmat.getText(), user, 0, parseFloat(fprimat.getText()), imgmat);
                              
                                     m.setNomMateriel(fnommat.getText());
                                     m.setDescription(detmat.getText());

@@ -61,6 +61,7 @@ public class TakeaHike {
 //        g.setIdUser(user.getCin());
 //        g.setIdEvt(5);
 //        GalerieServices gs = new GalerieServices();
+        
 //        
                 //gs.ajouterGalerie(g.getIdEvt(),"test",g.getIdUser().getCin());
                 

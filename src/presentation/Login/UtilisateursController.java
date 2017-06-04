@@ -13,10 +13,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +74,7 @@ public class UtilisateursController implements Initializable {
     private TableColumn<UtilisateursDetails, Date> columnDateDesactivation;
     
     private ObservableList<UtilisateursDetails> data = FXCollections.observableArrayList();
+    FilteredList<UtilisateursDetails> filteredData=new FilteredList<>(data,e->true);
     
      @FXML
     private JFXButton btnAjouter;
@@ -130,6 +134,52 @@ public class UtilisateursController implements Initializable {
        is.ouvrirInscription(event);
        
     }
+    
+    @FXML
+	public void searchUser()
+	{
+                if (loginRecherche.textProperty().get().isEmpty()){
+                    tableUsers.setItems(data);
+                    return;
+                }
+                
+                ObservableList<UtilisateursDetails> tableItems =FXCollections.observableArrayList();
+                ObservableList<TableColumn<UtilisateursDetails, ?>> cols =tableUsers.getColumns();
+                for(int i=0; i<data.size(); i++)
+                {
+                    for(int j=0; j<cols.size(); j++)
+                    {
+                       TableColumn col= cols.get(j);
+                       String cellVallue= col.getCellData(data.get(i)).toString();
+                       cellVallue =cellVallue.toLowerCase();
+                       if (cellVallue.contains(loginRecherche.textProperty().get().toLowerCase()))
+                       {
+                           tableItems.add(data.get(i));
+                           break;
+                       }
+                    }
+                    tableUsers.setItems(tableItems);
+                }
+//		loginRecherche.textProperty().addListener((observableValue,oldValue,newValue)->{
+//			filteredData.setPredicate((Predicate<? super UtilisateursDetails>)user->{
+//				if(newValue==null||newValue.isEmpty()){
+//					return true;
+//				}
+//				String lowerCaseFilter=newValue.toLowerCase();
+//                                
+//				if(user.getLogin().toLowerCase().contains(lowerCaseFilter)){
+//					return true;
+//				}
+//				
+//				return false;
+//			});
+//		});
+//		SortedList<UtilisateursDetails> sortedData=new SortedList<>(filteredData);
+//		sortedData.comparatorProperty().bind(tableUsers.comparatorProperty());
+//		tableUsers.setItems(sortedData);
+                
+	}
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

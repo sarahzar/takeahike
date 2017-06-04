@@ -506,14 +506,30 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     dif.setValue("Très Difficile");
                                 }
                                 
-                      //Image image=  new Image("img/kesra.jpg")  ;      
-                    ImageView img=new ImageView("img/kesra.jpg") ;
+//                 List<ImageView> listimage = new ArrayList<>();  
+//                 int size=es.afficherEvennementAvenir().get(nb).getGllist().size();
+//                 for(int s=0;s<size;s++){
+//                 listimage.add(new ImageView(new Image(es.afficherEvennementAvenir().get(nb).getGllist().get(s).getImage())));
+//                  
+//                 }
+//                 System.out.println(listimage.get(nb));
+                      Image image=  new Image("img/kesra.jpg")  ;     
+                      Image image2=  new Image("img/dogga.jpg")  ; 
+                    ImageView img=new ImageView(image2) ;
+                     ImageView img2=new ImageView(image2) ;
                     img.translateXProperty().setValue(75);
-                    img.translateYProperty().setValue(15);
-//                     img.setFitWidth(170);
-//                    img.setFitHeight(170);
+                   img.translateYProperty().setValue(15);
+                   
+                   img.translateXProperty().setValue(85);
+                   img.translateYProperty().setValue(15);
+                   
+                    img.setFitWidth(40);
+                    img.setFitHeight(30);
+                    
+                    img2.setFitWidth(40);
+                    img2.setFitHeight(30);
                     Pane padetails = new Pane();
-                    padetails.getChildren().addAll(img,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif);
+                    padetails.getChildren().addAll(img,img2,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {

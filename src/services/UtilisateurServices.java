@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 
 /**
  *
@@ -275,6 +276,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
     @Override
     public List<Utilisateur> chercherRandonneurs() {
         ArrayList<Utilisateur> randonneurs = new ArrayList<>();
+        XYChart.Series<String, Integer> series= new XYChart.Series<>();
         try {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
@@ -304,6 +306,42 @@ public class UtilisateurServices implements interfaceUtilisateur {
             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
         }
         return randonneurs;
+    }
+    
+    
+    @Override
+    public XYChart.Series<String, Integer> ageRandonneurs() {
+        ArrayList<Utilisateur> randonneurs = new ArrayList<>();
+        XYChart.Series<String, Integer> series= new XYChart.Series<>();
+        try {
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
+            while (result.next()) {
+                Utilisateur u = new Utilisateur();
+                series.getData().add(new XYChart.Data<>(result.getString(3),result.getInt(11)));
+//                u.setCin(result.getString(1));
+//                u.setType(result.getInt(2));
+//                u.setNom(result.getString(3));
+//                u.setPrenom(result.getString(4));
+//                u.setAdresse(result.getString(6));
+//                u.setDateNaissance(result.getDate(5).toLocalDate());
+//                u.setTelephone(result.getString(7));
+//                u.setMail(result.getString(8));
+//                u.setPassword(result.getString(9));
+//                u.setLogin(result.getString(10));
+//                u.setConfirmer(result.getInt(11));
+//                u.setEtat(result.getInt(12));
+//                u.setDateInscrit(result.getDate(13));
+//                u.setDateDeactivation(result.getDate(14));
+//                u.setSexe(result.getInt(15));
+//                u.setCodeConfirmation(result.getString(16));
+//                randonneurs.add(u);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return series;
     }
 
     @Override

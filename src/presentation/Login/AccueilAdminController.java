@@ -56,7 +56,8 @@ public class AccueilAdminController implements Initializable {
            drawer.setSidePane(box);
            AnchorPane content = FXMLLoader.load(getClass().getResource("Utilisateurs.fxml"));
             JFXButton b=(JFXButton)box.getChildren().get(1);
-//           AnchorPane content2 = FXMLLoader.load(getClass().getResource("FXMLtestFrid.fxml"));
+            AnchorPane content2 = FXMLLoader.load(getClass().getResource("statistiquesAge.fxml"));
+            JFXButton c=(JFXButton)box.getChildren().get(2);
 //           AnchorPane content3 = FXMLLoader.load(getClass().getResource("FXMLAjoutArticle.fxml"));
 //           AnchorPane content4 = FXMLLoader.load(getClass().getResource("Profil.fxml"));
 //           
@@ -68,11 +69,11 @@ public class AccueilAdminController implements Initializable {
                
            });
 //           
-//           c.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
-//               
-//               anchorpane2.getChildren().setAll(content2);
-//               
-//           });
+           c.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
+               
+               anchorpane2.getChildren().setAll(content2);
+               
+           });
 //           
 //           e.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
 //               

@@ -571,13 +571,15 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     dif.setValue("Très Difficile");
                                 }
                                 
-//                 List<ImageView> listimage = new ArrayList<>();  
-//                 int size=es.afficherEvennementAvenir().get(nb).getGllist().size();
+                 List<ImageView> listimage = new ArrayList<>();  
+                 int size=es.afficherEvennementAvenir().get(nb).getGllist().size();
 //                 for(int s=0;s<size;s++){
 //                 listimage.add(new ImageView(new Image(es.afficherEvennementAvenir().get(nb).getGllist().get(s).getImage())));
 //                  
 //                 }
 //                 System.out.println(listimage.get(nb));
+                  System.out.println(size);
+
                       Image image=  new Image("img/kesra.jpg")  ;     
                       Image image2=  new Image("img/dogga.jpg")  ; 
                     ImageView img=new ImageView(image2) ;

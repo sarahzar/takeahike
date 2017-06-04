@@ -7,6 +7,7 @@ package presentation.Login;
 
 import Models.UtilisateursDetails;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,10 +69,52 @@ public class UtilisateursController implements Initializable {
     @FXML
     private TableColumn<UtilisateursDetails, Date> columnDateDesactivation;
     
-    private ObservableList<UtilisateursDetails> data;
+    private ObservableList<UtilisateursDetails> data = FXCollections.observableArrayList();
     
      @FXML
     private JFXButton btnAjouter;
+      @FXML
+    private JFXButton btnDesactiver;
+      
+       @FXML
+    private JFXButton btnActiver;
+
+    @FXML
+    private JFXTextField cinRecherche;
+
+    @FXML
+    private JFXTextField loginRecherche;
+    
+    public  void refresh() {
+        data.clear();
+        UtilisateurServices us=new UtilisateurServices();
+        data=us.listeUtilisateurs();
+        tableUsers.setItems(data);
+        
+        
+    }
+
+    @FXML
+    void desactiverUser(ActionEvent event) {
+        UtilisateursDetails u=tableUsers.getSelectionModel().getSelectedItem();
+       
+        UtilisateurServices us=new UtilisateurServices();
+        Utilisateur selectedUser= us.chercherCinUtilisateur( u.getCin());
+        us.desactiverCompteUtilisateur(selectedUser);
+        refresh();
+
+    }
+    
+    @FXML
+    void activerUser(ActionEvent event) {
+        UtilisateursDetails u=tableUsers.getSelectionModel().getSelectedItem();
+       
+        UtilisateurServices us=new UtilisateurServices();
+        Utilisateur selectedUser= us.chercherCinUtilisateur( u.getCin());
+        us.activerCompteUtilisateur(selectedUser);
+        System.out.println(selectedUser);
+
+    }
 
     @FXML
     void ouvrirInscription(ActionEvent event) throws IOException {
@@ -84,9 +128,8 @@ public class UtilisateursController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        UtilisateurServices us=new UtilisateurServices();
-        data=us.listeUtilisateurs();
-        System.out.println("DATA----------->  "+data);
+        
+        //System.out.println("DATA----------->  "+data);
         columnCIN.setCellValueFactory(new PropertyValueFactory<>("cin"));
         columnLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
         columnNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -99,8 +142,9 @@ public class UtilisateursController implements Initializable {
         columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
         //columnDateDesactivation.setCellValueFactory(new PropertyValueFactory<>("dateDesactivation"));
         
-        tableUsers.setItems(null);
-        tableUsers.setItems(data);
+        //tableUsers.setItems(null);
+        refresh();
+        //tableUsers.setItems(data);
         
                 
     }    

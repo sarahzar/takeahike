@@ -25,6 +25,7 @@ public interface interfaceUtilisateur {
     public ObservableList<UtilisateursDetails> listeUtilisateurs();
     public void confirmerUtilisateur (Utilisateur u);
     public void desactiverCompteUtilisateur (Utilisateur u);
+    public void activerCompteUtilisateur(Utilisateur u);
     public Utilisateur chercherCinUtilisateur (String cin);
     public Utilisateur chercherLoginUtilisateur (String login);
     public List<Utilisateur> chercherRandonneurs();

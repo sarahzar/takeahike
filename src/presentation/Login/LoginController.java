@@ -183,6 +183,7 @@ public class LoginController implements Initializable {
          
         //loadSplashScreen(); 
         logo.setVisible(true);
+        InscriptionController.setAdmin(1);
         
     }
 //    private void loadSplashScreen () 

@@ -217,6 +217,24 @@ public class UtilisateurServices implements interfaceUtilisateur {
         }
     }
 
+     @Override
+    public void activerCompteUtilisateur(Utilisateur u) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            java.util.Date date1 = new java.util.Date();
+            System.out.println(dateFormat.format(date1));
+            java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
+            PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE utilisateur SET etat=1 where cin = ?");
+           
+            prep.setString(1, u.getCin());
+            
+            prep.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
     @Override
     public Utilisateur chercherCinUtilisateur(String cin) {
 

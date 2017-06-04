@@ -59,6 +59,7 @@ public class InscriptionController implements Initializable {
         InscriptionController.admin = admin;
     }
     
+       
     
     
     @FXML
@@ -331,6 +332,7 @@ public class InscriptionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Utilisateur user= Session.getUser();
         cmbsexeUtilisateur.getItems().addAll("Homme","Femme");
+        
              
             
          

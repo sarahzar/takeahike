@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1090.0" style="-fx-background-color: #ffffff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="presentation.Login.AccueilAdminController">
+   <children>
+      <AnchorPane fx:id="anchorpane2" layoutX="190.0" prefHeight="600.0" prefWidth="900.0">
+         <children>
+            <Label layoutX="162.0" layoutY="201.0" prefHeight="45.0" prefWidth="325.0" text="Tableau de bord">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="190.0" layoutY="70.0" prefHeight="530.0" prefWidth="200.0" style="-fx-background-color: #009f90;" AnchorPane.rightAnchor="890.0" AnchorPane.topAnchor="70.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="160.0" layoutY="29.0" />
+   </children>
+</AnchorPane>

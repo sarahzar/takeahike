@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="presentation.Login.UtilisateursController">
+   <children>
+      <TableView fx:id="tableUsers" layoutX="23.0" layoutY="72.0" prefHeight="519.0" prefWidth="867.0">
+        <columns>
+          <TableColumn fx:id="columnCIN" prefWidth="100.0" text="CIN" />
+            <TableColumn fx:id="columnLogin" prefWidth="90.0" text="Login" />
+          <TableColumn fx:id="columnNom" prefWidth="89.0" text="Nom" />
+            <TableColumn fx:id="columnPrenom" prefWidth="87.0" text="Prénom" />
+            <TableColumn fx:id="columnEmail" prefWidth="183.0" text="Email" />
+            <TableColumn fx:id="columnTelephone" prefWidth="94.0" text="Téléphone" />
+            <TableColumn fx:id="columnEtat" minWidth="9.0" prefWidth="97.0" text="Etat" />
+            <TableColumn fx:id="columnCompte" prefWidth="73.0" text="Compte" />
+            <TableColumn fx:id="columnType" prefWidth="90.0" text="Type" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

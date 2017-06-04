@@ -83,7 +83,19 @@ public class LoginController implements Initializable {
                   System.out.println("Bienvenue!");
                   invalid.setText("Bienvenue!");
                   invalid.setTextFill(Color.web("#5e2b0e"));
-                  if ((u.getEtat()==1)&&(u.getConfirmer()==1))
+                  if (u.getType()==0) 
+                  {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("accueilAdmin.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 1090, 600);
+                    Stage stage = new Stage();
+                    stage.setTitle("Tableau de bord");
+                    stage.setScene(scene);
+                    stage.show();
+                    stage.setResizable(false);
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                  }
+                  else if ((u.getEtat()==1)&&(u.getConfirmer()==1) && (u.getType()==1))
                   {
                       
                     
@@ -97,6 +109,7 @@ public class LoginController implements Initializable {
                     stage.setResizable(false);
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                   }
+                  
                   else if (u.getEtat()!=1) 
                   {
                     FXMLLoader fxmlLoader = new FXMLLoader();

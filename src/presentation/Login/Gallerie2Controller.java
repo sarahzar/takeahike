@@ -161,7 +161,7 @@ public class Gallerie2Controller implements Initializable {
                      a.setHeaderText(null);
                      a.setContentText("Upload Done!!");
                     a.showAndWait();
-                    System.out.println(EntityUtils.toString(resEntity));
+                    //System.out.println(EntityUtils.toString(resEntity));
                 }
             }
             if (resEntity != null) {

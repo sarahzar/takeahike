@@ -9,19 +9,33 @@ public class Avis {
     private int idAvis;
     private String commentaire;
     private Date datePublicationAvis;
-    private Article idArticle;
-    private Utilisateur idUtilisateur;
+    private int idArticle;
+    private String idUtilisateur;
 
     public Avis() {
     }
 
-    public Avis(int idAvis, String commentaire, Date datePublicationAvis, Article idArticle, Utilisateur idUtilisateur) {
+    public Avis(int idAvis, String commentaire, Date datePublicationAvis, int idArticle, String idUtilisateur) {
         this.idAvis = idAvis;
         this.commentaire = commentaire;
         this.datePublicationAvis = datePublicationAvis;
         this.idArticle = idArticle;
         this.idUtilisateur = idUtilisateur;
     }
+
+    public Avis(String commentaire, int idArticle, String idUtilisateur) {
+        this.commentaire = commentaire;
+        this.idArticle = idArticle;
+        this.idUtilisateur = idUtilisateur;
+    }
+    
+    
+
+    public Avis(int idAvis) {
+        this.idAvis = idAvis;
+    }
+    
+    
 
     public int getIdAvis() {
         return idAvis;
@@ -35,11 +49,11 @@ public class Avis {
         return datePublicationAvis;
     }
 
-    public Article getIdArticle() {
+    public int getIdArticle() {
         return idArticle;
     }
 
-    public Utilisateur getIdUtilisateur() {
+    public String getIdUtilisateur() {
         return idUtilisateur;
     }
 
@@ -55,17 +69,17 @@ public class Avis {
         this.datePublicationAvis = datePublicationAvis;
     }
 
-    public void setIdArticle(Article idArticle) {
+    public void setIdArticle(int idArticle) {
         this.idArticle = idArticle;
     }
 
-    public void setIdUtilisateur(Utilisateur idUtilisateur) {
+    public void setIdUtilisateur(String idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 
     @Override
     public String toString() {
-        return "Avis{" + "idAvis=" + idAvis + ", commentaire=" + commentaire + ", datePublicationAvis=" + datePublicationAvis + ", idArticle=" + idArticle + ", idUtilisateur=" + idUtilisateur + '}';
+        return  commentaire + "\n publié le " + datePublicationAvis + " par " + idUtilisateur;
     }
     
     

@@ -176,7 +176,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
                 
                 
                 UtilisateursDetails u=new UtilisateursDetails(cin, login, nom, prenom, email, telephone, etat, compte,type);
-                System.out.println("UserDetails"+u);
+                
                 liste.add(u);
                 
             }
@@ -210,7 +210,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
             PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE utilisateur SET etat=0, dateDesactivation=? where cin = ?");
             prep.setDate(1, (Date) sqlDate1);
             prep.setString(2, u.getCin());
-            System.out.println("MethodeDesactiver:   "+u);
+            
             prep.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,8 +239,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
     public Utilisateur chercherCinUtilisateur(String cin) {
 
         Utilisateur u = new Utilisateur();
-        System.out.println("user Methode chercher"+u);
-        System.out.println("getUserSession: ----"+Session.getUser());
+        
         try {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where cin = \"" + cin + "\"");
@@ -263,7 +262,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
                 u.setDateDeactivation(result.getDate(14));
                 u.setSexe(result.getInt(15));
                 u.setCodeConfirmation(result.getString(16));
-                System.out.println("Apres recherche: -------"+u);
+                
 
             }
 

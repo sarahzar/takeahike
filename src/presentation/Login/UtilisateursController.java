@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import services.UtilisateurServices;
 
@@ -73,6 +74,9 @@ public class UtilisateursController implements Initializable {
     
      @FXML
     private JFXButton btnAjouter;
+     
+      @FXML
+    private ImageView refresh;
       @FXML
     private JFXButton btnDesactiver;
       
@@ -90,6 +94,7 @@ public class UtilisateursController implements Initializable {
         UtilisateurServices us=new UtilisateurServices();
         data=us.listeUtilisateurs();
         tableUsers.setItems(data);
+        System.out.println("Refresh");
         
         
     }
@@ -113,14 +118,14 @@ public class UtilisateursController implements Initializable {
         Utilisateur selectedUser= us.chercherCinUtilisateur( u.getCin());
         us.activerCompteUtilisateur(selectedUser);
         System.out.println(selectedUser);
+        refresh();
 
     }
 
     @FXML
     void ouvrirInscription(ActionEvent event) throws IOException {
-        System.out.println("Adddddddd: ---------"+InscriptionController.getAdmin());
+        
        InscriptionController.setAdmin(0);
-       System.out.println("Adddddddd: ---------"+InscriptionController.getAdmin());
        InscriptionController is =new  InscriptionController();
        is.ouvrirInscription(event);
        

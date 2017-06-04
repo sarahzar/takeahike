@@ -49,10 +49,16 @@ import java.util.UUID;
  */
 public class InscriptionController implements Initializable {
 
-     @FXML  // <== perhaps you had this missing??
-        void keyPressed(KeyEvent event) {
-            
-            }
+    private static int admin;
+
+    public static int getAdmin() {
+        return admin;
+    }
+
+    public static void setAdmin(int admin) {
+        InscriptionController.admin = admin;
+    }
+    
     
     
     @FXML
@@ -158,6 +164,7 @@ public class InscriptionController implements Initializable {
     @FXML
     void ouvrirInscription (ActionEvent event) throws IOException{
         
+            
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("Inscription_1.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -253,7 +260,12 @@ public class InscriptionController implements Initializable {
         
         String code=UUID.randomUUID().toString();
             System.out.println("Code: "+code);
-        Utilisateur u =new Utilisateur(cin, 1, nom, prenom,dateNaissance, adresse, telephone, email, password, login, 0, 1,sexe,code);
+            Utilisateur u;
+            if(admin ==0 )
+            {
+             u =new Utilisateur(cin, 0, nom, prenom,dateNaissance, adresse, telephone, email, password, login, 0, 1,sexe,code);}
+            else
+             u =new Utilisateur(cin, 1, nom, prenom,dateNaissance, adresse, telephone, email, password, login, 0, 1,sexe,code);
        
        
         us.ajouterUtilisateur(u);

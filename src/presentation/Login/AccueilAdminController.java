@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import entities.Session;
+import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +19,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -38,9 +41,14 @@ public class AccueilAdminController implements Initializable {
 
     @FXML
     private JFXHamburger hamburger;
+    
+     Utilisateur user =Session.getUser();
+    
+     @FXML
+    private Label userLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        userLabel.setText(Session.getUser().getNom()+" "+Session.getUser().getPrenom());
        
            
        try {

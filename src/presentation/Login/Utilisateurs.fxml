@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="presentation.Login.UtilisateursController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.UtilisateursController">
    <children>
       <TableView fx:id="tableUsers" layoutX="23.0" layoutY="72.0" prefHeight="519.0" prefWidth="867.0">
         <columns>
@@ -14,11 +16,20 @@
           <TableColumn fx:id="columnNom" prefWidth="89.0" text="Nom" />
             <TableColumn fx:id="columnPrenom" prefWidth="87.0" text="Prénom" />
             <TableColumn fx:id="columnEmail" prefWidth="183.0" text="Email" />
-            <TableColumn fx:id="columnTelephone" prefWidth="94.0" text="Téléphone" />
-            <TableColumn fx:id="columnEtat" minWidth="9.0" prefWidth="97.0" text="Etat" />
-            <TableColumn fx:id="columnCompte" prefWidth="73.0" text="Compte" />
-            <TableColumn fx:id="columnType" prefWidth="90.0" text="Type" />
+            <TableColumn fx:id="columnTelephone" prefWidth="84.0" text="Téléphone" />
+            <TableColumn fx:id="columnEtat" minWidth="9.0" prefWidth="82.0" text="Etat" />
+            <TableColumn fx:id="columnCompte" prefWidth="66.0" text="Compte" />
+            <TableColumn fx:id="columnType" prefWidth="84.0" text="Type" />
         </columns>
       </TableView>
+      <Label layoutX="24.0" layoutY="32.0" prefHeight="31.0" prefWidth="290.0" text="Tableau de bord: Utilisateurs" textFill="#004e3e">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnAjouter" layoutX="401.0" layoutY="35.0" onAction="#ouvrirInscription" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Ajouter" textFill="WHITE" />
+      <JFXButton layoutX="528.0" layoutY="35.0" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Modifier" textFill="WHITE" />
+      <JFXButton layoutX="653.0" layoutY="35.0" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Activer" textFill="WHITE" />
+      <JFXButton layoutX="777.0" layoutY="35.0" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Désactiver" textFill="WHITE" />
    </children>
 </AnchorPane>

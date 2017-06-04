@@ -6,16 +6,25 @@
 package presentation.Login;
 
 import Models.UtilisateursDetails;
+import com.jfoenix.controls.JFXButton;
 import entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import services.UtilisateurServices;
 
 /**
@@ -59,6 +68,19 @@ public class UtilisateursController implements Initializable {
     private TableColumn<UtilisateursDetails, Date> columnDateDesactivation;
     
     private ObservableList<UtilisateursDetails> data;
+    
+     @FXML
+    private JFXButton btnAjouter;
+
+    @FXML
+    void ouvrirInscription(ActionEvent event) throws IOException {
+        System.out.println("Adddddddd: ---------"+InscriptionController.getAdmin());
+       InscriptionController.setAdmin(0);
+       System.out.println("Adddddddd: ---------"+InscriptionController.getAdmin());
+       InscriptionController is =new  InscriptionController();
+       is.ouvrirInscription(event);
+       
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

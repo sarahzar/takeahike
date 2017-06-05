@@ -184,6 +184,7 @@ public class InscriptionController implements Initializable {
         boolean telephoneValidation =textFieldNotEmpty(txttelephoneUtilisateur, lblTelephone, "Le numéro de téléphone est obligatoire!");
         boolean confirmPassword = confirmerPassword(pswpasswordUtilisateur, pswconfirmPasswordUtilisateur, lblPasswordConfirm,"Les mots de passe ne sont pas identiques!");
         boolean verifEmail = verifierEmail(txtemailUtilisateur, lblEmail, "L'email n'est pas valide!");
+        
         if (nomValidation)
         {       boolean nomverif =verifierString(txtnomUtilisateur, lblNom, "Pas d'entiers!");
                 verif=nomverif;                

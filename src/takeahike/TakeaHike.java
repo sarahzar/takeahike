@@ -5,6 +5,7 @@
  */
 package takeahike;
 
+import entities.Evennement;
 import entities.Galerie;
 import entities.Utilisateur;
 import java.text.DateFormat;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import presentation.Login.Gallerie2Controller;
+import services.EvennementServices;
 import services.GalerieServices;
 import services.UtilisateurServices;
 
@@ -57,7 +59,6 @@ public class TakeaHike {
 //        GalerieServices gs = new GalerieServices();
         
                 //gs.ajouterGalerie(g.getIdEvt(),"test",g.getIdUser().getCin());
-        
+      
     }
-
 }

@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
@@ -27,14 +28,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import reporting.Report;
 
@@ -260,7 +264,8 @@ public class FXMLtestFridController implements Initializable {
                                     Scene stageScene = new Scene(paneajouut, 900, 600);
                                     newStage.setScene(stageScene);
                                     newStage.show();
-                   
+                                    
+                         
                   
                     });
 //                    
@@ -303,15 +308,36 @@ public class FXMLtestFridController implements Initializable {
                                 String nommatpdf = ms.afficherMateriel().get(nb).getNomMateriel();
                                 lab.translateYProperty().set(20);
                                 lab.translateXProperty().set(200);
-                                lab.textFillProperty().set(Color.SLATEGREY);
+                                lab.textFillProperty().set(Color.LIGHTSEAGREEN);
+                                lab.setFont(Font.font("Cambria", 18));
+                                lab.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            lab.setScaleX(1.1);
+                                            lab.setScaleY(1.1);
+                                        }
+                                    });
+                                
+                                lab.setOnMouseExited(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            lab.setScaleX(1);
+                                            lab.setScaleY(1);
+                                        }
+                                    });
+                                
                                 
                                 Label lab2 = new Label(ms.afficherMateriel().get(nb).getDescription());
+                                lab2.setPrefSize(150, 40);
+                                lab2.setWrapText(true);
+                                lab2.setFont(Font.font("Cambria", 14));
                                 String descpdf = ms.afficherMateriel().get(nb).getDescription();
                                 lab2.translateYProperty().set(70);
                                 lab2.translateXProperty().set(200);
-                                lab2.textFillProperty().set(Color.TOMATO);
+                                lab2.textFillProperty().set(Color.SLATEGREY);
+                                
+                                
                                 
                                 Label lab3 = new Label(ms.afficherMateriel().get(nb).getUser().getPrenom());
+                                lab3.setFont(Font.font("Cambria", 14));
                                 String nomuserpdf = ms.afficherMateriel().get(nb).getUser().getNom();
                                 String prenomuserpdf = ms.afficherMateriel().get(nb).getUser().getPrenom();
                                 String adressuserpdf = ms.afficherMateriel().get(nb).getUser().getAdresse();
@@ -320,13 +346,13 @@ public class FXMLtestFridController implements Initializable {
                                         
                                 lab3.translateYProperty().set(120);
                                 lab3.translateXProperty().set(200);
-                                lab3.textFillProperty().set(Color.LIME);
+                                lab3.textFillProperty().set(Color.SLATEGREY);
                                 
                                     Image image =new Image(ms.afficherMateriel().get(nb).getImage());
                                     
                             // Image image =new Image(defimg);       
                                     Circle c =new Circle();
-                                    c.setRadius(30);
+                                    c.setRadius(43);
                                     c.translateXProperty().set(40);
                                     c.translateYProperty().set(40);
                                     c.setFill(new ImagePattern(image));
@@ -344,6 +370,19 @@ public class FXMLtestFridController implements Initializable {
                                 pane.translateXProperty().set(25);
                                 //pane.translateYProperty().set(5);
                                 pane.setStyle("-fx-background-color:white; -fx-border-color: #CADAE3");
+                                pane.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            pane.setScaleX(1.03);
+                                            pane.setScaleY(1.07);
+                                        }
+                                    });
+                                
+                                pane.setOnMouseExited(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            pane.setScaleX(1);
+                                            pane.setScaleY(1);
+                                        }
+                                    });
                                 
                                 
                                 int idmat = ms.afficherMateriel().get(nb).getIdMateriel();
@@ -519,6 +558,9 @@ public class FXMLtestFridController implements Initializable {
                                 modifmat.setVisible(false);
                                 suppmat.setVisible(false);
                                 okupdate.setVisible(false);
+                                pdf.setVisible(false);
+                                mailmat.setVisible(false);
+                                btajout.setVisible(true);
                                 grid();
                                 });
                                 

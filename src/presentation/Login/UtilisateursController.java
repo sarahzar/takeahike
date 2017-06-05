@@ -184,6 +184,12 @@ public class UtilisateursController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        if (tableUsers.getSelectionModel().getSelectedItem()==null)
+        {
+            btnActiver.setDisable(true);
+            btnDesactiver.setDisable(true);
+        }
+        
         //System.out.println("DATA----------->  "+data);
         columnCIN.setCellValueFactory(new PropertyValueFactory<>("cin"));
         columnLogin.setCellValueFactory(new PropertyValueFactory<>("login"));

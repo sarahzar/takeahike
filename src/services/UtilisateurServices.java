@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
 /**
@@ -342,6 +343,33 @@ public class UtilisateurServices implements interfaceUtilisateur {
             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
         }
         return series;
+    }
+    
+    
+    
+    @Override
+    public ObservableList<PieChart.Data> hommeFemme() {
+        int x=0;
+        int y=0;
+         
+        try {
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
+            while (result.next()) {
+                
+                if (result.getInt(15)==0)
+                    y++;
+                else x++;
+//               
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ObservableList<PieChart.Data> sexe= FXCollections.observableArrayList(
+                new PieChart.Data("Homme", y),
+                new PieChart.Data("Femme", x));
+        return sexe;
     }
 
     @Override

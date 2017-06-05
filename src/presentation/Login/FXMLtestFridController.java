@@ -15,7 +15,11 @@ import entities.Session;
 import entities.Utilisateur;
 import static java.lang.Float.parseFloat;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
@@ -24,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -31,6 +36,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import reporting.Report;
 
 
 public class FXMLtestFridController implements Initializable {
@@ -55,27 +61,87 @@ public class FXMLtestFridController implements Initializable {
                     Utilisateur user=Session.getUser();
                     Stage newStage = new Stage();
         
-                    JFXButton btaff = new JFXButton("Retour");
+                    JFXButton btaff = new JFXButton("");
                     btaff.translateXProperty().set(830);
                     btaff.translateYProperty().set(50);
+                    Image icoaff = new Image("/img/icons8-Back-64.png");
+                    ImageView icoafff = new ImageView(icoaff);
+                    icoafff.setFitHeight(30);
+                    icoafff.setFitWidth(30);
+                    btaff.setGraphic(icoafff); 
                     
-                    JFXButton modifmat = new JFXButton("Modifier");
-                    modifmat.translateXProperty().set(650);
+                    
+                    JFXButton modifmat = new JFXButton("");
+                    modifmat.translateXProperty().set(750);
                     modifmat.translateYProperty().set(50);
+                    Image icomodif = new Image("/img/icons8-Available Updates-64.png");
+                    ImageView icomodiff = new ImageView(icomodif);
+                    icomodiff.setFitHeight(30);
+                    icomodiff.setFitWidth(30);
+                    modifmat.setGraphic(icomodiff);
                     
-                    JFXButton suppmat = new JFXButton("Supprimer");
-                    suppmat.translateXProperty().set(740);
+                    
+                    
+                    JFXButton suppmat = new JFXButton("");
+                    suppmat.translateXProperty().set(790);
                     suppmat.translateYProperty().set(50);
+                    Image icosupp = new Image("/img/icons8-Effacer-40.png");
+                    ImageView icosuppp = new ImageView(icosupp);
+                    icosuppp.setFitHeight(30);
+                    icosuppp.setFitWidth(30);
+                    suppmat.setGraphic(icosuppp);
+                    
+                    
+                    JFXButton mailmat = new JFXButton("");
+                    mailmat.translateXProperty().set(710);
+                    mailmat.translateYProperty().set(50);
+                    mailmat.setVisible(false);
+                    Image icomail = new Image("/img/icons8-Message-64.png");
+                    ImageView icomaill = new ImageView(icomail);
+                    icomaill.setFitHeight(30);
+                    icomaill.setFitWidth(30);
+                    mailmat.setGraphic(icomaill);
+                    
+                    
+                    JFXButton pdf = new JFXButton("");
+                    pdf.translateXProperty().set(670);
+                    pdf.translateYProperty().set(50);
+                    pdf.setVisible(false);
+                    Image icopdf = new Image("/img/icons8-PDF-64.png");
+                    ImageView icopdff = new ImageView(icopdf);
+                    icopdff.setFitHeight(30);
+                    icopdff.setFitWidth(30);
+                    pdf.setGraphic(icopdff);
+                    
+                    Image icoajout = new Image("/img/icons8-Add-64.png");
+                    ImageView icoajoutt = new ImageView(icoajout);
+                    icoajoutt.setFitHeight(30);
+                    icoajoutt.setFitWidth(30);
+                    btajout.setGraphic(icoajoutt);
                                 
-                    JFXButton okupdate = new JFXButton("Enregistrer");
-                    okupdate.translateXProperty().set(600);
+                    JFXButton okupdate = new JFXButton("");
+                    okupdate.translateXProperty().set(660);
                     okupdate.translateYProperty().set(490);
                     okupdate.setVisible(false);
+                    Image icook = new Image("/img/icons8-Coche-64.png");
+                    ImageView icookk = new ImageView(icook);
+                    icookk.setFitHeight(30);
+                    icookk.setFitWidth(30);
+                    okupdate.setGraphic(icookk);
                     
-                    JFXButton cancelupdate = new JFXButton("Annuler");
+                    
+                    
+                    JFXButton cancelupdate = new JFXButton("");
                     cancelupdate.translateXProperty().set(700);
                     cancelupdate.translateYProperty().set(490);
                     cancelupdate.setVisible(false);
+                    Image icocancel = new Image("/img/icons8-Annuler-64.png");
+                    ImageView icocancell = new ImageView(icocancel);
+                    icocancell.setFitHeight(30);
+                    icocancell.setFitWidth(30);
+                    cancelupdate.setGraphic(icocancell);
+                    
+                    
                     
                     GridPane gridee = new GridPane();
                     Pane panepane = new Pane();
@@ -85,7 +151,7 @@ public class FXMLtestFridController implements Initializable {
                     gridee.prefWidth(600);
                     gridee.setHgap(30);
                     gridee.setVgap(10);
-                    gridee.setStyle("-fx-background-color:  #009f90;");
+                    gridee.setStyle("-fx-background-color:  #48B8AC;");
                     sx.translateYProperty().set(19);
                     sx.setContent(gridee);
                     
@@ -105,6 +171,9 @@ public class FXMLtestFridController implements Initializable {
                     suppmat.setVisible(false);
                     okupdate.setVisible(false);
                     cancelupdate.setVisible(false);
+                    btajout.setVisible(true);
+                    mailmat.setVisible(false);
+                    pdf.setVisible(false);
                     grid();
                     });  
                     
@@ -114,7 +183,7 @@ public class FXMLtestFridController implements Initializable {
                     okajout.translateXProperty().set(515);
                     okajout.translateYProperty().set(480);
                     okajout.setPrefWidth(150);
-                    
+                    okajout.setGraphic(icookk);
                    
                     
                     
@@ -123,7 +192,7 @@ public class FXMLtestFridController implements Initializable {
                     annuleajout.translateXProperty().set(300);
                     annuleajout.translateYProperty().set(480);
                     annuleajout.setPrefWidth(150);
-                    
+                    annuleajout.setGraphic(icocancell);
                     
                     
                     
@@ -231,16 +300,24 @@ public class FXMLtestFridController implements Initializable {
                                 if(nb+1<=x)
                                 {
                                 Label lab = new Label(ms.afficherMateriel().get(nb).getNomMateriel());
+                                String nommatpdf = ms.afficherMateriel().get(nb).getNomMateriel();
                                 lab.translateYProperty().set(20);
                                 lab.translateXProperty().set(200);
                                 lab.textFillProperty().set(Color.SLATEGREY);
                                 
                                 Label lab2 = new Label(ms.afficherMateriel().get(nb).getDescription());
+                                String descpdf = ms.afficherMateriel().get(nb).getDescription();
                                 lab2.translateYProperty().set(70);
                                 lab2.translateXProperty().set(200);
                                 lab2.textFillProperty().set(Color.TOMATO);
                                 
                                 Label lab3 = new Label(ms.afficherMateriel().get(nb).getUser().getPrenom());
+                                String nomuserpdf = ms.afficherMateriel().get(nb).getUser().getNom();
+                                String prenomuserpdf = ms.afficherMateriel().get(nb).getUser().getPrenom();
+                                String adressuserpdf = ms.afficherMateriel().get(nb).getUser().getAdresse();
+                                String teluserpdf = ms.afficherMateriel().get(nb).getUser().getTelephone();
+                                String mailuserpdf = ms.afficherMateriel().get(nb).getUser().getMail();
+                                        
                                 lab3.translateYProperty().set(120);
                                 lab3.translateXProperty().set(200);
                                 lab3.textFillProperty().set(Color.LIME);
@@ -313,6 +390,7 @@ public class FXMLtestFridController implements Initializable {
                                 prixmat.translateXProperty().set(170);
                                 prixmat.translateYProperty().set(50);
                                 prixmat.setText(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
+                                String prixmatpdf = String.valueOf(ms.afficherMateriel().get(nb).getPrix());
                                       
                                 Label labtype = new Label("Type     :");
                                 labtype.translateXProperty().set(100);
@@ -331,11 +409,12 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 String imgmat=ms.afficherMateriel().get(nb).getImage();
                                 
-                                
+                                int typetest = ms.afficherMateriel().get(nb).getType();
                                 if(ms.afficherMateriel().get(nb).getType()==0)
                                 {
                                     typemat.setText("Materiel pour location");
-                                    ftypemat.setValue("Materiel pour location");                                 
+                                    ftypemat.setValue("Materiel pour location"); 
+                                    
                                 }
                                 else if(ms.afficherMateriel().get(nb).getType()==1)
                                 {
@@ -365,12 +444,15 @@ public class FXMLtestFridController implements Initializable {
                                 sx.setVisible(false);
                                 panepane.setDisable(false);
                                 panepane.getChildren().addAll(paa);
+                                mailmat.setVisible(true);
+                                pdf.setVisible(true);
                                 
                                 modifmat.setOnAction((e)->{
-                                
+                                    mailmat.setVisible(false);
                                     nommat.setVisible(false);
                                     typemat.setVisible(false);
                                     prixmat.setVisible(false);
+                                    pdf.setVisible(false);
                                     
                                     fnommat.setVisible(true);
                                     ftypemat.setVisible(true);
@@ -378,7 +460,7 @@ public class FXMLtestFridController implements Initializable {
                                     detmat.setEditable(true);
                                     cancelupdate.setVisible(true);
                                     okupdate.setVisible(true);
-                                
+                                    
                                 });
                                 
                                 cancelupdate.setOnAction((e)->{
@@ -387,7 +469,8 @@ public class FXMLtestFridController implements Initializable {
                                     typemat.setVisible(true);
                                     prixmat.setVisible(true);
                                     detmat.setText(dete);
-                                    
+                                    mailmat.setVisible(true);
+                                    pdf.setVisible(true);
                                     
                                     fnommat.setVisible(false);
                                     ftypemat.setVisible(false);
@@ -440,14 +523,59 @@ public class FXMLtestFridController implements Initializable {
                                 });
                                 
                                 
-                                pnn.getChildren().addAll(panepane,btaff,modifmat,suppmat,okupdate,cancelupdate);
+                                mailmat.setOnAction((e)->{
+                                    
+                                    try {
+                                        Mail mailmatt = new Mail();
+                                        String[] atch = new String[100];
+                                        atch[0] = "C:\\Users\\monta\\Documents\\NetBeansProjects\\Versiongit\\takeahike\\src\\reporting\\report1.jrxml";
+                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2", "montassar.touil@esprit.tn", "haha", "hihi",atch,1);
+                                        
+                                        
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(FXMLtestFridController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                       
+
+                                });
+                                
+                                
+                                pdf.setOnAction((e)->{
+                                    
+                                    Report rep = new Report();
+                                    String url="C:\\Users\\monta\\Documents\\NetBeansProjects\\Versiongit\\takeahike\\src\\reporting\\report1.jrxml";
+                                    Map mp=new HashMap();
+                                    mp.put("nom", nommatpdf);
+                                    mp.put("prix", prixmatpdf);
+                                    
+                                            if(typetest==0)
+                                        {
+                                            mp.put("type", "Materiel pour location");
+
+                                        }
+                                        else if(typetest==1)
+                                        {
+                                            mp.put("type", "Materiel pour vente");
+                                        }
+                                            
+                                    mp.put("desc", descpdf);
+                                    mp.put("Nomuser", nomuserpdf);
+                                    mp.put("prenomuser", prenomuserpdf);
+                                    mp.put("adresseuser", adressuserpdf);
+                                    mp.put("teluser", teluserpdf);
+                                    mp.put("mailuser", mailuserpdf);
+                                    rep.showReport(url,mp );
+                                });
+                                
+                                
+                                
+                                pnn.getChildren().addAll(panepane,btaff,modifmat,suppmat,okupdate,cancelupdate,mailmat,pdf);
                                 
                                 });
                                 
                                 
                                 
-                                
-//                                
+                                                         
                                 
                             }
                                 nb++;
@@ -467,98 +595,3 @@ public class FXMLtestFridController implements Initializable {
                    grid();
         }
 }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-
-//                        Stage primaryStage = null;
-//
-//
-//
-//                                    Button button1 = new Button("Button 1");
-//                                    Button button2 = new Button("Button 2");
-//                                    Button button3 = new Button("Button 3");
-//                                    Button button4 = new Button("Button 4");
-//                                    Button button5 = new Button("Button 5");
-//                                    Button button6 = new Button("Button 6");
-//
-//                                    GridPane gridPane = new GridPane();
-//
-//                                    gridPane.add(button1, 0, 0, 1, 1);
-//                                    gridPane.add(button2, 1, 0, 1, 1);
-//                                    gridPane.add(button3, 2, 0, 1, 1);
-//                                    gridPane.add(button4, 0, 1, 1, 1);
-//                                    gridPane.add(button5, 1, 1, 1, 1);
-//                                    gridPane.add(button6, 2, 1, 1, 1);
-
-
-
-
-
-
-
-//                        
-//                        GridLayout ex = new GridLayout(0, 2);
-//                        ex.addLayoutComponent(name, comp);
-//         
-//                    scroll.autosize();
-//                    scroll.setVisible(true);
-//                    scroll.isPannable();
-
-        
-//        GridView gridmate= new GridView();
-//            
-//        
-//       
-//        Pane panex = new Pane();
-//      
-//        panex.backgroundProperty().set(new Background(new BackgroundFill(Color.PINK, CornerRadii.EMPTY, Insets.EMPTY)));
-//        
-//        
-//        gridmate.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-//        
-    
-        
-        
-       
-        
-                
-
-        
-    
-

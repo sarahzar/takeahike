@@ -59,6 +59,7 @@ import services.EvennementServices;
 import services.GalerieServices;
 
 
+
 public class FXMLGRIDEVENTController implements Initializable {
 
     @FXML
@@ -76,7 +77,8 @@ public class FXMLGRIDEVENTController implements Initializable {
     @FXML
     private ScrollPane scrollEvent1;
 
-          
+   List<Evennement> listevt1 = new ArrayList<>(); 
+    List<Evennement> listevt = new ArrayList<>();
 
     @FXML
     private Pane ajoutpane;
@@ -118,9 +120,9 @@ public class FXMLGRIDEVENTController implements Initializable {
         gridee.setStyle("-fx-background-color : white ;");
         scrollEvent.setContent(gridee);
 
-        EvennementServices es = new EvennementServices();
-        List<Evennement> evtlist = new ArrayList<>();
-        evtlist = (ArrayList<Evennement>) es.afficherEvennementAvenir();
+       EvennementServices es = new EvennementServices();
+      List<Evennement> evtlist = new ArrayList<>();
+       evtlist = (ArrayList<Evennement>) es.afficherEvennementAvenir();
 
         int x = es.afficherEvennementAvenir().size();
         int i = 0, j = 0, nb = 0;
@@ -131,14 +133,14 @@ public class FXMLGRIDEVENTController implements Initializable {
         galeries = (ArrayList<Galerie>) gservice.afficherGalerie();
 
         EvennementServices evtservice = new EvennementServices();
-        List<Evennement> listevt = new ArrayList<>();
+       // List<Evennement> listevt = new ArrayList<>();
         listevt = (ArrayList<Evennement>) evtservice.afficherEvennementAvenir();
 
         List<ImageView> imglist = new ArrayList<>();
-        for (int z = 0; z < evtlist.size(); z++) {
+        for (int z = 0; z < listevt.size(); z++) {
 
             for (int h = 0; h < galeries.size(); h++) {
-                if (evtlist.get(z).getId() == galeries.get(h).getIdEvt()) {
+                if (listevt.get(z).getId() == galeries.get(h).getIdEvt()) {
                     listevt.get(z).getGllist().add(galeries.get(h));
 
                 }
@@ -330,7 +332,35 @@ public class FXMLGRIDEVENTController implements Initializable {
                         }
 
                     });
-                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
+              //test image   ********************************************************   
+                     Pane paimages = new Pane();
+                     List<ImageView> imgliste=new ArrayList<>();
+                     for(int m=0;m<listevt.get(0).getGllist().size();m++){
+                    imgliste.add(new ImageView(new Image(listevt.get(0).getGllist().get(m).getImage())));
+                         //   paimages.getChildren().add(new ImageView(listevt.get(0).getGllist().get(0).getImage()));
+                      
+                        
+                     }
+                 imgliste.get(0).translateXProperty().setValue(5);
+                    imgliste.get(0).translateYProperty().setValue(0);
+                    imgliste.get(1).translateXProperty().setValue(155);
+                    imgliste.get(1).translateYProperty().setValue(5);
+                    
+                     imgliste.get(0).setFitHeight(150);
+                     imgliste.get(0).setFitWidth(155);
+                    imgliste.get(1).setFitWidth(150);
+                     imgliste.get(1).setFitHeight(135);
+                      paimages.getChildren().addAll(imgliste.get(0),imgliste.get(1));
+                    System.out.println("taille de liste "+listevt.get(0).getGllist().size());
+                    paimages.setPrefHeight(150);
+                    paimages.setPrefWidth(450);
+                    paimages.setTranslateX(250);
+                    paimages.setTranslateY(75); 
+                   paimages.setStyle("-fx-background-color: white; -fx-border-color: black");
+               //*************************************************************     
+                    
+                    
+                    padetails.getChildren().addAll(paimages,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
@@ -341,6 +371,12 @@ public class FXMLGRIDEVENTController implements Initializable {
                         tabpane.setVisible(false);
                         detailspan.setDisable(false);
                         detailspan.getChildren().addAll(padetails);
+                        
+                         
+           
+                        System.out.println("taille de liste "+listevt.get(0).getGllist().size());
+                        
+                        
                         
                           modifevt.setOnAction((ev) -> {
                             
@@ -415,20 +451,22 @@ public class FXMLGRIDEVENTController implements Initializable {
         galeries = (ArrayList<Galerie>) gservice.afficherGalerie();
 
         EvennementServices evtservice = new EvennementServices();
-        List<Evennement> listevt = new ArrayList<>();
-        listevt = (ArrayList<Evennement>) evtservice.afficherEvennementorganise();
+       // List<Evennement> listevt = new ArrayList<>();
+        listevt1 = (ArrayList<Evennement>) evtservice.afficherEvennementorganise();
 
         List<ImageView> imglist = new ArrayList<>();
-        for (int z = 0; z < evtlist.size(); z++) {
+        for (int z = 0; z < listevt1.size(); z++) {
 
             for (int h = 0; h < galeries.size(); h++) {
-                if (evtlist.get(z).getId() == galeries.get(h).getIdEvt()) {
-                    listevt.get(z).getGllist().add(galeries.get(h));
+                if (listevt1.get(z).getId() == galeries.get(h).getIdEvt()) {
+                    listevt1.get(z).getGllist().add(galeries.get(h));
 
                 }
 
             }
         }
+       
+        
         btaff.setOnAction((event)
                 -> {
             scrollEvent1.setVisible(true);
@@ -436,6 +474,7 @@ public class FXMLGRIDEVENTController implements Initializable {
             ajoutpane.setVisible(true);
             detailspan.setVisible(false);
             btaff.setVisible(false);
+            
            
             Event2();
         });
@@ -473,7 +512,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                     btn.setStyle("-fx-border-color: blue");
 
                     //création d'une liste d'image  
-                    imglist.add(new ImageView(new Image(listevt.get(nb).getGllist().get(0).getImage())));
+                    imglist.add(new ImageView(new Image(listevt1.get(nb).getGllist().get(0).getImage())));
                     imglist.get(nb).translateXProperty().setValue(5);
                     imglist.get(nb).translateYProperty().setValue(5);
 
@@ -571,30 +610,28 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     dif.setValue("Très Difficile");
                                 }
                                 
-                 List<ImageView> listimage = new ArrayList<>();  
-                 int size=es.afficherEvennementAvenir().get(nb).getGllist().size();
+//                 List<ImageView> listimage = new ArrayList<>();  
+//                 int size=es.afficherEvennementAvenir().get(nb).getGllist().size();
 //                 for(int s=0;s<size;s++){
 //                 listimage.add(new ImageView(new Image(es.afficherEvennementAvenir().get(nb).getGllist().get(s).getImage())));
 //                  
 //                 }
 //                 System.out.println(listimage.get(nb));
-                  System.out.println(size);
-
-                      Image image=  new Image("img/kesra.jpg")  ;     
-                      Image image2=  new Image("img/dogga.jpg")  ; 
-                    ImageView img=new ImageView(image2) ;
-                     ImageView img2=new ImageView(image2) ;
-                    img.translateXProperty().setValue(75);
-                   img.translateYProperty().setValue(15);
+//                      Image image=  new Image("img/kesra.jpg")  ;     
+//                      Image image2=  new Image("img/dogga.jpg")  ; 
+//                    ImageView img=new ImageView() ;
+//                     //ImageView img2=new ImageView(image2) ;
+//                     img.setImage(image);
+//                     img.setImage(image2);
+//                    img.translateXProperty().setValue(75);
+//                   img.translateYProperty().setValue(15);
+//                   
+                 
                    
-                   img.translateXProperty().setValue(85);
-                   img.translateYProperty().setValue(15);
-                   
-                    img.setFitWidth(40);
-                    img.setFitHeight(30);
+//                    img.setFitWidth(100);
+//                    img.setFitHeight(150);
                     
-                    img2.setFitWidth(40);
-                    img2.setFitHeight(30);
+                    
                     Pane padetails = new Pane();
                        JFXButton photos = new JFXButton("photo");
                        photos.translateXProperty().set(120);
@@ -612,6 +649,8 @@ public class FXMLGRIDEVENTController implements Initializable {
                         }
 
                     });
+                    
+                     
                     padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
@@ -625,6 +664,11 @@ public class FXMLGRIDEVENTController implements Initializable {
                         detailspan.getChildren().addAll(padetails);
                             
                         acceuilpan.getChildren().addAll(btaff, detailspan);
+                        
+                       
+                        
+                        
+                        
 
                     });
 

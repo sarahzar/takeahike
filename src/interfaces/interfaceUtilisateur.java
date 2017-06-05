@@ -30,6 +30,7 @@ public interface interfaceUtilisateur {
     public void activerCompteUtilisateur(Utilisateur u);
     public XYChart.Series<String, Integer> ageRandonneurs();
     public ObservableList<PieChart.Data> hommeFemme();
+    public ObservableList<PieChart.Data> ages();
     public Utilisateur chercherCinUtilisateur (String cin);
     public Utilisateur chercherLoginUtilisateur (String login);
     public List<Utilisateur> chercherRandonneurs();

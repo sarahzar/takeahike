@@ -226,9 +226,6 @@ public class InscriptionController implements Initializable {
         {
             LocalDate now = LocalDate.now();
             Period p = Period.between(dateNaissanceUtilisateur.getValue(), now);
-            
-           
-            
             if(p.getYears()<18)
                 lblDateNaissance.setText("Age <18");
         }

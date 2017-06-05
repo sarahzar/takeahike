@@ -27,11 +27,16 @@ public class HommeFemmeController implements Initializable {
     @FXML
     private PieChart pieChart;
     
+    @FXML
+    private PieChart pieChart1;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UtilisateurServices us= new UtilisateurServices();
         ObservableList<PieChart.Data> sexe=us.hommeFemme();
         pieChart.setData(sexe);
+        ObservableList<PieChart.Data> ages=us.ages();
+        pieChart1.setData(ages);
     }    
     
 }

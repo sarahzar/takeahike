@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -372,6 +373,50 @@ public class UtilisateurServices implements interfaceUtilisateur {
         return sexe;
     }
 
+    @Override
+    public ObservableList<PieChart.Data> ages() {
+        int x=0;
+        int y=0;
+        int z=0;
+        int m=0;
+        int a=0;
+         
+        try {
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
+            LocalDate now = LocalDate.now();
+            
+            while (result.next()) {
+                Period p = Period.between(result.getDate(5).toLocalDate(), now);
+                int age=p.getYears();
+                if ((age>=18)&&(age<25))
+                    x++;
+                else if ((age>=25)&&(age<35))
+                    y++;
+                else if ((age>=35)&&(age<45))
+                    z++;
+                else if ((age>=45)&&(age<60))
+                    m++;
+                else if (age>=60)
+                    a++;
+//               
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ObservableList<PieChart.Data> ages= FXCollections.observableArrayList(
+                new PieChart.Data("18-25 ans", x),
+                new PieChart.Data("25-35 ans", y),
+                new PieChart.Data("35-45 ans", z),
+                new PieChart.Data("45-60 ans", m),
+                new PieChart.Data("Plus que 60 ans", a)
+                );
+        return ages;
+    }
+
+    
+    
     @Override
     public Utilisateur chercherLoginUtilisateur(String login) {
          Utilisateur u = new Utilisateur();

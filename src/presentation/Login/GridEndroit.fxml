@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" fx:id="Endroitaffich" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.GridEndroitController">
+   <children>
+      <ScrollPane fx:id="ScrolEndr" layoutX="8.0" layoutY="54.0" prefHeight="532.0" prefWidth="888.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+      <Pane fx:id="ajoutEndr" layoutX="706.0" layoutY="14.0" prefHeight="35.0" prefWidth="170.0">
+         <children>
+            <JFXButton fx:id="creerendr" layoutX="3.0" layoutY="1.0" onAction="#CreerEndroit" prefHeight="35.0" prefWidth="163.0" style="-fx-background-color: #009f90;" text="Créer un Endroit" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

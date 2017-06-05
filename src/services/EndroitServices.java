@@ -20,10 +20,11 @@ public class EndroitServices implements interfaces.interfaceEndroit{
     public void ajouterEndroit(Endroit a) {
         
          try {
-            PreparedStatement ajout= MyConnexion.getInstance().getConexion().prepareStatement("insert into endroit values (?,?,?);");
+            PreparedStatement ajout= MyConnexion.getInstance().getConexion().prepareStatement("insert into endroit values (?,?,?,?);");
             ajout.setInt(1, a.getId());
             ajout.setString(2, a.getNom());
             ajout.setString(3, a.getDescription());
+            ajout.setString(4, a.getImage());
             ajout.executeUpdate();
             System.out.println("ajout ok");
         } catch (SQLException ex) {
@@ -75,6 +76,8 @@ public class EndroitServices implements interfaces.interfaceEndroit{
                 Endroit endr = new Endroit();
             endr.setId(result.getInt(1));
             endr.setNom(result.getString(2));
+            endr.setDescription(result.getString(3));
+            endr.setImage(result.getString(4));
             endroits.add(endr);
             
             }

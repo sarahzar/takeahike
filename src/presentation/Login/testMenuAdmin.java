@@ -15,22 +15,18 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author atef-pc
- * 
- * ceci est test
+ * @author asus-pc
  */
-public class testMenu extends Application {
+public class testMenuAdmin extends Application {
     
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("testMenuAdmin.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("menuAdministrateur.fxml"));
         Scene scene = new Scene(root);
-       
         stage.setScene(scene);
         stage.show();
-        stage.setTitle("Take a Hike");
+        stage.setTitle("Utilisateur");
         stage.getIcons().add(new Image("logo.jpg"));
         stage.setResizable(false);
         

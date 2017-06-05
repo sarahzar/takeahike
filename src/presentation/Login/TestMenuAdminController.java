@@ -40,7 +40,7 @@ import javafx.scene.paint.Paint;
  *
  * @author asus-pc
  */
-public class TestMenuController implements Initializable {
+public class TestMenuAdminController implements Initializable {
     
     
     
@@ -66,44 +66,44 @@ public class TestMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userLabel.setText(user.getNom()+" "+user.getPrenom());
         System.out.println(user.getNom()+" "+user.getPrenom());
-       try{
-           
-            VBox box = FXMLLoader.load(getClass().getResource("menu.fxml"));
-            JFXButton b=(JFXButton)box.getChildren().get(1);
-            JFXButton c=(JFXButton)box.getChildren().get(2);
-            JFXButton e=(JFXButton)box.getChildren().get(3);
-            JFXButton f=(JFXButton)box.getChildren().get(4);            
-            drawer.setSidePane(box);
-            AnchorPane content = FXMLLoader.load(getClass().getResource("FXMLGRIDEVENT.fxml"));
-            AnchorPane content2 = FXMLLoader.load(getClass().getResource("FXMLtestFrid.fxml"));
-            AnchorPane content3 = FXMLLoader.load(getClass().getResource("FXMLAjoutArticle.fxml"));
-            AnchorPane content4 = FXMLLoader.load(getClass().getResource("Profil.fxml"));
-            
-           System.out.println(b.getText());
-           
-            b.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
-            
-            anchorpane2.getChildren().setAll(content);
-            
-            });
-            
-            c.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
-            
-            anchorpane2.getChildren().setAll(content2);
-            
-            });
-            
-             e.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
-            
-            anchorpane2.getChildren().setAll(content3);
-            
-            });
-             
-              f.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
-           
-            anchorpane2.getChildren().setAll(content4);
-            
-            });   
+//       try{
+//           
+//            VBox box = FXMLLoader.load(getClass().getResource("menuAdministrateur.fxml"));
+//            JFXButton b=(JFXButton)box.getChildren().get(1);
+//            JFXButton c=(JFXButton)box.getChildren().get(2);
+//            JFXButton e=(JFXButton)box.getChildren().get(3);
+//            JFXButton f=(JFXButton)box.getChildren().get(4);            
+            //drawer.setSidePane(box);
+//            AnchorPane content = FXMLLoader.load(getClass().getResource("FXMLGRIDEVENT.fxml"));
+//            AnchorPane content2 = FXMLLoader.load(getClass().getResource("FXMLtestFrid.fxml"));
+//            AnchorPane content3 = FXMLLoader.load(getClass().getResource("FXMLAjoutArticle.fxml"));
+//            AnchorPane content4 = FXMLLoader.load(getClass().getResource("Profil.fxml"));
+//            
+//           System.out.println(b.getText());
+//           
+//            b.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
+//            
+//            anchorpane2.getChildren().setAll(content);
+//            
+//            });
+//            
+//            c.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
+//            
+//            anchorpane2.getChildren().setAll(content2);
+//            
+//            });
+//            
+//             e.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
+//            
+//            anchorpane2.getChildren().setAll(content3);
+//            
+//            });
+//             
+//              f.addEventHandler(MouseEvent.MOUSE_CLICKED, (a)-> {
+//           
+//            anchorpane2.getChildren().setAll(content4);
+//            
+//            });   
      /*       for (Node node : box.getChildren()) {
                 if (node.getAccessibleText()!= null)
                 {
@@ -125,23 +125,23 @@ public class TestMenuController implements Initializable {
                
            }
             */
-           drawer.open(); 
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
-       
-        transition.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED,(k)->{
-            transition.setRate(transition.getRate()*-1);
-            transition.play();
-             if(drawer.isShown())
-            {
-                drawer.close();
-            }else
-                drawer.open();
-        
-        });
-    } catch (NullPointerException ex) {} catch (IOException ex) {
-              Logger.getLogger(TestMenuController.class.getName()).log(Level.SEVERE, null, ex);
-          }
+           //drawer.open(); 
+//        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+//       
+//        transition.setRate(-1);
+//        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED,(k)->{
+//            transition.setRate(transition.getRate()*-1);
+//            transition.play();
+//             if(drawer.isShown())
+//            {
+//                drawer.close();
+//            }else
+//                drawer.open();
+//        
+//        });
+//    } catch (NullPointerException ex) {} catch (IOException ex) {
+//              Logger.getLogger(TestMenuController.class.getName()).log(Level.SEVERE, null, ex);
+//          }
        
       
     }

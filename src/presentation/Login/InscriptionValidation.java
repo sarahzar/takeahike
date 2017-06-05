@@ -21,7 +21,7 @@ public class InscriptionValidation {
         
         return b;
     }
-    
+ 
     public static boolean textFieldNotEmpty (TextField tf, Label l, String sValidationText) {
         boolean b =true;
         String errorText="";

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.UtilisateursController">
+   <children>
+      <TableView fx:id="tableUsers" layoutX="23.0" layoutY="72.0" onMouseClicked="#DisabledButtons" prefHeight="482.0" prefWidth="867.0">
+        <columns>
+          <TableColumn fx:id="columnCIN" prefWidth="100.0" text="CIN" />
+            <TableColumn fx:id="columnLogin" prefWidth="90.0" text="Login" />
+          <TableColumn fx:id="columnNom" prefWidth="89.0" text="Nom" />
+            <TableColumn fx:id="columnPrenom" prefWidth="87.0" text="Prénom" />
+            <TableColumn fx:id="columnEmail" prefWidth="183.0" text="Email" />
+            <TableColumn fx:id="columnTelephone" prefWidth="84.0" text="Téléphone" />
+            <TableColumn fx:id="columnEtat" minWidth="9.0" prefWidth="82.0" text="Etat" />
+            <TableColumn fx:id="columnCompte" prefWidth="66.0" text="Compte" />
+            <TableColumn fx:id="columnType" prefWidth="84.0" text="Type" />
+        </columns>
+      </TableView>
+      <Label layoutX="24.0" layoutY="32.0" prefHeight="31.0" prefWidth="290.0" text="Tableau de bord: Utilisateurs" textFill="#004e3e">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnAjouter" layoutX="530.0" layoutY="35.0" onAction="#ouvrirInscription" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Ajouter" textFill="WHITE" />
+      <JFXButton fx:id="btnActiver" layoutX="653.0" layoutY="35.0" onAction="#activerUser" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Activer" textFill="WHITE" />
+      <JFXButton fx:id="btnDesactiver" layoutX="777.0" layoutY="35.0" onAction="#desactiverUser" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #009f90;" text="Désactiver" textFill="WHITE" />
+      <JFXTextField fx:id="loginRecherche" alignment="CENTER" focusColor="#004e3e" layoutX="61.0" layoutY="561.0" onInputMethodTextChanged="#searchUser" onKeyReleased="#searchUser" prefHeight="25.0" prefWidth="303.0" promptText="Recherche" unFocusColor="#004e3e" />
+      <ImageView fx:id="refresh" fitHeight="25.0" fitWidth="28.0" layoutX="494.0" layoutY="35.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../refresh-icon-png-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="32.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../53733.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -22,7 +22,7 @@ public class Evennement {
     private Double lattitudePOintDepart;
     private Double longitudePOintArrivee;
     private Double lattitudePOintArrivee;
-    private String image;
+    
     private   List<Galerie> gllist=new ArrayList<Galerie>();
  
     
@@ -30,20 +30,9 @@ public class Evennement {
     public Evennement() {
     }
 
-    public Evennement(String nom, Endroit idEndroit, LocalDate dateDebut, LocalDate dateFin, int difficulte, int nbrPlaces, String description, Double longitudePOintDepart, Double lattitudePOintDepart, Double longitudePOintArrivee, Double lattitudePOintArrivee) {
-        
-        this.nom = nom;
-        this.idEndroit = idEndroit;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.difficulte = difficulte;
-        this.nbrPlaces = nbrPlaces;
-        this.description = description;
-        this.longitudePOintDepart = longitudePOintDepart;
-        this.lattitudePOintDepart = lattitudePOintDepart;
-        this.longitudePOintArrivee = longitudePOintArrivee;
-        this.lattitudePOintArrivee = lattitudePOintArrivee;
-    }
+    
+
+    
 
     public Evennement(int id, String nom, LocalDate dateDebut, LocalDate dateFin, int difficulte, int nbrPlaces, Utilisateur idResponsable, Endroit idEndroit, String description, Double longitudePOintDepart, Double lattitudePOintDepart, Double longitudePOintArrivee, Double lattitudePOintArrivee) {
         this.id = id;
@@ -61,20 +50,7 @@ public class Evennement {
         this.lattitudePOintArrivee = lattitudePOintArrivee;
     }
 
-    public Evennement(String nom, LocalDate dateDebut, LocalDate dateFin, int difficulte, int nbrPlaces, Utilisateur idResponsable, Endroit idEndroit, String description, Double longitudePOintDepart, Double lattitudePOintDepart, Double longitudePOintArrivee, Double lattitudePOintArrivee) {
-        this.nom = nom;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.difficulte = difficulte;
-        this.nbrPlaces = nbrPlaces;
-        this.idResponsable = idResponsable;
-        this.idEndroit = idEndroit;
-        this.description = description;
-        this.longitudePOintDepart = longitudePOintDepart;
-        this.lattitudePOintDepart = lattitudePOintDepart;
-        this.longitudePOintArrivee = longitudePOintArrivee;
-        this.lattitudePOintArrivee = lattitudePOintArrivee;
-    }
+    
 
     public Evennement(int id) {
         this.id = id;
@@ -205,13 +181,7 @@ public class Evennement {
         this.lattitudePOintArrivee = lattitudePOintArrivee;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
+  
 
     public List<Galerie> getGllist() {
         return gllist;

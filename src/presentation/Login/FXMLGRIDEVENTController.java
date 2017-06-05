@@ -209,13 +209,13 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     //Affichage du details evennement
                     
-                    idevent = es.afficherEvennementAvenir().get(nb).getId();
+                   int idevent = es.afficherEvennementAvenir().get(nb).getId();
                     
                     
                    
                     
                     JFXTextArea description = new JFXTextArea();
-                    description.translateYProperty().set(250);
+                    description.translateYProperty().set(270);
                     description.translateXProperty().set(250);
                     description.setText(es.afficherEvennementAvenir().get(nb).getDescription());
                     description.setEditable(false);
@@ -254,6 +254,11 @@ public class FXMLGRIDEVENTController implements Initializable {
                     datef.translateYProperty().set(180);
                     datef.translateXProperty().set(100);
                     
+                    Label df=new Label();
+                    df.translateYProperty().set(180);
+                    df.translateXProperty().set(170);
+                    df.setText(String.valueOf(es.afficherEvennementAvenir().get(nb).getDateFin()));
+                    
                       Label nbr=new Label("Nombre de places :"); 
                     nbr.translateXProperty().set(100);
                     nbr.translateYProperty().set(240);
@@ -271,10 +276,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                     places.isLabelFloat();
                     places.setPrefWidth(175);
                     
-                    Label df=new Label();
-                    df.translateYProperty().set(180);
-                    df.translateXProperty().set(170);
-                    df.setText(String.valueOf(es.afficherEvennementAvenir().get(nb).getDateFin()));
+                    
                     
                     Label diff=new Label("Difficulté : ");
                     diff.translateXProperty().set(100);
@@ -312,9 +314,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     typdiff.setText("Très Difficile");
                                     dif.setValue("Très Difficile");
                                 }
-//                                ImageView img = new ImageView("img/kesra.jpg");
-//                                img.translateXProperty().setValue(15);
-//                                img.translateYProperty().setValue(15);
+                               
                     
                     Pane padetails = new Pane();
                     JFXButton photos = new JFXButton("photo");
@@ -383,12 +383,13 @@ public class FXMLGRIDEVENTController implements Initializable {
                         nome.setVisible(true);
                         endr.setVisible(true);
                         nbrpl.setVisible(false);
-                       df.setVisible(false);
-                        typdiff.setVisible(false);
-                        
+                        dt.setVisible(true);
+                        df.setVisible(true);
+                        typdiff.setVisible(true);
+                        dif.setVisible(false);
                         description.setEditable(true);
                         places.setVisible(true);
-                       
+                        
                         update.setVisible(true);
 
                     });
@@ -398,13 +399,30 @@ public class FXMLGRIDEVENTController implements Initializable {
                                 es.supprimerEvennement(e);
                                 scrollEvent.setVisible(true);
                                 tabpane.setVisible(true);
+                                ajoutpane.setVisible(true);
                                 btaff.setVisible(false);
                                 modifevt.setVisible(false);
                                 suppevt.setVisible(false);
                                 update.setVisible(false);
+                                padetails.setVisible(false);
                                 Event();
                                 });
-                          
+                          update.setOnAction((modif) -> {
+                              
+                              Evennement e = new Evennement(idevent);
+                              e.setNbrPlaces(Integer.parseInt(places.getText()));
+                              e.setDescription(description.getText());
+                              es.modifierEvennement(e);
+                               scrollEvent.setVisible(true);
+                                tabpane.setVisible(true);
+                                ajoutpane.setVisible(true);
+                                btaff.setVisible(false);
+                                modifevt.setVisible(false);
+                                suppevt.setVisible(false);
+                                update.setVisible(false);
+                                padetails.setVisible(false);
+                                Event();
+                          });
                         acceuilpan.getChildren().addAll(btaff, detailspan,modifevt,suppevt,update);
 
                     });
@@ -421,11 +439,26 @@ public class FXMLGRIDEVENTController implements Initializable {
         Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
 
+    
+      
+//        back.getHeight(5);
+//        back.getWidth(5);
         JFXButton btaff = new JFXButton("<<");
         btaff.translateXProperty().set(100);
         btaff.translateYProperty().set(50);
-
         
+        JFXButton modifevt = new JFXButton("Modifier");
+                    modifevt.translateXProperty().set(650);
+                    modifevt.translateYProperty().set(50);
+                    
+                    JFXButton update = new JFXButton("Enregistrer");
+                    update.translateXProperty().set(600);
+                    update.translateYProperty().set(550);
+                    update.setVisible(false);
+                    
+                    JFXButton suppevt = new JFXButton("Supprimer");
+                    suppevt.translateXProperty().set(740);
+                    suppevt.translateYProperty().set(50);
         
         GridPane gridee = new GridPane();
         Pane detailspan = new Pane();
@@ -474,12 +507,14 @@ public class FXMLGRIDEVENTController implements Initializable {
             ajoutpane.setVisible(true);
             detailspan.setVisible(false);
             btaff.setVisible(false);
-            
-           
+            update.setVisible(false);
+            suppevt.setVisible(false);
+            modifevt.setVisible(false);
             Event2();
         });
 
-        //parcour de la liste des evnnements et affichage des pannes 
+        //parcour de la liste des evnnements et affichage des pannes
+        
         for (i = 0; i < x; i = i + 2) {
             for (j = 0; j < 2; j++) {
 
@@ -526,13 +561,18 @@ public class FXMLGRIDEVENTController implements Initializable {
                     pane.setStyle("-fx-background-color: white; -fx-border-color: black");
 
                     //Affichage du details evennement
-                    int idevent = es.afficherEvennementorganise().get(nb).getId();
-
+                    
+                   int idevent = es.afficherEvennementorganise().get(nb).getId();
+                    
+                    
+                   
+                    
                     JFXTextArea description = new JFXTextArea();
-                    description.translateYProperty().set(250);
+                    description.translateYProperty().set(270);
                     description.translateXProperty().set(250);
                     description.setText(es.afficherEvennementorganise().get(nb).getDescription());
                     description.setEditable(false);
+                    
                     Label Nom = new Label("Nom Rando :  ");
                     Nom.translateXProperty().set(100);
                     Nom.translateYProperty().set(50);
@@ -567,11 +607,29 @@ public class FXMLGRIDEVENTController implements Initializable {
                     datef.translateYProperty().set(180);
                     datef.translateXProperty().set(100);
                     
-                    
                     Label df=new Label();
                     df.translateYProperty().set(180);
                     df.translateXProperty().set(170);
                     df.setText(String.valueOf(es.afficherEvennementorganise().get(nb).getDateFin()));
+                    
+                      Label nbr=new Label("Nombre de places :"); 
+                    nbr.translateXProperty().set(100);
+                    nbr.translateYProperty().set(240);
+                    
+                    Label nbrpl=new Label();
+                    nbrpl.translateYProperty().set(240);
+                    nbrpl.translateXProperty().set(210);
+                    nbrpl.setText(String.valueOf(es.afficherEvennementorganise().get(nb).getNbrPlaces()));
+                    
+                    JFXTextField places = new JFXTextField();
+                    places.translateYProperty().set(240);
+                    places.translateXProperty().set(210);
+                    places.setText(String.valueOf(es.afficherEvennementorganise().get(nb).getNbrPlaces()));
+                    places.setVisible(false);
+                    places.isLabelFloat();
+                    places.setPrefWidth(175);
+                    
+                    
                     
                     Label diff=new Label("Difficulté : ");
                     diff.translateXProperty().set(100);
@@ -610,32 +668,10 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     dif.setValue("Très Difficile");
                                 }
                                 
-//                 List<ImageView> listimage = new ArrayList<>();  
-//                 int size=es.afficherEvennementAvenir().get(nb).getGllist().size();
-//                 for(int s=0;s<size;s++){
-//                 listimage.add(new ImageView(new Image(es.afficherEvennementAvenir().get(nb).getGllist().get(s).getImage())));
-//                  
-//                 }
-//                 System.out.println(listimage.get(nb));
-//                      Image image=  new Image("img/kesra.jpg")  ;     
-//                      Image image2=  new Image("img/dogga.jpg")  ; 
-//                    ImageView img=new ImageView() ;
-//                     //ImageView img2=new ImageView(image2) ;
-//                     img.setImage(image);
-//                     img.setImage(image2);
-//                    img.translateXProperty().setValue(75);
-//                   img.translateYProperty().setValue(15);
-//                   
-                 
-                   
-//                    img.setFitWidth(100);
-//                    img.setFitHeight(150);
-                    
                     
                     Pane padetails = new Pane();
-                       JFXButton photos = new JFXButton("photo");
-                       photos.translateXProperty().set(120);
-                       //photos.translateYProperty().set();
+                    JFXButton photos = new JFXButton("photo");
+                    photos.translateXProperty().set(120);
                     photos.setOnAction((event) -> {
                         try {
                             Stage stage= new  Stage();
@@ -649,9 +685,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                         }
 
                     });
-                    
-                     
-                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos);
+                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
@@ -662,6 +696,53 @@ public class FXMLGRIDEVENTController implements Initializable {
                         tabpane.setVisible(false);
                         detailspan.setDisable(false);
                         detailspan.getChildren().addAll(padetails);
+                        
+                          modifevt.setOnAction((ev) -> {
+                            
+                        nome.setVisible(true);
+                        endr.setVisible(true);
+                        nbrpl.setVisible(false);
+                        dt.setVisible(true);
+                        df.setVisible(true);
+                        typdiff.setVisible(true);
+                        dif.setVisible(false);
+                        description.setEditable(true);
+                        places.setVisible(true);
+                        
+                        update.setVisible(true);
+
+                    });
+                          suppevt.setOnAction((evsupp)->{
+                                    
+                                Evennement e = new Evennement(idevent);
+                                es.supprimerEvennement(e);
+                                scrollEvent1.setVisible(true);
+                                tabpane.setVisible(true);
+                                ajoutpane.setVisible(true);
+                                btaff.setVisible(false);
+                                modifevt.setVisible(false);
+                                suppevt.setVisible(false);
+                                update.setVisible(false);
+                                padetails.setVisible(false);
+                                Event2();
+                                });
+                          update.setOnAction((modif) -> {
+                              
+                              Evennement e = new Evennement(idevent);
+                              e.setNbrPlaces(Integer.parseInt(places.getText()));
+                              e.setDescription(description.getText());
+                              es.modifierEvennement(e);
+                               scrollEvent1.setVisible(true);
+                                tabpane.setVisible(true);
+                                ajoutpane.setVisible(true);
+                                btaff.setVisible(false);
+                                modifevt.setVisible(false);
+                                suppevt.setVisible(false);
+                                update.setVisible(false);
+                                padetails.setVisible(false);
+                                Event2();
+                          });
+                        acceuilpan.getChildren().addAll(btaff, detailspan,modifevt,suppevt,update);
                             
                         acceuilpan.getChildren().addAll(btaff, detailspan);
                         

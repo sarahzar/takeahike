@@ -65,29 +65,29 @@ public class EvennementServices implements interfaces.interfaceEvennement {
     @Override
     public void modifierEvennement(Evennement e) {
             try {
-                PreparedStatement update = connect.prepareStatement("UPDATE evennement SET nom=?,idEndroit=?,dateDebut=?,dateFin=?,difficulte=?,nbrPlaces=?,idResponsable=?,description=?,longititudepointDepart=?,lattitudepointDepart=?,longitudePointArrivee=?,lattitudePointArrivee=?  WHERE id=?;");
+                PreparedStatement update = connect.prepareStatement("UPDATE evennement SET nbrPlaces=? , description=?  WHERE id=?;");
                 
-                update.setString(1, e.getNom());
-                update.setInt(2, e.getIdEndroit().getId());
-                
-                LocalDate ld = e.getDateDebut();
-                Date date = java.sql.Date.valueOf(ld);
-                update.setDate(3, date );
-                
-                LocalDate ldd = e.getDateFin();
-                Date datee = java.sql.Date.valueOf(ldd);
-                update.setDate(4, datee );
-//        update.setDate(3, (Date) e.getDateDebut().);
-   //             update.setDate(4, (Date) e.getDateFin());
-                update.setInt(5, e.getDifficulte());
-                update.setInt(6, e.getNbrPlaces());
-                update.setString(7, e.getIdResponsable().getCin());
-                update.setString(8, e.getDescription());
-                update.setDouble(9, e.getLongitudePOintDepart());
-                update.setDouble(10, e.getLattitudePOintDepart());
-                update.setDouble(11, e.getLongitudePOintArrivee());
-                update.setDouble(12, e.getLattitudePOintArrivee());
-                update.setInt(13, e.getId());
+//                update.setString(1, e.getNom());
+//                update.setInt(2, e.getIdEndroit().getId());
+//                
+//                LocalDate ld = e.getDateDebut();
+//                Date date = java.sql.Date.valueOf(ld);
+//                update.setDate(3, date );
+//                
+//                LocalDate ldd = e.getDateFin();
+//                Date datee = java.sql.Date.valueOf(ldd);
+//                update.setDate(4, datee );
+////        update.setDate(3, (Date) e.getDateDebut().);
+//   //             update.setDate(4, (Date) e.getDateFin());
+//                update.setInt(5, e.getDifficulte());
+                update.setInt(1, e.getNbrPlaces());
+//                update.setString(7, e.getIdResponsable().getCin());
+                update.setString(2, e.getDescription());
+//                update.setDouble(9, e.getLongitudePOintDepart());
+//                update.setDouble(10, e.getLattitudePOintDepart());
+//                update.setDouble(11, e.getLongitudePOintArrivee());
+//                update.setDouble(12, e.getLattitudePOintArrivee());
+                update.setInt(3, e.getId());
                 update.executeUpdate();
             System.out.println("great");
                 

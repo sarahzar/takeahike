@@ -20,6 +20,7 @@ import static java.lang.Float.parseFloat;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,10 @@ import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -49,6 +53,7 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import net.sf.jasperreports.ant.UpdaterElement;
 import reporting.Report;
 
 
@@ -352,6 +357,12 @@ public class FXMLtestFridController implements Initializable {
                          float priadd; priadd=parseFloat(flabpriajout.getText());
                     
                          Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd,imgmatt);
+                                    Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Ajout du materiel terminer avec succès!");
+
+                                    alerte.showAndWait();
                          System.out.println(img);
                          ms.ajouterMateriel(m);
                          newStage.close();
@@ -639,12 +650,28 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 okupdate.setOnAction((emodif)->{
                                 Materiel m = new Materiel(idmat, fnommat.getText(), detmat.getText(), user, 0, parseFloat(fprimat.getText()), imgmat);
-                             
+                                    
+                                Alert alert = new Alert(AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation Dialog");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Confirmer la modification de "+m.getNomMateriel()+" ?");
+
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    
+                                    if (result.get() == ButtonType.OK){
                                     m.setNomMateriel(fnommat.getText());
                                     m.setDescription(detmat.getText());
                                     m.setPrix(parseFloat(fprimat.getText()));
                                     m.setType(ftypemat.getSelectionModel().getSelectedIndex());
                                     ms.modifierMateriel(m);
+                                    
+                                    Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Information Dialog");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Mise a jour du materiel terminer avec succès!");
+
+                                    alerte.showAndWait();
+                               }
                                     sx.setVisible(true);
                                     panepane.setVisible(false);
                                     btaff.setVisible(false);
@@ -658,8 +685,24 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 suppmat.setOnAction((esupp)->{
                                     
-                                Materiel m = new Materiel(idmat);
-                                ms.supprimerMateriel(m);
+                                    Materiel m = new Materiel(idmat);
+                                    
+                                    Alert alert = new Alert(AlertType.CONFIRMATION);
+                                    alert.setTitle("Take a Hike");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Confirmer la suppression de "+m.getNomMateriel()+" ?");
+
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK){
+                                        ms.supprimerMateriel(m);
+                                
+                                     Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Suppression du materiel terminer avec succès!");
+                                    alerte.showAndWait();
+                                    } 
+                                    
                                 sx.setVisible(true);
                                 panepane.setVisible(false);
                                 btaff.setVisible(false);
@@ -670,22 +713,31 @@ public class FXMLtestFridController implements Initializable {
                                 mailmat.setVisible(false);
                                 btajout.setVisible(true);
                                 grid();
+                                
+                                    
+                                    
+                                    
+                                
                                 });
                                 
                                 
                                 mailmat.setOnAction((e)->{
-                                    
+                                String body=labnom.getText()+" "+ nommat.getText()+" \n"+ des.getText() + "   "+ detmat.getText() +"\n"+ labpri.getText() +"   "+ prixmat.getText() + " \n"+ labtype.getText() + "   "+ typemat.getText()+"\n"+"Nom du propriaitiare   :"+nomuserpdf+ " \n"+"Prenom du propriaitiare   :"+prenomuserpdf+ "\n "+"Adresse du propriaitiare   :"+adressuserpdf+ "\n "+"Telephone du propriaitiare   :"+teluserpdf+ "\n "+"Adresse electronique du propriaitiare   :"+mailuserpdf;
                                     try {
                                         Mail mailmatt = new Mail();
                                         String[] atch = new String[100];
                                         atch[0] = "C:\\Users\\monta\\Documents\\NetBeansProjects\\Versiongit\\takeahike\\src\\reporting\\report1.jrxml";
-                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2", "montassar.touil@esprit.tn", "haha", "hihi",atch,1);
+                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2", "montassar.touil@esprit.tn", "Fiche de "+nommat.getText(), body,atch,1);
                                         
                                         
                                     } catch (Exception ex) {
                                         Logger.getLogger(FXMLtestFridController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                       
+                                       Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Mail envoyer avec succès!");
+                                    alerte.showAndWait();
 
                                 });
                                 

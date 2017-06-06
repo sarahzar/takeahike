@@ -13,6 +13,9 @@ import com.jfoenix.controls.JFXTextField;
 import entities.Materiel;
 import entities.Session;
 import entities.Utilisateur;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import static java.lang.Float.parseFloat;
 import java.net.URL;
 import java.util.HashMap;
@@ -20,6 +23,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 
@@ -36,11 +41,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import reporting.Report;
 
 
@@ -58,10 +66,63 @@ public class FXMLtestFridController implements Initializable {
      @FXML
     private JFXButton btajout;
     
-  String defimg="/img/tabarka.jpg";
-    
+  String defimg="/img/icons8-Annuler.png";
+  
+  String img;
+
     public void grid()
     {
+        
+                VBox rootBox = new VBox();
+                Circle Circle;
+            
+                JFXButton btnLoad = new JFXButton("Choisir votre image");
+                btnLoad.translateXProperty().set(40);
+                btnLoad.translateYProperty().set(200);
+                
+                Circle = new Circle();        
+
+            
+            rootBox.getChildren().addAll(btnLoad, Circle);
+            
+            EventHandler<ActionEvent> btnLoadEventListener = new EventHandler<ActionEvent>(){
+
+                    @Override
+                    public void handle(ActionEvent t) {
+                        try {
+                            FileChooser fileChooser = new FileChooser();
+
+                            //Set extension filter
+                            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+                            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+                            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+                            //Show open file dialog
+                            File file = fileChooser.showOpenDialog(null);
+
+
+                            BufferedImage bufferedImage = ImageIO.read(file);
+                            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+
+                            Circle.setRadius(65);
+                            Circle.translateXProperty().set(36);
+                            Circle.translateYProperty().set(40);
+                            Circle.setFill(new ImagePattern(image));
+
+                             img = file.toURI().toString();
+                             
+                             img = img.replace('\\', '/');
+                        } catch (IOException ex) {
+                            Logger.getLogger(FXMLtestFridController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                    }
+                }; 
+
+                    btnLoad.setOnAction(btnLoadEventListener);                
+        
+        
                     
                     Utilisateur user=Session.getUser();
                     Stage newStage = new Stage();
@@ -202,6 +263,9 @@ public class FXMLtestFridController implements Initializable {
                     annuleajout.setGraphic(icocancell);
                     
                     
+                   
+                   
+                    
                     
                     Label labnomajout = new Label("Nom                 :");
                     labnomajout.translateXProperty().set(200);
@@ -270,17 +334,25 @@ public class FXMLtestFridController implements Initializable {
                                     
                          
                   
-                    });
-//                    
+                    });                   
                     
                      okajout.setOnAction((okadd)->
                     {
+                        
+                           String imgmatt = img;
+                           if(imgmatt==null)
+                             {
+                             imgmatt=defimg;
+                             }
+                           
+                           
                          String nomadd;  nomadd=flabnomajout.getText();
                          String desadd;  desadd=detmatajout.getText();
                          int typeadd; typeadd=ftypematajout.getSelectionModel().getSelectedIndex();
                          float priadd; priadd=parseFloat(flabpriajout.getText());
                     
-                         Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd,defimg);
+                         Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd,imgmatt);
+                         System.out.println(img);
                          ms.ajouterMateriel(m);
                          newStage.close();
                          grid();
@@ -297,7 +369,7 @@ public class FXMLtestFridController implements Initializable {
                          
                     });
                      
-                    paneajouut.getChildren().addAll(annuleajout,okajout,labnomajout,typematajout,labpriajout,detmatajout,flabnomajout,ftypematajout,flabpriajout,desa);
+                    paneajouut.getChildren().addAll(annuleajout,okajout,labnomajout,typematajout,labpriajout,detmatajout,flabnomajout,ftypematajout,flabpriajout,desa,rootBox);
                     paneajouut.setStyle("-fx-background-color: beige; -fx-border-color: #CADAE3");
                     
                     
@@ -339,7 +411,7 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 
                                 
-                                Label lab3 = new Label(ms.afficherMateriel().get(nb).getUser().getPrenom());
+                                Label lab3 = new Label(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
                                 lab3.setFont(Font.font("Cambria", 14));
                                 String nomuserpdf = ms.afficherMateriel().get(nb).getUser().getNom();
                                 String prenomuserpdf = ms.afficherMateriel().get(nb).getUser().getPrenom();
@@ -412,6 +484,7 @@ public class FXMLtestFridController implements Initializable {
                                 fnommat.setText(ms.afficherMateriel().get(nb).getNomMateriel());
                                 fnommat.setVisible(false);
                                 fnommat.setFont(Font.font("Cambria", 16));
+                                fnommat.setStyle(" -fx-text-inner-color :DarkSlateBlue    ;");
                                 
                                 Label des = new Label("Description :");
                                 des.translateXProperty().set(100);
@@ -441,6 +514,7 @@ public class FXMLtestFridController implements Initializable {
                                 fprimat.setPrefWidth(175);
                                 fprimat.setFont(Font.font("Cambria", 16));
                                 fprimat.setVisible(false);
+                                fprimat.setStyle(" -fx-text-inner-color :DarkSlateBlue    ;");
                                 
                                 Label prixmat = new Label();
                                 prixmat.translateXProperty().set(190);
@@ -460,7 +534,7 @@ public class FXMLtestFridController implements Initializable {
                                 ftypemat.translateYProperty().set(100);
                                 ftypemat.getItems().add("Materiel pour location");
                                 ftypemat.getItems().add("Materiel pour vente");
-                                //ftypemat.setStyle("");
+                                ftypemat.setStyle("-fx-font-size: 13;-fx-font-family: Cambria;");
                                 ftypemat.setVisible(false);
                                 
 
@@ -526,7 +600,7 @@ public class FXMLtestFridController implements Initializable {
                                     typemat.setVisible(false);
                                     prixmat.setVisible(false);
                                     pdf.setVisible(false);
-                                    
+                                    suppmat.setVisible(false);
                                     fnommat.setVisible(true);
                                     ftypemat.setVisible(true);
                                     fprimat.setVisible(true);

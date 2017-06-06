@@ -19,12 +19,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 
 /**
  *
@@ -176,7 +179,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
                 
                 
                 UtilisateursDetails u=new UtilisateursDetails(cin, login, nom, prenom, email, telephone, etat, compte,type);
-                System.out.println("UserDetails"+u);
+                
                 liste.add(u);
                 
             }
@@ -210,19 +213,36 @@ public class UtilisateurServices implements interfaceUtilisateur {
             PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE utilisateur SET etat=0, dateDesactivation=? where cin = ?");
             prep.setDate(1, (Date) sqlDate1);
             prep.setString(2, u.getCin());
-            System.out.println("MethodeDesactiver:   "+u);
+            
             prep.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+     @Override
+    public void activerCompteUtilisateur(Utilisateur u) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            java.util.Date date1 = new java.util.Date();
+            System.out.println(dateFormat.format(date1));
+            java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
+            PreparedStatement prep = MyConnexion.getInstance().getConexion().prepareStatement("UPDATE utilisateur SET etat=1 where cin = ?");
+           
+            prep.setString(1, u.getCin());
+            
+            prep.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
     @Override
     public Utilisateur chercherCinUtilisateur(String cin) {
 
         Utilisateur u = new Utilisateur();
-        System.out.println("user Methode chercher"+u);
-        System.out.println("getUserSession: ----"+Session.getUser());
+        
         try {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where cin = \"" + cin + "\"");
@@ -245,7 +265,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
                 u.setDateDeactivation(result.getDate(14));
                 u.setSexe(result.getInt(15));
                 u.setCodeConfirmation(result.getString(16));
-                System.out.println("Apres recherche: -------"+u);
+                
 
             }
 
@@ -258,6 +278,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
     @Override
     public List<Utilisateur> chercherRandonneurs() {
         ArrayList<Utilisateur> randonneurs = new ArrayList<>();
+        XYChart.Series<String, Integer> series= new XYChart.Series<>();
         try {
             Statement stm = MyConnexion.getInstance().getConexion().createStatement();
             ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
@@ -288,7 +309,114 @@ public class UtilisateurServices implements interfaceUtilisateur {
         }
         return randonneurs;
     }
+    
+    
+    @Override
+    public XYChart.Series<String, Integer> ageRandonneurs() {
+        ArrayList<Utilisateur> randonneurs = new ArrayList<>();
+        XYChart.Series<String, Integer> series= new XYChart.Series<>();
+        try {
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
+            while (result.next()) {
+                Utilisateur u = new Utilisateur();
+                series.getData().add(new XYChart.Data<>(result.getString(3),result.getInt(11)));
+//                u.setCin(result.getString(1));
+//                u.setType(result.getInt(2));
+//                u.setNom(result.getString(3));
+//                u.setPrenom(result.getString(4));
+//                u.setAdresse(result.getString(6));
+//                u.setDateNaissance(result.getDate(5).toLocalDate());
+//                u.setTelephone(result.getString(7));
+//                u.setMail(result.getString(8));
+//                u.setPassword(result.getString(9));
+//                u.setLogin(result.getString(10));
+//                u.setConfirmer(result.getInt(11));
+//                u.setEtat(result.getInt(12));
+//                u.setDateInscrit(result.getDate(13));
+//                u.setDateDeactivation(result.getDate(14));
+//                u.setSexe(result.getInt(15));
+//                u.setCodeConfirmation(result.getString(16));
+//                randonneurs.add(u);
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return series;
+    }
+    
+    
+    
+    @Override
+    public ObservableList<PieChart.Data> hommeFemme() {
+        int x=0;
+        int y=0;
+         
+        try {
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
+            while (result.next()) {
+                
+                if (result.getInt(15)==0)
+                    y++;
+                else x++;
+//               
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ObservableList<PieChart.Data> sexe= FXCollections.observableArrayList(
+                new PieChart.Data("Homme", y),
+                new PieChart.Data("Femme", x));
+        return sexe;
+    }
+
+    @Override
+    public ObservableList<PieChart.Data> ages() {
+        int x=0;
+        int y=0;
+        int z=0;
+        int m=0;
+        int a=0;
+         
+        try {
+            Statement stm = MyConnexion.getInstance().getConexion().createStatement();
+            ResultSet result = stm.executeQuery("select * from utilisateur where type = 1");
+            LocalDate now = LocalDate.now();
+            
+            while (result.next()) {
+                Period p = Period.between(result.getDate(5).toLocalDate(), now);
+                int age=p.getYears();
+                if ((age>=18)&&(age<25))
+                    x++;
+                else if ((age>=25)&&(age<35))
+                    y++;
+                else if ((age>=35)&&(age<45))
+                    z++;
+                else if ((age>=45)&&(age<60))
+                    m++;
+                else if (age>=60)
+                    a++;
+//               
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ObservableList<PieChart.Data> ages= FXCollections.observableArrayList(
+                new PieChart.Data("18-25 ans", x),
+                new PieChart.Data("25-35 ans", y),
+                new PieChart.Data("35-45 ans", z),
+                new PieChart.Data("45-60 ans", m),
+                new PieChart.Data("Plus que 60 ans", a)
+                );
+        return ages;
+    }
+
+    
+    
     @Override
     public Utilisateur chercherLoginUtilisateur(String login) {
          Utilisateur u = new Utilisateur();

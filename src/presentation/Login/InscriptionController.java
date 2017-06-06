@@ -49,10 +49,17 @@ import java.util.UUID;
  */
 public class InscriptionController implements Initializable {
 
-     @FXML  // <== perhaps you had this missing??
-        void keyPressed(KeyEvent event) {
-            
-            }
+    private static int admin;
+
+    public static int getAdmin() {
+        return admin;
+    }
+
+    public static void setAdmin(int admin) {
+        InscriptionController.admin = admin;
+    }
+    
+       
     
     
     @FXML
@@ -158,6 +165,7 @@ public class InscriptionController implements Initializable {
     @FXML
     void ouvrirInscription (ActionEvent event) throws IOException{
         
+            
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("Inscription_1.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -184,6 +192,7 @@ public class InscriptionController implements Initializable {
         boolean telephoneValidation =textFieldNotEmpty(txttelephoneUtilisateur, lblTelephone, "Le numéro de téléphone est obligatoire!");
         boolean confirmPassword = confirmerPassword(pswpasswordUtilisateur, pswconfirmPasswordUtilisateur, lblPasswordConfirm,"Les mots de passe ne sont pas identiques!");
         boolean verifEmail = verifierEmail(txtemailUtilisateur, lblEmail, "L'email n'est pas valide!");
+        
         if (nomValidation)
         {       boolean nomverif =verifierString(txtnomUtilisateur, lblNom, "Pas d'entiers!");
                 verif=nomverif;                
@@ -218,9 +227,6 @@ public class InscriptionController implements Initializable {
         {
             LocalDate now = LocalDate.now();
             Period p = Period.between(dateNaissanceUtilisateur.getValue(), now);
-            
-           
-            
             if(p.getYears()<18)
                 lblDateNaissance.setText("Age <18");
         }
@@ -253,7 +259,12 @@ public class InscriptionController implements Initializable {
         
         String code=UUID.randomUUID().toString();
             System.out.println("Code: "+code);
-        Utilisateur u =new Utilisateur(cin, 1, nom, prenom,dateNaissance, adresse, telephone, email, password, login, 0, 1,sexe,code);
+            Utilisateur u;
+            if(admin ==0 )
+            {
+             u =new Utilisateur(cin, 0, nom, prenom,dateNaissance, adresse, telephone, email, password, login, 0, 1,sexe,code);}
+            else
+             u =new Utilisateur(cin, 1, nom, prenom,dateNaissance, adresse, telephone, email, password, login, 0, 1,sexe,code);
        
        
         us.ajouterUtilisateur(u);
@@ -319,6 +330,7 @@ public class InscriptionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Utilisateur user= Session.getUser();
         cmbsexeUtilisateur.getItems().addAll("Homme","Femme");
+        
              
             
          

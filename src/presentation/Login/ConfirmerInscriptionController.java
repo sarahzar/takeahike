@@ -58,17 +58,15 @@ public class ConfirmerInscriptionController implements Initializable {
         Utilisateur user=Session.getUser();
         if (user==null)
         {
-            System.out.println("\nChercherconfirmerInscription      ---");
-            System.out.println(cinC);
+            
              u=us.chercherCinUtilisateur(cinC);
              Session.setUser(u);
-             System.out.println("-----Apres recherche dans confirmer---"+u);
-             System.out.println("singleton=null");
+             
         }
         else
         {
              u=user;
-              System.out.println("singleton!=null");
+              
         }
         
             //System.out.println("u: "+u);

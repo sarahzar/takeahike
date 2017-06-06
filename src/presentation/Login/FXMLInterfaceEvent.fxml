@@ -5,14 +5,15 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLInterfaceEventController">
+<AnchorPane id="AnchorPane" prefHeight="664.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLInterfaceEventController">
    <children>
       <TitledPane animated="false" layoutX="7.0" prefHeight="615.0" prefWidth="893.0" text="Ajouter un Evenement">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="631.0" prefWidth="891.0" style="-fx-background-color: #ffffff;">
                <children>
                   <JFXTextField fx:id="lpa" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="537.0" prefWidth="180.0" promptText="Longititude du point d'arrivée" />
                   <JFXTextField fx:id="diff" focusColor="#004e3e" labelFloat="true" layoutX="373.0" layoutY="137.0" prefWidth="200.0" promptText="Difficulté" />
@@ -24,9 +25,22 @@
                   <JFXTextField layoutX="418.0" layoutY="644.0" />
                   <JFXTextField fx:id="lpd" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="485.0" prefWidth="180.0" promptText="Longititude du point de départ" />
                   <JFXTextField fx:id="apd" focusColor="#004e3e" labelFloat="true" layoutX="309.0" layoutY="485.0" prefWidth="180.0" promptText="Lattitude du point de départ" />
-                  <JFXButton fx:id="jbtok" layoutX="675.0" layoutY="525.0" onAction="#ajoutEvent" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #009f90;" text="Enregistrer" textFill="WHITE" />
-                  <JFXTextArea fx:id="desc" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="205.0" prefHeight="252.0" prefWidth="748.0" promptText="Description" AnchorPane.topAnchor="205.0" />
+                  <JFXButton fx:id="jbtok" layoutX="721.0" layoutY="522.0" onAction="#ajoutEvent" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #009f90;" text="Enregistrer" textFill="WHITE" />
+                  <JFXTextArea fx:id="desc" focusColor="#004e3e" labelFloat="true" layoutX="92.0" layoutY="234.6" prefHeight="213.0" prefWidth="748.0" promptText="Description" AnchorPane.topAnchor="225.0" />
                   <JFXTextField fx:id="apa" focusColor="#004e3e" labelFloat="true" layoutX="309.0" layoutY="537.0" prefWidth="180.0" promptText="Lattitude du point d'arrivée" />
+                  <Label fx:id="lblnom" layoutX="95.0" layoutY="61.0" prefHeight="17.0" prefWidth="199.0" textFill="#b50a0a" />
+                  <Label fx:id="labeldateD" layoutX="92.0" layoutY="120.0" prefHeight="17.0" prefWidth="199.0" textFill="#b50a0a" />
+                  <Label fx:id="labeldateF" layoutX="373.0" layoutY="120.0" prefHeight="17.0" prefWidth="201.0" textFill="#b50a0a" />
+                  <Label fx:id="labelnbpl" layoutX="92.0" layoutY="175.0" prefHeight="17.0" prefWidth="200.0" textFill="#b50a0a" />
+                  <Label fx:id="labdeficute" layoutX="373.0" layoutY="175.0" prefHeight="17.0" prefWidth="202.0" textFill="#b50a0a" />
+                  <Label fx:id="labdesc" layoutX="272.0" layoutY="461.0" prefHeight="24.0" prefWidth="328.0" textFill="#b50a0a" />
+                  <Label fx:id="longitude" layoutX="95.0" layoutY="517.0" prefHeight="17.0" prefWidth="173.0" textFill="#b50a0a" />
+                  <Label fx:id="labLatitudedep" layoutX="309.0" layoutY="517.0" prefHeight="17.0" prefWidth="180.0" textFill="#b50a0a" />
+                  <Label fx:id="longar" layoutX="95.0" layoutY="567.0" prefHeight="17.0" prefWidth="173.0" textFill="#b50a0a" />
+                  <Label fx:id="lattitudearr" layoutX="309.0" layoutY="567.0" prefHeight="17.0" prefWidth="179.0" textFill="#b50a0a" />
+                  <Label fx:id="laberreur" layoutX="591.0" layoutY="556.0" prefHeight="23.0" prefWidth="286.0" textFill="#b50a0a" />
+                  <JFXButton fx:id="btpic" layoutX="719.0" layoutY="150.0" onAction="#ajoutphoto" prefHeight="25.0" prefWidth="142.0" style="-fx-background-color: #009f90;" text="Photo" textFill="WHITE" />
+                  <Label layoutX="720.0" layoutY="184.0" prefHeight="17.0" prefWidth="142.0" />
                </children>
             </AnchorPane>
         </content>

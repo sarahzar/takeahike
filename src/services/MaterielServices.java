@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class MaterielServices implements interfaceMateriel  {
 
@@ -33,6 +35,8 @@ public class MaterielServices implements interfaceMateriel  {
                 insert.setString(7, m.getImage());
                 
                 insert.executeUpdate();
+                
+                
                 System.out.println("Insertion Done !");
             } catch (SQLException ex) {
                 Logger.getLogger(MaterielServices.class.getName()).log(Level.SEVERE, null, ex);

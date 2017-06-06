@@ -13,6 +13,7 @@ public class Endroit {
     private int id;
     private String nom;
     private String Description;
+    private String Image;
     public Endroit() {
     }
 
@@ -20,11 +21,22 @@ public class Endroit {
         this.id = id;
     }
 
-    public Endroit(int id, String nom, String Description) {
+    public Endroit(int id, String nom, String Description, String Image) {
         this.id = id;
         this.nom = nom;
         this.Description = Description;
+        this.Image = Image;
     }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
+    }
+
+   
 
     public String getDescription() {
         return Description;

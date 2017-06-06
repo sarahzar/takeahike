@@ -55,6 +55,7 @@ import javafx.util.Callback;
 import org.controlsfx.control.GridCell;
 import org.controlsfx.control.GridView;
 import org.controlsfx.control.cell.ColorGridCell;
+import static presentation.Login.Gallerie2Controller.idevent;
 import services.EvennementServices;
 import services.GalerieServices;
 
@@ -83,7 +84,7 @@ public class FXMLGRIDEVENTController implements Initializable {
     @FXML
     private Pane ajoutpane;
 
-    static int idevent;
+    
     public void Event() {
         Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
@@ -166,7 +167,7 @@ public class FXMLGRIDEVENTController implements Initializable {
             for (j = 0; j < 2; j++) {
 
                 if (nb + 1 <= x) {
-
+                    idevent = es.afficherEvennementorganise().get(nb).getId();
                     Label lab = new Label(es.afficherEvennementAvenir().get(nb).getNom());
                     lab.translateYProperty().set(25);
                     lab.translateXProperty().set(200);
@@ -209,7 +210,7 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     //Affichage du details evennement
                     
-                   int idevent = es.afficherEvennementAvenir().get(nb).getId();
+                        
                     
                     
                    
@@ -330,7 +331,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                         } catch (IOException ex) {
                             Logger.getLogger(FXMLGRIDEVENTController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
+                            
                     });
               //test image   ********************************************************   
 //                     Pane paimages = new Pane();
@@ -364,7 +365,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
-
+                            System.out.println(idevent);
                         scrollEvent.setVisible(true);
 
                         ajoutpane.setVisible(false);

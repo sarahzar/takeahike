@@ -726,7 +726,7 @@ public class FXMLtestFridController implements Initializable {
                                     try {
                                         Mail mailmatt = new Mail();
                                         String[] atch = new String[100];
-                                        atch[0] = "C:\\Users\\monta\\Documents\\NetBeansProjects\\Versiongit\\takeahike\\src\\reporting\\report1.jrxml";
+                                        atch[0] = "C:\\Users\\Atef\\Documents\\NetBeansProjects\\takeahikeTeam\\takeahiketeam\\src\\reporting\\report1.jrxml";
                                         mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2",mailuserpdf , "Fiche de "+nommat.getText(), body,atch,1);
                                         
                                         
@@ -745,7 +745,7 @@ public class FXMLtestFridController implements Initializable {
                                 pdf.setOnAction((e)->{
                                     
                                     Report rep = new Report();
-                                    String url="C:\\Users\\monta\\Documents\\NetBeansProjects\\Versiongit\\takeahike\\src\\reporting\\report1.jrxml";
+                                    String url="C:\\Users\\Atef\\Documents\\NetBeansProjects\\takeahikeTeam\\takeahiketeam\\src\\reporting\\report1.jrxml";
                                     Map mp=new HashMap();
                                     mp.put("nom", nommatpdf);
                                     mp.put("prix", prixmatpdf);

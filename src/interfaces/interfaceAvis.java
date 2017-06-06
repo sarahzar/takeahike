@@ -7,6 +7,7 @@ package interfaces;
 
 import entities.Avis;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -17,6 +18,6 @@ public interface interfaceAvis {
     public void ajouterAvis(Avis a);
     public void supprimerAvis(Avis a);
     public void modifierAvis(Avis a);
-    public List<Avis> afficherAvis();
+    public ObservableList<Avis> afficherAvis();
     
 }

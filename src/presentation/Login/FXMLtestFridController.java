@@ -29,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -64,7 +65,9 @@ public class FXMLtestFridController implements Initializable {
                     
                     Utilisateur user=Session.getUser();
                     Stage newStage = new Stage();
-        
+                    
+                    btajout.setFont(Font.font("Cambria", 16));
+                    
                     JFXButton btaff = new JFXButton("");
                     btaff.translateXProperty().set(830);
                     btaff.translateYProperty().set(50);
@@ -307,7 +310,7 @@ public class FXMLtestFridController implements Initializable {
                                 Label lab = new Label(ms.afficherMateriel().get(nb).getNomMateriel());
                                 String nommatpdf = ms.afficherMateriel().get(nb).getNomMateriel();
                                 lab.translateYProperty().set(20);
-                                lab.translateXProperty().set(200);
+                                lab.translateXProperty().set(130);
                                 lab.textFillProperty().set(Color.LIGHTSEAGREEN);
                                 lab.setFont(Font.font("Cambria", 18));
                                 lab.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -326,12 +329,12 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 
                                 Label lab2 = new Label(ms.afficherMateriel().get(nb).getDescription());
-                                lab2.setPrefSize(150, 40);
+                                lab2.setPrefSize(180, 40);
                                 lab2.setWrapText(true);
                                 lab2.setFont(Font.font("Cambria", 14));
                                 String descpdf = ms.afficherMateriel().get(nb).getDescription();
                                 lab2.translateYProperty().set(70);
-                                lab2.translateXProperty().set(200);
+                                lab2.translateXProperty().set(160);
                                 lab2.textFillProperty().set(Color.SLATEGREY);
                                 
                                 
@@ -343,18 +346,18 @@ public class FXMLtestFridController implements Initializable {
                                 String adressuserpdf = ms.afficherMateriel().get(nb).getUser().getAdresse();
                                 String teluserpdf = ms.afficherMateriel().get(nb).getUser().getTelephone();
                                 String mailuserpdf = ms.afficherMateriel().get(nb).getUser().getMail();
-                                        
+                                String userid =  ms.afficherMateriel().get(nb).getUser().getCin();
                                 lab3.translateYProperty().set(120);
-                                lab3.translateXProperty().set(200);
+                                lab3.translateXProperty().set(160);
                                 lab3.textFillProperty().set(Color.SLATEGREY);
                                 
                                     Image image =new Image(ms.afficherMateriel().get(nb).getImage());
                                     
                             // Image image =new Image(defimg);       
                                     Circle c =new Circle();
-                                    c.setRadius(43);
-                                    c.translateXProperty().set(40);
-                                    c.translateYProperty().set(40);
+                                    c.setRadius(50);
+                                    c.translateXProperty().set(45);
+                                    c.translateYProperty().set(45);
                                     c.setFill(new ImagePattern(image));
                                 
 
@@ -362,18 +365,22 @@ public class FXMLtestFridController implements Initializable {
                                 btnplus.setText("Voir Plus");
                                 btnplus.translateYProperty().set(170);
                                 btnplus.translateXProperty().set(320);
-                                
+                                btnplus.setFont(Font.font("Cambria", 13));
                                 Pane pane = new Pane();
                                 
                                 pane.getChildren().addAll(c,lab,lab2,lab3,btnplus);
                                 pane.setPrefSize(400,200);
                                 pane.translateXProperty().set(25);
+                                pane.setStyle("-fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;");
+                                
+                                
                                 //pane.translateYProperty().set(5);
                                 pane.setStyle("-fx-background-color:white; -fx-border-color: #CADAE3");
                                 pane.setOnMouseEntered(new EventHandler<MouseEvent>() {
                                         @Override public void handle(MouseEvent e) {
                                             pane.setScaleX(1.03);
                                             pane.setScaleY(1.07);
+                                            pane.setEffect(new DropShadow(20, Color.BLACK));
                                         }
                                     });
                                 
@@ -381,6 +388,7 @@ public class FXMLtestFridController implements Initializable {
                                         @Override public void handle(MouseEvent e) {
                                             pane.setScaleX(1);
                                             pane.setScaleY(1);
+                                            pane.setEffect(null);
                                         }
                                     });
                                 
@@ -389,62 +397,78 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 Label labnom = new Label("Nom     :");
                                 labnom.translateXProperty().set(100);
+                                labnom.setFont(Font.font("Cambria", 20));
                                 
                                 Label nommat = new Label();
-                                
-                                nommat.translateXProperty().set(170);
+                                nommat.translateXProperty().set(190);
+                                nommat.translateYProperty().set(4);
                                 nommat.setText(ms.afficherMateriel().get(nb).getNomMateriel());
+                                nommat.setFont(Font.font("Cambria", 16));
+                                nommat.textFillProperty().set(Color.DARKSLATEBLUE);
                                 
                                 JFXTextField fnommat = new JFXTextField();
-                                fnommat.translateXProperty().set(170);
+                                fnommat.translateXProperty().set(190);
                                 fnommat.setPrefWidth(175);
                                 fnommat.setText(ms.afficherMateriel().get(nb).getNomMateriel());
                                 fnommat.setVisible(false);
+                                fnommat.setFont(Font.font("Cambria", 16));
                                 
-                                Label des = new Label("Description du materiel");
+                                Label des = new Label("Description :");
                                 des.translateXProperty().set(100);
                                 des.translateYProperty().set(150);
+                                des.setFont(Font.font("Cambria", 20));
 
                                 JFXTextArea detmat=new JFXTextArea();   
                                 detmat.setText((ms.afficherMateriel().get(nb).getDescription()));
                                 String dete=(ms.afficherMateriel().get(nb).getDescription());
                                 detmat.setEditable(false);
                                 detmat.translateXProperty().set(100);
-                                detmat.translateYProperty().set(190);
+                                detmat.translateYProperty().set(200);
                                 detmat.setStyle("-fx-text-area-background: #585466;-fx-background-color:white; -fx-text-area-background :white;" );
+                                detmat.setFont(Font.font("Cambria", 14));
+                                detmat.setStyle(" -fx-text-inner-color :DarkSlateBlue    ;");
                                 
                                 Label labpri = new Label("Prix       :");
                                 labpri.translateXProperty().set(100);
                                 labpri.translateYProperty().set(50);
+                                labpri.setFont(Font.font("Cambria", 20));
                                 
                                 JFXTextField fprimat = new JFXTextField();
-                                fprimat.translateXProperty().set(170);
-                                fprimat.translateYProperty().set(50);
+                                fprimat.translateXProperty().set(190);
+                                fprimat.translateYProperty().set(54);
                                 fprimat.setText(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
                                 fprimat.isLabelFloat();
                                 fprimat.setPrefWidth(175);
+                                fprimat.setFont(Font.font("Cambria", 16));
                                 fprimat.setVisible(false);
                                 
                                 Label prixmat = new Label();
-                                prixmat.translateXProperty().set(170);
-                                prixmat.translateYProperty().set(50);
+                                prixmat.translateXProperty().set(190);
+                                prixmat.translateYProperty().set(54);
                                 prixmat.setText(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
                                 String prixmatpdf = String.valueOf(ms.afficherMateriel().get(nb).getPrix());
-                                      
+                                prixmat.setFont(Font.font("Cambria", 16));
+                                prixmat.textFillProperty().set(Color.DARKSLATEBLUE);
+                                
                                 Label labtype = new Label("Type     :");
                                 labtype.translateXProperty().set(100);
                                 labtype.translateYProperty().set(100);
+                                labtype.setFont(Font.font("Cambria", 20));
                                 
                                 JFXComboBox<String> ftypemat = new JFXComboBox();
-                                ftypemat.translateXProperty().set(170);
+                                ftypemat.translateXProperty().set(190);
                                 ftypemat.translateYProperty().set(100);
                                 ftypemat.getItems().add("Materiel pour location");
                                 ftypemat.getItems().add("Materiel pour vente");
+                                //ftypemat.setStyle("");
                                 ftypemat.setVisible(false);
+                                
 
                                 Label typemat = new Label();
-                                typemat.translateXProperty().set(170);
-                                typemat.translateYProperty().set(100);
+                                typemat.translateXProperty().set(190);
+                                typemat.translateYProperty().set(104);
+                                typemat.setFont(Font.font("Cambria", 16));
+                                typemat.textFillProperty().set(Color.DARKSLATEBLUE );
                                 
                                 String imgmat=ms.afficherMateriel().get(nb).getImage();
                                 
@@ -485,6 +509,16 @@ public class FXMLtestFridController implements Initializable {
                                 panepane.getChildren().addAll(paa);
                                 mailmat.setVisible(true);
                                 pdf.setVisible(true);
+                                
+                                if(!userid.equals(user.getCin()))
+                                {
+                                    suppmat.setVisible(false);
+                                    modifmat.setVisible(false);
+                                    mailmat.translateXProperty().set(750);
+                                    mailmat.translateYProperty().set(50);
+                                    pdf.translateXProperty().set(790);
+                                    pdf.translateYProperty().set(50);
+                                }
                                 
                                 modifmat.setOnAction((e)->{
                                     mailmat.setVisible(false);

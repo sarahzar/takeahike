@@ -7,6 +7,6 @@
 <AnchorPane id="AnchorPane" fx:id="pnn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Login.FXMLtestFridController">
    <children>
       <ScrollPane fx:id="sx" cache="true" fitToWidth="true" layoutX="14.0" layoutY="14.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-      <JFXButton fx:id="btajout" layoutX="691.0" layoutY="33.0" text="Ajouter un nouveau materiel" />
+      <JFXButton fx:id="btajout" layoutX="659.0" layoutY="36.0" text="Ajouter un nouveau materiel" />
    </children>
 </AnchorPane>

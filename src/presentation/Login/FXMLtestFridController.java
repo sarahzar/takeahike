@@ -727,7 +727,7 @@ public class FXMLtestFridController implements Initializable {
                                         Mail mailmatt = new Mail();
                                         String[] atch = new String[100];
                                         atch[0] = "C:\\Users\\monta\\Documents\\NetBeansProjects\\Versiongit\\takeahike\\src\\reporting\\report1.jrxml";
-                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2", "montassar.touil@esprit.tn", "Fiche de "+nommat.getText(), body,atch,1);
+                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2",mailuserpdf , "Fiche de "+nommat.getText(), body,atch,1);
                                         
                                         
                                     } catch (Exception ex) {

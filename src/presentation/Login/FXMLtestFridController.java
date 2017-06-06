@@ -745,7 +745,7 @@ public class FXMLtestFridController implements Initializable {
                                 pdf.setOnAction((e)->{
                                     
                                     Report rep = new Report();
-                                    String url="C:\\Users\\Atef\\Documents\\NetBeansProjects\\takeahikeTeam\\takeahiketeam\\src\\reporting\\report1.jrxml";
+                                    String url="C:\\Users\\USER\\Documents\\NetBeansProjects\\testTakeFinal\\takeahike\\src\\reporting\\report1.jrxml";
                                     Map mp=new HashMap();
                                     mp.put("nom", nommatpdf);
                                     mp.put("prix", prixmatpdf);

@@ -47,6 +47,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -333,34 +334,37 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     });
               //test image   ********************************************************   
-//                     Pane paimages = new Pane();
-//                     List<ImageView> imgliste=new ArrayList<>();
-//                     for(int m=0;m<listevt.get(0).getGllist().size();m++){
-//                    imgliste.add(new ImageView(new Image(listevt.get(0).getGllist().get(m).getImage())));
-//                         //   paimages.getChildren().add(new ImageView(listevt.get(0).getGllist().get(0).getImage()));
-//                      
-//                        
-//                     }
-//                 imgliste.get(0).translateXProperty().setValue(5);
-//                    imgliste.get(0).translateYProperty().setValue(0);
-//                    imgliste.get(1).translateXProperty().setValue(155);
-//                    imgliste.get(1).translateYProperty().setValue(5);
-//                    
-//                     imgliste.get(0).setFitHeight(150);
-//                     imgliste.get(0).setFitWidth(155);
-//                    imgliste.get(1).setFitWidth(150);
-//                     imgliste.get(1).setFitHeight(135);
-//                      paimages.getChildren().addAll(imgliste.get(0),imgliste.get(1));
-//                    System.out.println("taille de liste "+listevt.get(0).getGllist().size());
-//                    paimages.setPrefHeight(150);
-//                    paimages.setPrefWidth(450);
-//                    paimages.setTranslateX(250);
-//                    paimages.setTranslateY(75); 
-//                   paimages.setStyle("-fx-background-color: white; -fx-border-color: black");
-               //*************************************************************     
+                   
+                     FlowPane flow = new FlowPane();
+                     flow.setPrefWrapLength(300); 
+                      flow.setPrefHeight(150);
+                    flow.setPrefWidth(463);
+                    flow.setTranslateX(250);
+                    flow.setTranslateY(75); 
+                 //  flow.setStyle("-fx-background-color: white; -fx-border-color: black");
+                     List<ImageView> imgliste=new ArrayList<>();
+                     for(int m=0;m<listevt.get(nb).getGllist().size();m++){
+                         if(m<=2){
+                    imgliste.add(new ImageView(new Image(listevt.get(nb).getGllist().get(m).getImage())));
+                           
+                  imgliste.get(m).translateXProperty().setValue(5);
+                
+                     imgliste.get(m).setFitHeight(250);
+                     imgliste.get(m).setFitWidth(200);
+                    imgliste.get(m).setFitWidth(150);
+                     imgliste.get(m).setFitHeight(135); 
+                      
+                      flow.getChildren().add(imgliste.get(m));
+                         }
+                     }
+                
+                      
+                    System.out.println("taille de liste "+listevt.get(0).getGllist().size());
+                   
+             //  *************************************************************     
                     
                     
-                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
+                    padetails.getChildren().addAll(flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {

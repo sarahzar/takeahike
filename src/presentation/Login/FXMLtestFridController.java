@@ -629,6 +629,7 @@ public class FXMLtestFridController implements Initializable {
                                     detmat.setText(dete);
                                     mailmat.setVisible(true);
                                     pdf.setVisible(true);
+                                    suppmat.setVisible(true);
                                     
                                     fnommat.setVisible(false);
                                     ftypemat.setVisible(false);
@@ -726,8 +727,8 @@ public class FXMLtestFridController implements Initializable {
                                     try {
                                         Mail mailmatt = new Mail();
                                         String[] atch = new String[100];
-                                        atch[0] = "C:\\Users\\Atef\\Documents\\NetBeansProjects\\takeahikeTeam\\takeahiketeam\\src\\reporting\\report1.jrxml";
-                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2",mailuserpdf , "Fiche de "+nommat.getText(), body,atch,1);
+                                        atch[0] = "C:\\Users\\monta\\Documents\\NetBeansProjects\\VersionFinalGit\\takeahike\\src\\reporting\\report1.jrxml";
+                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2",user.getMail() , "Fiche de "+nommat.getText(), body,atch,1);
                                         
                                         
                                     } catch (Exception ex) {
@@ -745,7 +746,7 @@ public class FXMLtestFridController implements Initializable {
                                 pdf.setOnAction((e)->{
                                     
                                     Report rep = new Report();
-                                    String url="C:\\Users\\USER\\Documents\\NetBeansProjects\\testTakeFinal\\takeahike\\src\\reporting\\report1.jrxml";
+                                    String url="C:\\Users\\monta\\Documents\\NetBeansProjects\\VersionFinalGit\\takeahike\\src\\reporting\\report1.jrxml";
                                     Map mp=new HashMap();
                                     mp.put("nom", nommatpdf);
                                     mp.put("prix", prixmatpdf);

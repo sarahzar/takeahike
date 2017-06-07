@@ -39,6 +39,13 @@ public class MaterielServices implements interfaceMateriel  {
                 
                 System.out.println("Insertion Done !");
             } catch (SQLException ex) {
+                
+                
+                                    Alert alerte = new Alert(AlertType.ERROR);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Erreur!");
+                                    alerte.showAndWait();
                 Logger.getLogger(MaterielServices.class.getName()).log(Level.SEVERE, null, ex);
             }
     }

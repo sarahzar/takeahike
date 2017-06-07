@@ -7,17 +7,16 @@ package interfaces;
 
 import entities.Avis;
 import java.util.List;
-import javafx.collections.ObservableList;
 
 /**
  *
  * @author asus-pc
  */
-public interface interfaceAvis {
+public interface interfaceAvis_old {
     
     public void ajouterAvis(Avis a);
     public void supprimerAvis(Avis a);
     public void modifierAvis(Avis a);
-    public ObservableList<Avis> afficherAvis();
+    public List<Avis> afficherAvis();
     
 }

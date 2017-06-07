@@ -56,9 +56,19 @@ import javafx.util.Callback;
 import org.controlsfx.control.GridCell;
 import org.controlsfx.control.GridView;
 import org.controlsfx.control.cell.ColorGridCell;
+import static presentation.Login.Gallerie2Controller.idevent;
 import services.EvennementServices;
 import services.GalerieServices;
-
+//import com.teamdev.jxmaps.GeocoderCallback;
+//import com.teamdev.jxmaps.GeocoderRequest;
+//import com.teamdev.jxmaps.GeocoderResult;
+//import com.teamdev.jxmaps.GeocoderStatus;
+//import com.teamdev.jxmaps.InfoWindow;
+//import com.teamdev.jxmaps.Map;
+//import com.teamdev.jxmaps.MapReadyHandler;
+//import com.teamdev.jxmaps.MapStatus;
+//import com.teamdev.jxmaps.Marker;
+//import com.teamdev.jxmaps.javafx.MapView;
 
 
 public class FXMLGRIDEVENTController implements Initializable {
@@ -84,7 +94,7 @@ public class FXMLGRIDEVENTController implements Initializable {
     @FXML
     private Pane ajoutpane;
 
-    static int idevent;
+    
     public void Event() {
         Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
@@ -167,7 +177,7 @@ public class FXMLGRIDEVENTController implements Initializable {
             for (j = 0; j < 2; j++) {
 
                 if (nb + 1 <= x) {
-
+                    idevent = es.afficherEvennementorganise().get(nb).getId();
                     Label lab = new Label(es.afficherEvennementAvenir().get(nb).getNom());
                     lab.translateYProperty().set(25);
                     lab.translateXProperty().set(200);
@@ -195,7 +205,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                     btn.setStyle("-fx-border-color: blue");
 
                     //création d'une liste d'image  
-                    imglist.add(new ImageView(new Image(listevt.get(nb).getGllist().get(0).getImage())));
+                    imglist.add(new ImageView(new Image("http://localhost/takeahike/img/"+listevt.get(nb).getGllist().get(0).getImage())));
                     imglist.get(nb).translateXProperty().setValue(5);
                     imglist.get(nb).translateYProperty().setValue(5);
 
@@ -210,7 +220,7 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     //Affichage du details evennement
                     
-                   int idevent = es.afficherEvennementAvenir().get(nb).getId();
+                        
                     
                     
                    
@@ -331,22 +341,23 @@ public class FXMLGRIDEVENTController implements Initializable {
                         } catch (IOException ex) {
                             Logger.getLogger(FXMLGRIDEVENTController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
+                            
                     });
-              //test image   ********************************************************   
+                //test image   ********************************************************   
                    
                      FlowPane flow = new FlowPane();
                      flow.setPrefWrapLength(300); 
                       flow.setPrefHeight(150);
                     flow.setPrefWidth(463);
-                    flow.setTranslateX(250);
+                    flow.setTranslateX(350);
                     flow.setTranslateY(75); 
                  //  flow.setStyle("-fx-background-color: white; -fx-border-color: black");
                      List<ImageView> imgliste=new ArrayList<>();
                      for(int m=0;m<listevt.get(nb).getGllist().size();m++){
                          if(m<=2){
-                    imgliste.add(new ImageView(new Image(listevt.get(nb).getGllist().get(m).getImage())));
-                           
+               //  imgliste.add(new ImageView(new Image(listevt.get(nb).getGllist().get(m).getImage())));
+                imgliste.add(new ImageView(new Image("http://localhost/takeahike/img/"+listevt.get(nb).getGllist().get(m).getImage())));
+                     
                   imgliste.get(m).translateXProperty().setValue(5);
                 
                      imgliste.get(m).setFitHeight(250);
@@ -359,16 +370,60 @@ public class FXMLGRIDEVENTController implements Initializable {
                      }
                 
                       
-                    System.out.println("taille de liste "+listevt.get(0).getGllist().size());
+                   // System.out.println("taille de liste "+listevt.get(0).getGllist().size());
                    
              //  *************************************************************     
-                    
+                      //*******************************Map***************************** 
+                
+//                final MapView mapView = new MapView();
+//
+//        mapView.setOnMapReadyHandler(new MapReadyHandler() {
+//            @Override
+//            public void onMapReady(MapStatus status) {
+//                if (status == MapStatus.MAP_STATUS_OK) { 
+//                    final Map map = mapView.getMap();
+//                    map.setZoom(13.0);
+//                    GeocoderRequest request = new GeocoderRequest();
+//                    request.setAddress("sousse , TN");
+//                    //request.setAddress("Rue de Royaume d'Arabie Saoudite، Tunis 1002, TN");
+//
+//                    mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
+//                        @Override
+//                        public void onComplete(GeocoderResult[] result, GeocoderStatus status) {
+//                            if (status == GeocoderStatus.OK) {
+//                                map.setCenter(result[0].getGeometry().getLocation());
+//                                Marker marker = new Marker(map);
+//                                marker.setPosition(result[0].getGeometry().getLocation());
+//                                
+//                                 
+//
+//                                final InfoWindow window = new InfoWindow(map);
+//                                window.setContent("Hello, World!");
+//                                window.open(map, marker);
+//                                
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//                
+//                
+//          BorderPane map=new BorderPane(mapView) ;  
+//          map.setTranslateX(30);
+//          map.setTranslateY(75); 
+//          map.setPrefWidth(250);
+//          map.setPrefHeight(250);
+//                
+//                
+                
+               
                     
                     padetails.getChildren().addAll(flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
-
+                            System.out.println(idevent);
                         scrollEvent.setVisible(true);
 
                         ajoutpane.setVisible(false);
@@ -782,4 +837,4 @@ public class FXMLGRIDEVENTController implements Initializable {
 
         Event2();
     }
-}
+} 

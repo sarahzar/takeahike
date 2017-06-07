@@ -13,24 +13,48 @@ import com.jfoenix.controls.JFXTextField;
 import entities.Materiel;
 import entities.Session;
 import entities.Utilisateur;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import static java.lang.Float.parseFloat;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import net.sf.jasperreports.ant.UpdaterElement;
+import reporting.Report;
 
 
 public class FXMLtestFridController implements Initializable {
@@ -47,35 +71,150 @@ public class FXMLtestFridController implements Initializable {
      @FXML
     private JFXButton btajout;
     
-  String defimg="/img/tabarka.jpg";
-    
+  String defimg="/img/icons8-Annuler.png";
+  
+  String img;
+
     public void grid()
     {
+        
+                VBox rootBox = new VBox();
+                Circle Circle;
+            
+                JFXButton btnLoad = new JFXButton("Choisir votre image");
+                btnLoad.translateXProperty().set(40);
+                btnLoad.translateYProperty().set(200);
+                
+                Circle = new Circle();        
+
+            
+            rootBox.getChildren().addAll(btnLoad, Circle);
+            
+            EventHandler<ActionEvent> btnLoadEventListener = new EventHandler<ActionEvent>(){
+
+                    @Override
+                    public void handle(ActionEvent t) {
+                        try {
+                            FileChooser fileChooser = new FileChooser();
+
+                            //Set extension filter
+                            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+                            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+                            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+                            //Show open file dialog
+                            File file = fileChooser.showOpenDialog(null);
+
+
+                            BufferedImage bufferedImage = ImageIO.read(file);
+                            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+
+                            Circle.setRadius(65);
+                            Circle.translateXProperty().set(36);
+                            Circle.translateYProperty().set(40);
+                            Circle.setFill(new ImagePattern(image));
+
+                             img = file.toURI().toString();
+                             
+                             img = img.replace('\\', '/');
+                        } catch (IOException ex) {
+                            Logger.getLogger(FXMLtestFridController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                    }
+                }; 
+
+                    btnLoad.setOnAction(btnLoadEventListener);                
+        
+        
                     
                     Utilisateur user=Session.getUser();
                     Stage newStage = new Stage();
-        
-                    JFXButton btaff = new JFXButton("Retour");
+                    
+                    btajout.setFont(Font.font("Cambria", 16));
+                    
+                    JFXButton btaff = new JFXButton("");
                     btaff.translateXProperty().set(830);
                     btaff.translateYProperty().set(50);
+                    Image icoaff = new Image("/img/icons8-Back-64.png");
+                    ImageView icoafff = new ImageView(icoaff);
+                    icoafff.setFitHeight(30);
+                    icoafff.setFitWidth(30);
+                    btaff.setGraphic(icoafff); 
                     
-                    JFXButton modifmat = new JFXButton("Modifier");
-                    modifmat.translateXProperty().set(650);
+                    
+                    JFXButton modifmat = new JFXButton("");
+                    modifmat.translateXProperty().set(750);
                     modifmat.translateYProperty().set(50);
+                    Image icomodif = new Image("/img/icons8-Available Updates-64.png");
+                    ImageView icomodiff = new ImageView(icomodif);
+                    icomodiff.setFitHeight(30);
+                    icomodiff.setFitWidth(30);
+                    modifmat.setGraphic(icomodiff);
                     
-                    JFXButton suppmat = new JFXButton("Supprimer");
-                    suppmat.translateXProperty().set(740);
+                    
+                    
+                    JFXButton suppmat = new JFXButton("");
+                    suppmat.translateXProperty().set(790);
                     suppmat.translateYProperty().set(50);
+                    Image icosupp = new Image("/img/icons8-Effacer-40.png");
+                    ImageView icosuppp = new ImageView(icosupp);
+                    icosuppp.setFitHeight(30);
+                    icosuppp.setFitWidth(30);
+                    suppmat.setGraphic(icosuppp);
+                    
+                    
+                    JFXButton mailmat = new JFXButton("");
+                    mailmat.translateXProperty().set(710);
+                    mailmat.translateYProperty().set(50);
+                    mailmat.setVisible(false);
+                    Image icomail = new Image("/img/icons8-Message-64.png");
+                    ImageView icomaill = new ImageView(icomail);
+                    icomaill.setFitHeight(30);
+                    icomaill.setFitWidth(30);
+                    mailmat.setGraphic(icomaill);
+                    
+                    
+                    JFXButton pdf = new JFXButton("");
+                    pdf.translateXProperty().set(670);
+                    pdf.translateYProperty().set(50);
+                    pdf.setVisible(false);
+                    Image icopdf = new Image("/img/icons8-PDF-64.png");
+                    ImageView icopdff = new ImageView(icopdf);
+                    icopdff.setFitHeight(30);
+                    icopdff.setFitWidth(30);
+                    pdf.setGraphic(icopdff);
+                    
+                    Image icoajout = new Image("/img/icons8-Add-64.png");
+                    ImageView icoajoutt = new ImageView(icoajout);
+                    icoajoutt.setFitHeight(30);
+                    icoajoutt.setFitWidth(30);
+                    btajout.setGraphic(icoajoutt);
                                 
-                    JFXButton okupdate = new JFXButton("Enregistrer");
-                    okupdate.translateXProperty().set(600);
+                    JFXButton okupdate = new JFXButton("");
+                    okupdate.translateXProperty().set(660);
                     okupdate.translateYProperty().set(490);
                     okupdate.setVisible(false);
+                    Image icook = new Image("/img/icons8-Coche-64.png");
+                    ImageView icookk = new ImageView(icook);
+                    icookk.setFitHeight(30);
+                    icookk.setFitWidth(30);
+                    okupdate.setGraphic(icookk);
                     
-                    JFXButton cancelupdate = new JFXButton("Annuler");
+                    
+                    
+                    JFXButton cancelupdate = new JFXButton("");
                     cancelupdate.translateXProperty().set(700);
                     cancelupdate.translateYProperty().set(490);
                     cancelupdate.setVisible(false);
+                    Image icocancel = new Image("/img/icons8-Annuler-64.png");
+                    ImageView icocancell = new ImageView(icocancel);
+                    icocancell.setFitHeight(30);
+                    icocancell.setFitWidth(30);
+                    cancelupdate.setGraphic(icocancell);
+                    
+                    
                     
                     GridPane gridee = new GridPane();
                     Pane panepane = new Pane();
@@ -85,7 +224,7 @@ public class FXMLtestFridController implements Initializable {
                     gridee.prefWidth(600);
                     gridee.setHgap(30);
                     gridee.setVgap(10);
-                    gridee.setStyle("-fx-background-color:  #009f90;");
+                    gridee.setStyle("-fx-background-color:  #48B8AC;");
                     sx.translateYProperty().set(19);
                     sx.setContent(gridee);
                     
@@ -105,6 +244,9 @@ public class FXMLtestFridController implements Initializable {
                     suppmat.setVisible(false);
                     okupdate.setVisible(false);
                     cancelupdate.setVisible(false);
+                    btajout.setVisible(true);
+                    mailmat.setVisible(false);
+                    pdf.setVisible(false);
                     grid();
                     });  
                     
@@ -114,7 +256,7 @@ public class FXMLtestFridController implements Initializable {
                     okajout.translateXProperty().set(515);
                     okajout.translateYProperty().set(480);
                     okajout.setPrefWidth(150);
-                    
+                    okajout.setGraphic(icookk);
                    
                     
                     
@@ -123,8 +265,11 @@ public class FXMLtestFridController implements Initializable {
                     annuleajout.translateXProperty().set(300);
                     annuleajout.translateYProperty().set(480);
                     annuleajout.setPrefWidth(150);
+                    annuleajout.setGraphic(icocancell);
                     
                     
+                   
+                   
                     
                     
                     Label labnomajout = new Label("Nom                 :");
@@ -191,19 +336,34 @@ public class FXMLtestFridController implements Initializable {
                                     Scene stageScene = new Scene(paneajouut, 900, 600);
                                     newStage.setScene(stageScene);
                                     newStage.show();
-                   
+                                    
+                         
                   
-                    });
-//                    
+                    });                   
                     
                      okajout.setOnAction((okadd)->
                     {
+                        
+                           String imgmatt = img;
+                           if(imgmatt==null)
+                             {
+                             imgmatt=defimg;
+                             }
+                           
+                           
                          String nomadd;  nomadd=flabnomajout.getText();
                          String desadd;  desadd=detmatajout.getText();
                          int typeadd; typeadd=ftypematajout.getSelectionModel().getSelectedIndex();
                          float priadd; priadd=parseFloat(flabpriajout.getText());
                     
-                         Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd,defimg);
+                         Materiel m = new Materiel(nomadd, desadd, user, typeadd, priadd,imgmatt);
+                                    Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Ajout du materiel terminer avec succès!");
+
+                                    alerte.showAndWait();
+                         System.out.println(img);
                          ms.ajouterMateriel(m);
                          newStage.close();
                          grid();
@@ -220,7 +380,7 @@ public class FXMLtestFridController implements Initializable {
                          
                     });
                      
-                    paneajouut.getChildren().addAll(annuleajout,okajout,labnomajout,typematajout,labpriajout,detmatajout,flabnomajout,ftypematajout,flabpriajout,desa);
+                    paneajouut.getChildren().addAll(annuleajout,okajout,labnomajout,typematajout,labpriajout,detmatajout,flabnomajout,ftypematajout,flabpriajout,desa,rootBox);
                     paneajouut.setStyle("-fx-background-color: beige; -fx-border-color: #CADAE3");
                     
                     
@@ -231,27 +391,56 @@ public class FXMLtestFridController implements Initializable {
                                 if(nb+1<=x)
                                 {
                                 Label lab = new Label(ms.afficherMateriel().get(nb).getNomMateriel());
+                                String nommatpdf = ms.afficherMateriel().get(nb).getNomMateriel();
                                 lab.translateYProperty().set(20);
-                                lab.translateXProperty().set(200);
-                                lab.textFillProperty().set(Color.SLATEGREY);
+                                lab.translateXProperty().set(130);
+                                lab.textFillProperty().set(Color.LIGHTSEAGREEN);
+                                lab.setFont(Font.font("Cambria", 18));
+                                lab.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            lab.setScaleX(1.1);
+                                            lab.setScaleY(1.1);
+                                        }
+                                    });
+                                
+                                lab.setOnMouseExited(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            lab.setScaleX(1);
+                                            lab.setScaleY(1);
+                                        }
+                                    });
+                                
                                 
                                 Label lab2 = new Label(ms.afficherMateriel().get(nb).getDescription());
+                                lab2.setPrefSize(180, 40);
+                                lab2.setWrapText(true);
+                                lab2.setFont(Font.font("Cambria", 14));
+                                String descpdf = ms.afficherMateriel().get(nb).getDescription();
                                 lab2.translateYProperty().set(70);
-                                lab2.translateXProperty().set(200);
-                                lab2.textFillProperty().set(Color.TOMATO);
+                                lab2.translateXProperty().set(160);
+                                lab2.textFillProperty().set(Color.SLATEGREY);
                                 
-                                Label lab3 = new Label(ms.afficherMateriel().get(nb).getUser().getPrenom());
+                                
+                                
+                                Label lab3 = new Label(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
+                                lab3.setFont(Font.font("Cambria", 14));
+                                String nomuserpdf = ms.afficherMateriel().get(nb).getUser().getNom();
+                                String prenomuserpdf = ms.afficherMateriel().get(nb).getUser().getPrenom();
+                                String adressuserpdf = ms.afficherMateriel().get(nb).getUser().getAdresse();
+                                String teluserpdf = ms.afficherMateriel().get(nb).getUser().getTelephone();
+                                String mailuserpdf = ms.afficherMateriel().get(nb).getUser().getMail();
+                                String userid =  ms.afficherMateriel().get(nb).getUser().getCin();
                                 lab3.translateYProperty().set(120);
-                                lab3.translateXProperty().set(200);
-                                lab3.textFillProperty().set(Color.LIME);
+                                lab3.translateXProperty().set(160);
+                                lab3.textFillProperty().set(Color.SLATEGREY);
                                 
                                     Image image =new Image(ms.afficherMateriel().get(nb).getImage());
                                     
                             // Image image =new Image(defimg);       
                                     Circle c =new Circle();
-                                    c.setRadius(30);
-                                    c.translateXProperty().set(40);
-                                    c.translateYProperty().set(40);
+                                    c.setRadius(50);
+                                    c.translateXProperty().set(45);
+                                    c.translateYProperty().set(45);
                                     c.setFill(new ImagePattern(image));
                                 
 
@@ -259,83 +448,121 @@ public class FXMLtestFridController implements Initializable {
                                 btnplus.setText("Voir Plus");
                                 btnplus.translateYProperty().set(170);
                                 btnplus.translateXProperty().set(320);
-                                
+                                btnplus.setFont(Font.font("Cambria", 13));
                                 Pane pane = new Pane();
                                 
                                 pane.getChildren().addAll(c,lab,lab2,lab3,btnplus);
                                 pane.setPrefSize(400,200);
                                 pane.translateXProperty().set(25);
+                                pane.setStyle("-fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;");
+                                
+                                
                                 //pane.translateYProperty().set(5);
                                 pane.setStyle("-fx-background-color:white; -fx-border-color: #CADAE3");
+                                pane.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            pane.setScaleX(1.03);
+                                            pane.setScaleY(1.07);
+                                            pane.setEffect(new DropShadow(20, Color.BLACK));
+                                        }
+                                    });
+                                
+                                pane.setOnMouseExited(new EventHandler<MouseEvent>() {
+                                        @Override public void handle(MouseEvent e) {
+                                            pane.setScaleX(1);
+                                            pane.setScaleY(1);
+                                            pane.setEffect(null);
+                                        }
+                                    });
                                 
                                 
                                 int idmat = ms.afficherMateriel().get(nb).getIdMateriel();
                                 
                                 Label labnom = new Label("Nom     :");
                                 labnom.translateXProperty().set(100);
+                                labnom.setFont(Font.font("Cambria", 20));
                                 
                                 Label nommat = new Label();
-                                
-                                nommat.translateXProperty().set(170);
+                                nommat.translateXProperty().set(190);
+                                nommat.translateYProperty().set(4);
                                 nommat.setText(ms.afficherMateriel().get(nb).getNomMateriel());
+                                nommat.setFont(Font.font("Cambria", 16));
+                                nommat.textFillProperty().set(Color.DARKSLATEBLUE);
                                 
                                 JFXTextField fnommat = new JFXTextField();
-                                fnommat.translateXProperty().set(170);
+                                fnommat.translateXProperty().set(190);
                                 fnommat.setPrefWidth(175);
                                 fnommat.setText(ms.afficherMateriel().get(nb).getNomMateriel());
                                 fnommat.setVisible(false);
+                                fnommat.setFont(Font.font("Cambria", 16));
+                                fnommat.setStyle(" -fx-text-inner-color :DarkSlateBlue    ;");
                                 
-                                Label des = new Label("Description du materiel");
+                                Label des = new Label("Description :");
                                 des.translateXProperty().set(100);
                                 des.translateYProperty().set(150);
+                                des.setFont(Font.font("Cambria", 20));
 
                                 JFXTextArea detmat=new JFXTextArea();   
                                 detmat.setText((ms.afficherMateriel().get(nb).getDescription()));
                                 String dete=(ms.afficherMateriel().get(nb).getDescription());
                                 detmat.setEditable(false);
                                 detmat.translateXProperty().set(100);
-                                detmat.translateYProperty().set(190);
+                                detmat.translateYProperty().set(200);
                                 detmat.setStyle("-fx-text-area-background: #585466;-fx-background-color:white; -fx-text-area-background :white;" );
+                                detmat.setFont(Font.font("Cambria", 14));
+                                detmat.setStyle(" -fx-text-inner-color :DarkSlateBlue    ;");
                                 
                                 Label labpri = new Label("Prix       :");
                                 labpri.translateXProperty().set(100);
                                 labpri.translateYProperty().set(50);
+                                labpri.setFont(Font.font("Cambria", 20));
                                 
                                 JFXTextField fprimat = new JFXTextField();
-                                fprimat.translateXProperty().set(170);
-                                fprimat.translateYProperty().set(50);
+                                fprimat.translateXProperty().set(190);
+                                fprimat.translateYProperty().set(54);
                                 fprimat.setText(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
                                 fprimat.isLabelFloat();
                                 fprimat.setPrefWidth(175);
+                                fprimat.setFont(Font.font("Cambria", 16));
                                 fprimat.setVisible(false);
+                                fprimat.setStyle(" -fx-text-inner-color :DarkSlateBlue    ;");
                                 
                                 Label prixmat = new Label();
-                                prixmat.translateXProperty().set(170);
-                                prixmat.translateYProperty().set(50);
+                                prixmat.translateXProperty().set(190);
+                                prixmat.translateYProperty().set(54);
                                 prixmat.setText(String.valueOf(ms.afficherMateriel().get(nb).getPrix()));
-                                      
+                                String prixmatpdf = String.valueOf(ms.afficherMateriel().get(nb).getPrix());
+                                prixmat.setFont(Font.font("Cambria", 16));
+                                prixmat.textFillProperty().set(Color.DARKSLATEBLUE);
+                                
                                 Label labtype = new Label("Type     :");
                                 labtype.translateXProperty().set(100);
                                 labtype.translateYProperty().set(100);
+                                labtype.setFont(Font.font("Cambria", 20));
                                 
                                 JFXComboBox<String> ftypemat = new JFXComboBox();
-                                ftypemat.translateXProperty().set(170);
+                                ftypemat.translateXProperty().set(190);
                                 ftypemat.translateYProperty().set(100);
                                 ftypemat.getItems().add("Materiel pour location");
                                 ftypemat.getItems().add("Materiel pour vente");
+                                ftypemat.setStyle("-fx-font-size: 13;-fx-font-family: Cambria;");
                                 ftypemat.setVisible(false);
+                                
 
                                 Label typemat = new Label();
-                                typemat.translateXProperty().set(170);
-                                typemat.translateYProperty().set(100);
+                                typemat.translateXProperty().set(190);
+                                typemat.translateYProperty().set(104);
+                                typemat.setFont(Font.font("Cambria", 16));
+                                typemat.textFillProperty().set(Color.DARKSLATEBLUE );
                                 
                                 String imgmat=ms.afficherMateriel().get(nb).getImage();
                                 
-                                
+                                int typetest = ms.afficherMateriel().get(nb).getType();
                                 if(ms.afficherMateriel().get(nb).getType()==0)
                                 {
                                     typemat.setText("Materiel pour location");
-                                    ftypemat.setValue("Materiel pour location");                                 
+                                    ftypemat.setValue("Materiel pour location"); 
+                                    
                                 }
                                 else if(ms.afficherMateriel().get(nb).getType()==1)
                                 {
@@ -365,20 +592,33 @@ public class FXMLtestFridController implements Initializable {
                                 sx.setVisible(false);
                                 panepane.setDisable(false);
                                 panepane.getChildren().addAll(paa);
+                                mailmat.setVisible(true);
+                                pdf.setVisible(true);
+                                
+                                if(!userid.equals(user.getCin()))
+                                {
+                                    suppmat.setVisible(false);
+                                    modifmat.setVisible(false);
+                                    mailmat.translateXProperty().set(750);
+                                    mailmat.translateYProperty().set(50);
+                                    pdf.translateXProperty().set(790);
+                                    pdf.translateYProperty().set(50);
+                                }
                                 
                                 modifmat.setOnAction((e)->{
-                                
+                                    mailmat.setVisible(false);
                                     nommat.setVisible(false);
                                     typemat.setVisible(false);
                                     prixmat.setVisible(false);
-                                    
+                                    pdf.setVisible(false);
+                                    suppmat.setVisible(false);
                                     fnommat.setVisible(true);
                                     ftypemat.setVisible(true);
                                     fprimat.setVisible(true);
                                     detmat.setEditable(true);
                                     cancelupdate.setVisible(true);
                                     okupdate.setVisible(true);
-                                
+                                    
                                 });
                                 
                                 cancelupdate.setOnAction((e)->{
@@ -387,7 +627,9 @@ public class FXMLtestFridController implements Initializable {
                                     typemat.setVisible(true);
                                     prixmat.setVisible(true);
                                     detmat.setText(dete);
-                                    
+                                    mailmat.setVisible(true);
+                                    pdf.setVisible(true);
+                                    suppmat.setVisible(true);
                                     
                                     fnommat.setVisible(false);
                                     ftypemat.setVisible(false);
@@ -409,12 +651,28 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 okupdate.setOnAction((emodif)->{
                                 Materiel m = new Materiel(idmat, fnommat.getText(), detmat.getText(), user, 0, parseFloat(fprimat.getText()), imgmat);
-                             
+                                    
+                                Alert alert = new Alert(AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation Dialog");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Confirmer la modification de "+m.getNomMateriel()+" ?");
+
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    
+                                    if (result.get() == ButtonType.OK){
                                     m.setNomMateriel(fnommat.getText());
                                     m.setDescription(detmat.getText());
                                     m.setPrix(parseFloat(fprimat.getText()));
                                     m.setType(ftypemat.getSelectionModel().getSelectedIndex());
                                     ms.modifierMateriel(m);
+                                    
+                                    Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Information Dialog");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Mise a jour du materiel terminer avec succès!");
+
+                                    alerte.showAndWait();
+                               }
                                     sx.setVisible(true);
                                     panepane.setVisible(false);
                                     btaff.setVisible(false);
@@ -428,26 +686,99 @@ public class FXMLtestFridController implements Initializable {
                                 
                                 suppmat.setOnAction((esupp)->{
                                     
-                                Materiel m = new Materiel(idmat);
-                                ms.supprimerMateriel(m);
+                                    Materiel m = new Materiel(idmat);
+                                    
+                                    Alert alert = new Alert(AlertType.CONFIRMATION);
+                                    alert.setTitle("Take a Hike");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Confirmer la suppression de "+m.getNomMateriel()+" ?");
+
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK){
+                                        ms.supprimerMateriel(m);
+                                
+                                     Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Suppression du materiel terminer avec succès!");
+                                    alerte.showAndWait();
+                                    } 
+                                    
                                 sx.setVisible(true);
                                 panepane.setVisible(false);
                                 btaff.setVisible(false);
                                 modifmat.setVisible(false);
                                 suppmat.setVisible(false);
                                 okupdate.setVisible(false);
+                                pdf.setVisible(false);
+                                mailmat.setVisible(false);
+                                btajout.setVisible(true);
                                 grid();
+                                
+                                    
+                                    
+                                    
+                                
                                 });
                                 
                                 
-                                pnn.getChildren().addAll(panepane,btaff,modifmat,suppmat,okupdate,cancelupdate);
+                                mailmat.setOnAction((e)->{
+                                String body=labnom.getText()+" "+ nommat.getText()+" \n"+ des.getText() + "   "+ detmat.getText() +"\n"+ labpri.getText() +"   "+ prixmat.getText() + " \n"+ labtype.getText() + "   "+ typemat.getText()+"\n"+"Nom du propriaitiare   :"+nomuserpdf+ " \n"+"Prenom du propriaitiare   :"+prenomuserpdf+ "\n "+"Adresse du propriaitiare   :"+adressuserpdf+ "\n "+"Telephone du propriaitiare   :"+teluserpdf+ "\n "+"Adresse electronique du propriaitiare   :"+mailuserpdf;
+                                    try {
+                                        Mail mailmatt = new Mail();
+                                        String[] atch = new String[100];
+                                        atch[0] = "C:\\Users\\monta\\Documents\\NetBeansProjects\\VersionFinalGit\\takeahike\\src\\reporting\\report1.jrxml";
+                                        mailmatt.sendmailattach("TakeAHikeTunisia@gmail.com", "SixiemeSens1CINFO2",user.getMail() , "Fiche de "+nommat.getText(), body,atch,1);
+                                        
+                                        
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(FXMLtestFridController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                       Alert alerte = new Alert(AlertType.INFORMATION);
+                                    alerte.setTitle("Take a Hike");
+                                    alerte.setHeaderText(null);
+                                    alerte.setContentText("Mail envoyer avec succès!");
+                                    alerte.showAndWait();
+
+                                });
+                                
+                                
+                                pdf.setOnAction((e)->{
+                                    
+                                    Report rep = new Report();
+                                    String url="C:\\Users\\monta\\Documents\\NetBeansProjects\\VersionFinalGit\\takeahike\\src\\reporting\\report1.jrxml";
+                                    Map mp=new HashMap();
+                                    mp.put("nom", nommatpdf);
+                                    mp.put("prix", prixmatpdf);
+                                    
+                                            if(typetest==0)
+                                        {
+                                            mp.put("type", "Materiel pour location");
+
+                                        }
+                                        else if(typetest==1)
+                                        {
+                                            mp.put("type", "Materiel pour vente");
+                                        }
+                                            
+                                    mp.put("desc", descpdf);
+                                    mp.put("Nomuser", nomuserpdf);
+                                    mp.put("prenomuser", prenomuserpdf);
+                                    mp.put("adresseuser", adressuserpdf);
+                                    mp.put("teluser", teluserpdf);
+                                    mp.put("mailuser", mailuserpdf);
+                                    rep.showReport(url,mp );
+                                });
+                                
+                                
+                                
+                                pnn.getChildren().addAll(panepane,btaff,modifmat,suppmat,okupdate,cancelupdate,mailmat,pdf);
                                 
                                 });
                                 
                                 
                                 
-                                
-//                                
+                                                         
                                 
                             }
                                 nb++;
@@ -467,98 +798,3 @@ public class FXMLtestFridController implements Initializable {
                    grid();
         }
 }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-
-//                        Stage primaryStage = null;
-//
-//
-//
-//                                    Button button1 = new Button("Button 1");
-//                                    Button button2 = new Button("Button 2");
-//                                    Button button3 = new Button("Button 3");
-//                                    Button button4 = new Button("Button 4");
-//                                    Button button5 = new Button("Button 5");
-//                                    Button button6 = new Button("Button 6");
-//
-//                                    GridPane gridPane = new GridPane();
-//
-//                                    gridPane.add(button1, 0, 0, 1, 1);
-//                                    gridPane.add(button2, 1, 0, 1, 1);
-//                                    gridPane.add(button3, 2, 0, 1, 1);
-//                                    gridPane.add(button4, 0, 1, 1, 1);
-//                                    gridPane.add(button5, 1, 1, 1, 1);
-//                                    gridPane.add(button6, 2, 1, 1, 1);
-
-
-
-
-
-
-
-//                        
-//                        GridLayout ex = new GridLayout(0, 2);
-//                        ex.addLayoutComponent(name, comp);
-//         
-//                    scroll.autosize();
-//                    scroll.setVisible(true);
-//                    scroll.isPannable();
-
-        
-//        GridView gridmate= new GridView();
-//            
-//        
-//       
-//        Pane panex = new Pane();
-//      
-//        panex.backgroundProperty().set(new Background(new BackgroundFill(Color.PINK, CornerRadii.EMPTY, Insets.EMPTY)));
-//        
-//        
-//        gridmate.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-//        
-    
-        
-        
-       
-        
-                
-
-        
-    
-

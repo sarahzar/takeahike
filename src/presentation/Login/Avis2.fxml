@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.Avis2Controller">
+    <stylesheets>
+        <URL value="@avis2.css" />
+    </stylesheets>
+    <children>
+    <VBox fx:id="VBoxMain" alignment="TOP_CENTER" prefHeight="423.0" prefWidth="341.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+      <children>
+        <Label fx:id="TitleLbl" alignment="TOP_LEFT" text="Titre de l'article" textFill="#009f90">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+        <ListView fx:id="listBoxMain" prefHeight="200.0" prefWidth="200.0" />
+        <Label id="TextLbl" fx:id="LblAddText" text="Saisissez votre commentaire" textFill="#004e3e">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+        <TextArea fx:id="txtAddItem" prefWidth="200.0" prefRowCount="3" >
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
+        <HBox id="HBox" fx:id="HBox4Btns" alignment="CENTER" spacing="5.0">
+          <children>
+            <Button fx:id="BtnAdd" mnemonicParsing="false" onAction="#addAction" prefHeight="25" prefWidth="95" style="-fx-background-color: #009F90;" text="Valider" textFill="WHITE" />
+            
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

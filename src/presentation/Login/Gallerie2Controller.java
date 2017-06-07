@@ -46,7 +46,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
-import static presentation.Login.FXMLGRIDEVENTController.idevent;
+
 import services.EvennementServices;
 
 /**
@@ -66,11 +66,11 @@ public class Gallerie2Controller implements Initializable {
     private ImageView img;
     
     
-    
-            
+        static int idevent;    
     @FXML
     protected void processBrowse(ActionEvent event) {
-        
+       
+  
         
             
         FileChooser chooser = new FileChooser();
@@ -90,7 +90,7 @@ public class Gallerie2Controller implements Initializable {
                 e.printStackTrace();
 
             }
-
+                System.out.println(idevent);
             System.out.println(file.toURI().toString());
             Image g = new Image(file.toURI().toString());
             img.setImage(g);
@@ -152,7 +152,6 @@ public class Gallerie2Controller implements Initializable {
                     a.showAndWait();
                 }else {
                     GalerieServices ga = new GalerieServices();
-                    System.out.println(user.getCin());
                     Galerie g = new Galerie(idevent, responseContent, user.getCin());
                     ga.ajouterGalerie(g);
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -161,7 +160,7 @@ public class Gallerie2Controller implements Initializable {
                      a.setHeaderText(null);
                      a.setContentText("Upload Done!!");
                     a.showAndWait();
-                    System.out.println(EntityUtils.toString(resEntity));
+                    //System.out.println(EntityUtils.toString(resEntity));
                 }
             }
             if (resEntity != null) {
@@ -174,6 +173,8 @@ public class Gallerie2Controller implements Initializable {
 
     }
 
+   
+
     /**
      * Initializes the controller class.
      */
@@ -182,4 +183,6 @@ public class Gallerie2Controller implements Initializable {
         // TODO
     }
 
+    
+    
 }

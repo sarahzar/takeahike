@@ -248,7 +248,7 @@ public class UtilisateurServices implements interfaceUtilisateur {
             ResultSet result = stm.executeQuery("select * from utilisateur where cin = \"" + cin + "\"");
 
             while (result.next()) {
-                System.out.println("Cin Result:    "+result.getString(1));
+                
                 u.setCin(result.getString(1));
                 u.setType(result.getInt(2));
                 u.setNom(result.getString(3));

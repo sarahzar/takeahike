@@ -376,53 +376,53 @@ public class FXMLGRIDEVENTController implements Initializable {
              //  *************************************************************     
                       //*******************************Map***************************** 
                 
-                final MapView mapView = new MapView();
+                //**final MapView mapView = new MapView();
 
-        mapView.setOnMapReadyHandler(new MapReadyHandler() {
-            @Override
-            public void onMapReady(MapStatus status) {
-                if (status == MapStatus.MAP_STATUS_OK) { 
-                    final Map map = mapView.getMap();
-                    map.setZoom(13.0);
-                    GeocoderRequest request = new GeocoderRequest();
-                    request.setAddress(endr.getText()+" ,TN");
-                    
-                    System.out.println(endr.getText());
-                    //request.setAddress("Rue de Royaume d'Arabie Saoudite، Tunis 1002, TN");
-
-                    mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
-                        @Override
-                        public void onComplete(GeocoderResult[] result, GeocoderStatus status) {
-                            if (status == GeocoderStatus.OK) {
-                                map.setCenter(result[0].getGeometry().getLocation());
-                                Marker marker = new Marker(map);
-                                marker.setPosition(result[0].getGeometry().getLocation());
-                                
-                                 
-
-                                final InfoWindow window = new InfoWindow(map);
-                              //  window.setContent("Hello, World!");
-                               // window.open(map, marker);
-                                
-                            }
-                        }
-                    });
-                }
-            }
-        });
-                
-                
-          BorderPane map=new BorderPane(mapView) ;  
-          map.setTranslateX(30);
-          map.setTranslateY(120); 
-          map.setPrefWidth(250);
-          map.setPrefHeight(250);
-                
+//        mapView.setOnMapReadyHandler(new MapReadyHandler() {
+//            @Override
+//            public void onMapReady(MapStatus status) {
+//                if (status == MapStatus.MAP_STATUS_OK) { 
+//                    final Map map = mapView.getMap();
+//                    map.setZoom(13.0);
+//                    GeocoderRequest request = new GeocoderRequest();
+//                    request.setAddress(endr.getText()+" ,TN");
+//                    
+//                    System.out.println(endr.getText());
+//                    //request.setAddress("Rue de Royaume d'Arabie Saoudite، Tunis 1002, TN");
+//
+//                    mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
+//                        @Override
+//                        public void onComplete(GeocoderResult[] result, GeocoderStatus status) {
+//                            if (status == GeocoderStatus.OK) {
+//                                map.setCenter(result[0].getGeometry().getLocation());
+//                                Marker marker = new Marker(map);
+//                                marker.setPosition(result[0].getGeometry().getLocation());
+//                                
+//                                 
+//
+//                                final InfoWindow window = new InfoWindow(map);
+//                              //  window.setContent("Hello, World!");
+//                               // window.open(map, marker);
+//                                
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//                
+//                
+//          BorderPane map=new BorderPane(mapView) ;  
+//          map.setTranslateX(30);
+//          map.setTranslateY(120); 
+//          map.setPrefWidth(250);
+//          map.setPrefHeight(250);
+               
 //                
                 
                
                     
-                    padetails.getChildren().addAll(map,flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
+                    padetails.getChildren().addAll(flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
@@ -498,7 +498,7 @@ public class FXMLGRIDEVENTController implements Initializable {
 
     public void Event2() {
 
-        Utilisateur user = Session.getUser();
+         Utilisateur user = Session.getUser();
         Stage newStage = new Stage();
 
     
@@ -533,9 +533,9 @@ public class FXMLGRIDEVENTController implements Initializable {
         gridee.setStyle("-fx-background-color : white ;");
         scrollEvent1.setContent(gridee);
 
-        EvennementServices es = new EvennementServices();
-        List<Evennement> evtlist = new ArrayList<>();
-        evtlist = (ArrayList<Evennement>) es.afficherEvennementorganise();
+       EvennementServices es = new EvennementServices();
+      List<Evennement> evtlist1 = new ArrayList<>();
+       evtlist1 = (ArrayList<Evennement>) es.afficherEvennementorganise();
 
         int x = es.afficherEvennementorganise().size();
         int i = 0, j = 0, nb = 0;
@@ -560,8 +560,6 @@ public class FXMLGRIDEVENTController implements Initializable {
 
             }
         }
-       
-        
         btaff.setOnAction((event)
                 -> {
             scrollEvent1.setVisible(true);
@@ -581,7 +579,7 @@ public class FXMLGRIDEVENTController implements Initializable {
             for (j = 0; j < 2; j++) {
 
                 if (nb + 1 <= x) {
-
+                    int idevent = es.afficherEvennementorganise().get(nb).getId();
                     Label lab = new Label(es.afficherEvennementorganise().get(nb).getNom());
                     lab.translateYProperty().set(25);
                     lab.translateXProperty().set(200);
@@ -609,7 +607,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                     btn.setStyle("-fx-border-color: blue");
 
                     //création d'une liste d'image  
-                    imglist.add(new ImageView(new Image(listevt1.get(nb).getGllist().get(0).getImage())));
+                    imglist.add(new ImageView(new Image("http://localhost/takeahike/img/"+listevt1.get(nb).getGllist().get(0).getImage())));
                     imglist.get(nb).translateXProperty().setValue(5);
                     imglist.get(nb).translateYProperty().setValue(5);
 
@@ -624,14 +622,14 @@ public class FXMLGRIDEVENTController implements Initializable {
 
                     //Affichage du details evennement
                     
-                   int idevent = es.afficherEvennementorganise().get(nb).getId();
+                        
                     
                     
                    
                     
                     JFXTextArea description = new JFXTextArea();
                     description.translateYProperty().set(270);
-                    description.translateXProperty().set(250);
+                    description.translateXProperty().set(350);
                     description.setText(es.afficherEvennementorganise().get(nb).getDescription());
                     description.setEditable(false);
                     
@@ -729,7 +727,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                                     typdiff.setText("Très Difficile");
                                     dif.setValue("Très Difficile");
                                 }
-                                
+                               
                     
                     Pane padetails = new Pane();
                     JFXButton photos = new JFXButton("photo");
@@ -745,19 +743,103 @@ public class FXMLGRIDEVENTController implements Initializable {
                         } catch (IOException ex) {
                             Logger.getLogger(FXMLGRIDEVENTController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
+                            
                     });
-                    padetails.getChildren().addAll(description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
+                //test image   ********************************************************   
+                   
+                     FlowPane flow = new FlowPane();
+                     flow.setPrefWrapLength(300); 
+                      flow.setPrefHeight(150);
+                    flow.setPrefWidth(463);
+                    flow.setTranslateX(350);
+                    flow.setTranslateY(75); 
+                 //  flow.setStyle("-fx-background-color: white; -fx-border-color: black");
+                     List<ImageView> imgliste=new ArrayList<>();
+                     for(int m=0;m<listevt1.get(nb).getGllist().size();m++){
+                         if(m<=2){
+               //  imgliste.add(new ImageView(new Image(listevt.get(nb).getGllist().get(m).getImage())));
+                imgliste.add(new ImageView(new Image("http://localhost/takeahike/img/"+listevt1.get(nb).getGllist().get(m).getImage())));
+                     
+                  imgliste.get(m).translateXProperty().setValue(5);
+                
+                     imgliste.get(m).setFitHeight(250);
+                     imgliste.get(m).setFitWidth(200);
+                    imgliste.get(m).setFitWidth(150);
+                     imgliste.get(m).setFitHeight(135); 
+                      
+                      flow.getChildren().add(imgliste.get(m));
+                         }
+                     }
+                
+                      
+                   // System.out.println("taille de liste "+listevt.get(0).getGllist().size());
+                   
+             //  *************************************************************     
+                      //*******************************Map***************************** 
+                
+                //**final MapView mapView = new MapView();
+
+//        mapView.setOnMapReadyHandler(new MapReadyHandler() {
+//            @Override
+//            public void onMapReady(MapStatus status) {
+//                if (status == MapStatus.MAP_STATUS_OK) { 
+//                    final Map map = mapView.getMap();
+//                    map.setZoom(13.0);
+//                    GeocoderRequest request = new GeocoderRequest();
+//                    request.setAddress(endr.getText()+" ,TN");
+//                    
+//                    System.out.println(endr.getText());
+//                    //request.setAddress("Rue de Royaume d'Arabie Saoudite، Tunis 1002, TN");
+//
+//                    mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
+//                        @Override
+//                        public void onComplete(GeocoderResult[] result, GeocoderStatus status) {
+//                            if (status == GeocoderStatus.OK) {
+//                                map.setCenter(result[0].getGeometry().getLocation());
+//                                Marker marker = new Marker(map);
+//                                marker.setPosition(result[0].getGeometry().getLocation());
+//                                
+//                                 
+//
+//                                final InfoWindow window = new InfoWindow(map);
+//                              //  window.setContent("Hello, World!");
+//                               // window.open(map, marker);
+//                                
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//                
+//                
+//          BorderPane map=new BorderPane(mapView) ;  
+//          map.setTranslateX(30);
+//          map.setTranslateY(120); 
+//          map.setPrefWidth(250);
+//          map.setPrefHeight(250);
+               
+//                
+                
+               
+                    
+                    padetails.getChildren().addAll(flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
-
+                            System.out.println(idevent);
                         scrollEvent1.setVisible(true);
 
                         ajoutpane.setVisible(false);
                         tabpane.setVisible(false);
                         detailspan.setDisable(false);
                         detailspan.getChildren().addAll(padetails);
+                        
+                         
+           
+                        System.out.println("taille de liste "+listevt1.get(0).getGllist().size());
+                        
+                        
                         
                           modifevt.setOnAction((ev) -> {
                             
@@ -805,13 +887,6 @@ public class FXMLGRIDEVENTController implements Initializable {
                                 Event2();
                           });
                         acceuilpan.getChildren().addAll(btaff, detailspan,modifevt,suppevt,update);
-                            
-                        acceuilpan.getChildren().addAll(btaff, detailspan);
-                        
-                       
-                        
-                        
-                        
 
                     });
 

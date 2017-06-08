@@ -56,19 +56,20 @@ import javafx.util.Callback;
 import org.controlsfx.control.GridCell;
 import org.controlsfx.control.GridView;
 import org.controlsfx.control.cell.ColorGridCell;
-import static presentation.Login.Gallerie2Controller.idevent;
+//import static presentation.Login.Gallerie2Controller.idevent;
 import services.EvennementServices;
 import services.GalerieServices;
-//import com.teamdev.jxmaps.GeocoderCallback;
-//import com.teamdev.jxmaps.GeocoderRequest;
-//import com.teamdev.jxmaps.GeocoderResult;
-//import com.teamdev.jxmaps.GeocoderStatus;
-//import com.teamdev.jxmaps.InfoWindow;
-//import com.teamdev.jxmaps.Map;
-//import com.teamdev.jxmaps.MapReadyHandler;
-//import com.teamdev.jxmaps.MapStatus;
-//import com.teamdev.jxmaps.Marker;
-//import com.teamdev.jxmaps.javafx.MapView;
+import com.teamdev.jxmaps.GeocoderCallback;
+import com.teamdev.jxmaps.GeocoderRequest;
+import com.teamdev.jxmaps.GeocoderResult;
+import com.teamdev.jxmaps.GeocoderStatus;
+import com.teamdev.jxmaps.InfoWindow;
+import com.teamdev.jxmaps.Map;
+import com.teamdev.jxmaps.MapReadyHandler;
+import com.teamdev.jxmaps.MapStatus;
+import com.teamdev.jxmaps.Marker;
+import com.teamdev.jxmaps.javafx.MapView;
+import javafx.scene.layout.BorderPane;
 
 
 public class FXMLGRIDEVENTController implements Initializable {
@@ -177,7 +178,7 @@ public class FXMLGRIDEVENTController implements Initializable {
             for (j = 0; j < 2; j++) {
 
                 if (nb + 1 <= x) {
-                    idevent = es.afficherEvennementorganise().get(nb).getId();
+                    int idevent = es.afficherEvennementorganise().get(nb).getId();
                     Label lab = new Label(es.afficherEvennementAvenir().get(nb).getNom());
                     lab.translateYProperty().set(25);
                     lab.translateXProperty().set(200);
@@ -227,7 +228,7 @@ public class FXMLGRIDEVENTController implements Initializable {
                     
                     JFXTextArea description = new JFXTextArea();
                     description.translateYProperty().set(270);
-                    description.translateXProperty().set(250);
+                    description.translateXProperty().set(350);
                     description.setText(es.afficherEvennementAvenir().get(nb).getDescription());
                     description.setEditable(false);
                     
@@ -375,51 +376,53 @@ public class FXMLGRIDEVENTController implements Initializable {
              //  *************************************************************     
                       //*******************************Map***************************** 
                 
-//                final MapView mapView = new MapView();
-//
-//        mapView.setOnMapReadyHandler(new MapReadyHandler() {
-//            @Override
-//            public void onMapReady(MapStatus status) {
-//                if (status == MapStatus.MAP_STATUS_OK) { 
-//                    final Map map = mapView.getMap();
-//                    map.setZoom(13.0);
-//                    GeocoderRequest request = new GeocoderRequest();
-//                    request.setAddress("sousse , TN");
-//                    //request.setAddress("Rue de Royaume d'Arabie Saoudite، Tunis 1002, TN");
-//
-//                    mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
-//                        @Override
-//                        public void onComplete(GeocoderResult[] result, GeocoderStatus status) {
-//                            if (status == GeocoderStatus.OK) {
-//                                map.setCenter(result[0].getGeometry().getLocation());
-//                                Marker marker = new Marker(map);
-//                                marker.setPosition(result[0].getGeometry().getLocation());
-//                                
-//                                 
-//
-//                                final InfoWindow window = new InfoWindow(map);
-//                                window.setContent("Hello, World!");
-//                                window.open(map, marker);
-//                                
-//                            }
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//                
-//                
-//          BorderPane map=new BorderPane(mapView) ;  
-//          map.setTranslateX(30);
-//          map.setTranslateY(75); 
-//          map.setPrefWidth(250);
-//          map.setPrefHeight(250);
-//                
+                final MapView mapView = new MapView();
+
+        mapView.setOnMapReadyHandler(new MapReadyHandler() {
+            @Override
+            public void onMapReady(MapStatus status) {
+                if (status == MapStatus.MAP_STATUS_OK) { 
+                    final Map map = mapView.getMap();
+                    map.setZoom(13.0);
+                    GeocoderRequest request = new GeocoderRequest();
+                    request.setAddress(endr.getText()+" ,TN");
+                    
+                    System.out.println(endr.getText());
+                    //request.setAddress("Rue de Royaume d'Arabie Saoudite، Tunis 1002, TN");
+
+                    mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
+                        @Override
+                        public void onComplete(GeocoderResult[] result, GeocoderStatus status) {
+                            if (status == GeocoderStatus.OK) {
+                                map.setCenter(result[0].getGeometry().getLocation());
+                                Marker marker = new Marker(map);
+                                marker.setPosition(result[0].getGeometry().getLocation());
+                                
+                                 
+
+                                final InfoWindow window = new InfoWindow(map);
+                              //  window.setContent("Hello, World!");
+                               // window.open(map, marker);
+                                
+                            }
+                        }
+                    });
+                }
+            }
+        });
+                
+                
+          BorderPane map=new BorderPane(mapView) ;  
+          map.setTranslateX(30);
+          map.setTranslateY(120); 
+          map.setPrefWidth(250);
+          map.setPrefHeight(250);
+                
 //                
                 
                
                     
-                    padetails.getChildren().addAll(flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
+                    padetails.getChildren().addAll(map,flow,description, Nom, nome, endroit, endr,dated,dt,datef,df,diff,typdiff,dif,photos,nbr,nbrpl,places);
                     gridee.add(pane, j, i);
                     detailspan.setDisable(true);
                     btn.setOnAction((event) -> {
